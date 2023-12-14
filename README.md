@@ -130,4 +130,4 @@ sns投稿機能を実装し、それをユーザーが使うことで同じ趣�
 https://www.figma.com/file/TZehx3NGEY5foaN2WVstSt/OshiGoodsGallery?type=design&node-id=0%3A1&mode=design&t=zHPFYymOQaDZJAKw-1
 
 ## ER図
-![Test Image 1](https://github.com/yaJI02/OshiGoodsGallery/blob/main/ERD.drawio.png)
+![Test Image 1](ERD.drawio.png)
