@@ -127,3 +127,6 @@ sns投稿機能を実装し、それをユーザーが使うことで同じ趣�
   タイトルとサムネと金額
 - 通知機能
   いいね・コメントされたら通知
+
+## 画面遷移図
+https://www.figma.com/file/TZehx3NGEY5foaN2WVstSt/OshiGoodsGallery?type=design&node-id=0%3A1&mode=design&t=zHPFYymOQaDZJAKw-1
