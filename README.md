@@ -131,3 +131,15 @@ https://www.figma.com/file/TZehx3NGEY5foaN2WVstSt/OshiGoodsGallery?type=design&n
 
 ## ER図
 ![Test Image 1](ERD.drawio.png)
+
+## 環境構築
+1.Dockerイメージのビルド  
+```docker compose build```  
+2.バックグラウンドでのDockerコンテナ立ち上げ・railsサーバー起動  
+```docker compose up -d```  
+3.コンテナに入る  
+```docker compose exec web bash```  
+4.コンテナ内でバンドルインストール  
+```bundle install```  
+5.コンテナ内でDBの作成  
+```bin/rails db:create```  
