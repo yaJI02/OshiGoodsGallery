@@ -1,0 +1,20 @@
+<header>
+  <nav class='navbar'>
+    <div class='container'>
+      <%= link_to root_path, class: 'navbar-brand logo', style:'display: flex; flex-direction: row;' do %>
+        <div class='d-flex align-items-center me-3'>
+          <%= image_tag('moon-icon-w.png', size:'40x40') %>
+        </div>
+        推しグッズギャラリー
+      <% end %>
+      <ul class='navbar-nav ms-auto' style='display: flex; flex-direction: row;'>
+        <li class='nav-item'>
+          <%= link_to 'ログイン', '#', class: 'nav-link btn btn-outline-secondary' %>
+        </li>
+        <li class='nav-item'>
+          <%= link_to '登録ページへ', '#', class: 'nav-link btn btn-outline-secondary' %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
