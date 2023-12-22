@@ -1,2 +1,19 @@
 <div class='container text-center'>
+  <div class='content mb-5'>
+    <%= render 'shared/content_title', this_title: 'newグッズ' %>
+    <p>comming soon!</p>
+  </div>
+  <div class='content my-5'>
+    <%= render 'shared/content_title', this_title: 'newショールーム' %>
+    <p>comming soon!</p>
+  </div>
+  <div class='content my-5'>
+    <%= link_to 'グッズを投稿する', '#', class: 'btn btn-outline-secondary mx-4' %>
+    <%= link_to '投稿一覧を見る', '#', class: 'btn btn-outline-secondary mx-4' %>
+  </div>
+  <div class='content my-5'>
+    <%= render 'shared/content_title', this_title: 'ranking' %>
+    <p>comming soon!</p>
+    <%= link_to 'もっとランキングを見る', '#', class: 'btn btn-outline-secondary mt-2' %>
+  </div>
 </div>
