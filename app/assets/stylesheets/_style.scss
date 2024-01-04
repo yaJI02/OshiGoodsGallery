@@ -66,4 +66,7 @@ footer .footer-item:hover {
 .content-title {
   font-size: 15pt;
   color: #66589c;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
