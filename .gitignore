@@ -31,7 +31,6 @@
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
-/config/credentials.yml.enc
 /config/master.key
 /config/initializers/content_security_policy.rb
 
