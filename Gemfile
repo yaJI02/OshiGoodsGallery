@@ -55,6 +55,10 @@ gem "mini_racer", "~> 0.6.2"
 
 gem "jquery-rails"
 
+gem "sorcery"
+
+gem "rails-i18n"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
