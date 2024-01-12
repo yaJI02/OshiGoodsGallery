@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 氏名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
+  helpers:
+    submit:
+      create: 登録する
+      update: 更新する
+      submit: 保存する

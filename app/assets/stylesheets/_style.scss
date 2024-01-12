@@ -70,3 +70,26 @@ footer .footer-item:hover {
   flex-direction: row;
   justify-content: center;
 }
+
+.login-box {
+  border: 1px solid #66589c;
+  padding: 0px 80px;
+  margin-top: 20px;
+  background-color: #f5effb;
+}
+
+.form-btn {
+  font-size: 15pt;
+  color: white;
+  background-color: #66589c;
+  padding: 10px 15px;
+}
+
+.form-btn:hover {
+  color: #d3d3d3;
+  background-color: #8C78BA;
+}
+
+.link-text {
+  font-size: 15pt;
+}
