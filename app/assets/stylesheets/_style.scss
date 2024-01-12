@@ -19,6 +19,14 @@ header .btn {
   padding: 10px 15px;
 }
 
+header .myicon {
+  margin: 0px 10px;
+}
+
+header .navbar-toggler {
+  background-color: #f5effb;
+}
+
 @media screen and (max-width: 767px) {
   header .logo {
     font-size: 20pt;
@@ -38,9 +46,13 @@ header .navbar-brand:hover img {
   filter: brightness(0.8);
 }
 
-header .nav-link:hover {
+header .nav-link.btn:hover {
   color: #f5effb;
   background-color: #aea2d2;
+}
+
+header .nav-link.myicon:hover {
+  filter: brightness(0.8);
 }
 
 footer {
