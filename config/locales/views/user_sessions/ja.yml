@@ -1,0 +1,8 @@
+ja:
+  user_sessions:
+    new:
+      title: ログイン
+      link_signup: 新規登録ページへ
+  helpers:
+    submit:
+      submit: ログインする

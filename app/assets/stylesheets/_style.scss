@@ -8,7 +8,7 @@ header {
 
 header .logo {
   font-size: 25pt;
-  color: #fff;
+  color: white;
 }
 
 header .btn {
@@ -17,6 +17,14 @@ header .btn {
   background-color: #f5effb;
   margin-left: 10px;
   padding: 10px 15px;
+}
+
+header .myicon {
+  margin: 0px 10px;
+}
+
+header .navbar-toggler {
+  background-color: #f5effb;
 }
 
 @media screen and (max-width: 767px) {
@@ -38,15 +46,19 @@ header .navbar-brand:hover img {
   filter: brightness(0.8);
 }
 
-header .nav-link:hover {
+header .nav-link.btn:hover {
   color: #f5effb;
   background-color: #aea2d2;
+}
+
+header .nav-link.myicon:hover {
+  filter: brightness(0.8);
 }
 
 footer {
 	background-color: #8C78BA;
   font-size: 15pt;
-  color: #fff;
+  color: white;
   width: 100%;
 }
 
@@ -59,7 +71,7 @@ footer .footer-item:hover {
 }
 
 .content .btn {
-  color: #fff;
+  color: white;
   background-color: #66589c;
 }
 
@@ -69,4 +81,27 @@ footer .footer-item:hover {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.login-box {
+  border: 1px solid #66589c;
+  padding: 0px 80px;
+  margin-top: 20px;
+  background-color: #f5effb;
+}
+
+.form-btn {
+  font-size: 15pt;
+  color: white;
+  background-color: #66589c;
+  padding: 10px 15px;
+}
+
+.form-btn:hover {
+  color: #d3d3d3;
+  background-color: #8C78BA;
+}
+
+.link-text {
+  font-size: 15pt;
 }
