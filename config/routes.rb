@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :posts
+  resources :users, only: %i[new create]
+
   root 'top#index'
   get 'terms_of_use', to: 'top#terms_of_use'
   get 'about', to: 'top#about'
@@ -8,5 +11,4 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 
-  resources :users, only: %i[new create]
 end

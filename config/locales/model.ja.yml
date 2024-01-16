@@ -8,6 +8,14 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
+      post:
+        title: タイトル
+        body: 本文
+        photos: 写真
+        purchase_cost: 購入費用
+        bought_at: 購入日
+        post_type: 投稿タイプ
+        purchase_status: ステータス
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -16,6 +24,19 @@ ja:
       create: 登録する
       update: 更新する
       submit: 保存する
+      user:
+        create: 新規登録する
+      post:
+        create: 投稿する
     label:
       email: メールアドレス
       password: パスワード
+  enums:
+    post:
+      post_type:
+        merchandise: グッズ
+        showroom: ショールーム
+      purchase_status:
+        purchased: 購入済
+        reservation: 予約
+        considering: 検討中
