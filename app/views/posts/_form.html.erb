@@ -1,0 +1,68 @@
+<%= form_with(model: post)  do |f| %>
+  <%= render 'shared/error_message', object: f.object %>
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :title, class: 'col-form-label' %>
+    </div>
+    <div class='col-9'>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :body, class: 'col-form-label' %>
+    </div>
+    <div class='col-9'>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :bought_at, class: 'col-form-label' %>
+    </div>
+    <div class='col-9'>
+      <%= f.date_field :bought_at, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :purchase_cost, class: 'col-form-label' %>
+    </div>
+    <div class='col-9'>
+      <%= f.number_field :purchase_cost, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :post_type, class: 'col-form-label' %>
+    </div>
+    <div class='col-9' style="display: flex; align-items: center;">
+      <%= f.radio_button :post_type, :merchandise, checked: true %>
+      <%= f.label :post_type_merchandise, t('enums.post.post_type.merchandise'), class: 'me-2' %>
+      <%= f.radio_button :post_type, :showroom %>
+      <%= f.label :post_type_showroom, t('enums.post.post_type.showroom') %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :purchase_status, class: 'col-form-label' %>
+    </div>
+    <div class='col-9' style="display: flex; align-items: center;">
+      <%= f.radio_button :purchase_status, :purchased, checked: true %>
+      <%= f.label :purchase_status_purchased, t('enums.post.purchase_status.purchased'), class: 'me-2' %>
+      <%= f.radio_button :purchase_status, :reservation %>
+      <%= f.label :purchase_status_reservation, t('enums.post.purchase_status.reservation'), class: 'me-2' %>
+      <%= f.radio_button :purchase_status, :considering %>
+      <%= f.label :purchase_status_considering, t('enums.post.purchase_status.considering') %>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit class: 'btn my-3 mx-auto form-btn' %>
+  </div>
+<% end %>

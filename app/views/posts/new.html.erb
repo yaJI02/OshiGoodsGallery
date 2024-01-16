@@ -1,0 +1,12 @@
+<% content_for :title, t('.title') %>
+
+<div class='container'>
+  <div class='row'>
+    <div class='form-box col-md-10 col-lg-10 mx-auto mt-5 px-5'>
+      <div class='page-title-name text-center my-5'>
+        <h1><%= t('.title') %></h1>
+      </div>
+      <%= render 'form', post: @post %>
+    </div>
+  </div>
+</div>
