@@ -1,0 +1,24 @@
+<div class='form-box mb-3'>
+  <div class='post-type-tag ps-2'>
+    <%= post.post_type_i18n %>
+  </div>
+  <div class='row'>
+    <div class='col-4'>
+      <div class='ms-2'>
+        a
+      </div>
+    </div>
+    <div class='col-8'>
+      <%= post.title %>
+    </div>
+  </div>
+
+  <div class='row mt-2'>
+    <div class='col ms-2'>
+      <%= link_to "詳細を見る", post %>
+    </div>
+    <div class='col me-2 d-flex justify-content-end post-create-at'>
+      <%= I18n.l(post.created_at, format: :only_date) %>
+    </div>
+  </div>
+</div>

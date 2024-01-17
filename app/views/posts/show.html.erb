@@ -1,0 +1,64 @@
+<% content_for :title, t('.title', post_title: @post.title) %>
+
+<div class='container'>
+  <div class='container-box'>
+    <div class='container-label'>
+      <div class='row'>
+        <div class='col ms-2'>
+          <%= @post.post_type_i18n %>／<%= @post.purchase_status_i18n %>
+        </div>
+        <div class='col me-2 d-flex justify-content-end'>
+          created at <%= I18n.l(@post.created_at, format: :only_date) %>
+        </div>
+      </div>
+    </div>
+
+    <div class='row m-2'>
+      <div class='col-6'></div>
+      <div class='col-6'>
+        <%= @post.title %>
+        <div class='content-box body-box'>
+          <%= @post.body %>
+        </div>
+      </div>
+    </div>
+
+    <div class='row m-2'>
+      <div class='col-6'>
+        <div class='mb-1'>
+          <% if @post.purchased? %>
+            <%= Post.human_attribute_name(:bought_at) %>：<%= I18n.l(@post.bought_at) %>
+          <% else %>
+            購入予定日：<%= I18n.l(@post.bought_at) %>
+          <% end %>
+        </div>
+        <div class='mb-1'>
+          <%= Post.human_attribute_name(:purchase_cost) %>：<%= @post.purchase_cost %>円
+        </div>
+      </div>
+      <div class='col-6'>
+        <div class='content-box mb-1'>
+          グッズカテゴリ
+        </div>
+        <div class='content-box mb-1'>
+          推しポイントタグ
+        </div>
+        <div class='content-box'>
+          コンテンツカテゴリ
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5 mb-3">
+      <div class='col me-5 d-flex justify-content-end'>
+        <%= link_to '編集する', edit_post_path(@post), class: 'btn form-btn' %>
+      </div>
+      <div class='col ms-5'>
+        <%= button_to '削除する', @post, method: :delete, class: 'btn form-btn btn-del' %>
+      </div>
+    </div>
+  </div>
+  <div class='link-text text-center mt-3'>
+    <%= link_to '投稿一覧に戻る', posts_path %>
+  </div>
+</div>

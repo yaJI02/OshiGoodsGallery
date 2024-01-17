@@ -1,0 +1,7 @@
+<% content_for :title, t('.title') %>
+
+<div class='container mt-3'>
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>

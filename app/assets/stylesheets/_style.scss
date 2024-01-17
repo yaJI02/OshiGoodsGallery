@@ -105,6 +105,43 @@ footer .footer-item:hover {
   background-color: #8C78BA;
 }
 
+.btn-del {
+  background-color: #7B2323;
+}
+
+.btn-del:hover {
+  background-color: #A55656;
+}
+
 .link-text {
   font-size: 15pt;
+}
+
+.container-box {
+  border: 3px solid #66589c;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.container-label {
+  background-color: #66589c;
+  color: white;
+}
+
+.container-box .content-box {
+  border: 1px solid #66589c;
+}
+
+.container-box .content-box .body-box {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.post-type-tag {
+  background-color: #66589c;
+  color: white;
+}
+
+.post-create-at {
+  color: #6E6E6E;
 }

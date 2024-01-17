@@ -1,0 +1,17 @@
+<% content_for :title, t('.title', post_title: @post.title) %>
+
+<div class='container'>
+  <div class='row'>
+    <div class='form-box col-md-10 col-lg-10 mx-auto mt-5 px-5'>
+      <div class='page-title-name text-center my-5'>
+        <h1><%= t('.title', post_title: @post.title) %></h1>
+      </div>
+      <%= render 'form', post: @post %>
+    </div>
+  </div>
+</div>
+
+<div class='link-text text-center mt-5'>
+  <%= link_to "詳細に戻る", @post %>　|　
+  <%= link_to "投稿一覧に戻る", posts_path %>
+</div>
