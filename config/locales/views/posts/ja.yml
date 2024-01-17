@@ -1,4 +1,6 @@
 ja:
   posts:
+    index:
+      title: 投稿一覧
     new:
       title: 新規投稿フォーム
