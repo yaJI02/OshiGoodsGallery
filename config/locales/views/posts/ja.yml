@@ -6,3 +6,5 @@ ja:
       title: 新規投稿フォーム
     show:
       title: "%{post_title} 詳細"
+    edit:
+      title: "%{post_title} 編集"
