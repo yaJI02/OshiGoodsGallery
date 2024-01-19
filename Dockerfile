@@ -29,8 +29,8 @@ RUN apt-get update -qq && \
 FROM base as build
 
 # Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential libpq-dev
+RUN apt-get update -qq \
+  && apt-get install -y build-essential libpq-dev libssl-dev postgresql-client imagemagick
 
 # Install application gems
 COPY --link Gemfile Gemfile.lock ./
