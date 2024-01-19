@@ -14,7 +14,9 @@
     </div>
 
     <div class='row m-2'>
-      <div class='col-6'></div>
+      <div class='col-6'>
+        <%= image_tag(@post.photo.url, size:'170x170', style:'background-color: #ffffff;') %>
+      </div>
       <div class='col-6'>
         <%= @post.title %>
         <div class='content-box body-box'>
@@ -26,10 +28,14 @@
     <div class='row m-2'>
       <div class='col-6'>
         <div class='mb-1'>
-          <% if @post.purchased? %>
-            <%= Post.human_attribute_name(:bought_at) %>：<%= I18n.l(@post.bought_at) %>
+          <% if @post.bought_at? %>
+            <% if @post.purchased? %>
+              <%= Post.human_attribute_name(:bought_at) %>：<%= I18n.l(@post.bought_at) %>
+            <% else %>
+              購入予定日：<%= I18n.l(@post.bought_at) %>
+            <% end %>
           <% else %>
-            購入予定日：<%= I18n.l(@post.bought_at) %>
+            購入予定日：未定
           <% end %>
         </div>
         <div class='mb-1'>
