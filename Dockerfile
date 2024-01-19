@@ -5,8 +5,7 @@ ENV TZ Asia/Tokyo
 
 # Install packages needed to build gems
 RUN apt-get update -qq \
-  && apt-get install -y build-essential libpq-dev libssl-dev postgresql-client \
-  && apt-get -y remove libaom3
+  && apt-get install -y build-essential libpq-dev libssl-dev postgresql-client imagemagick
 
 RUN mkdir /oshi_app
 WORKDIR /oshi_app
