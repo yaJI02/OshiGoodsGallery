@@ -31,6 +31,7 @@ ja:
         bought_at: 購入日
         post_type: 投稿タイプ
         purchase_status: ステータス
+        place: 購入場所
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -46,6 +47,9 @@ ja:
     label:
       email: メールアドレス
       password: パスワード
+    placeholder:
+      post:
+        place: ",で区切って入力してください"
   enums:
     post:
       post_type:

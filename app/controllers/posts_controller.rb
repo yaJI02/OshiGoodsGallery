@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ edit update destroy ]
   skip_before_action :require_login, only: %i[index]
 
   # GET /posts or /posts.json
@@ -9,6 +9,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @post_places = @post.places
   end
 
   # GET /posts/new
@@ -18,12 +20,15 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @place_list = @post.places.pluck(:name).join(',')
   end
 
   # POST /posts or /posts.json
   def create
-    @post = current_user.posts.build(post_params)
+    @post = current_user.posts.new(post_params)
+    place_list = params[:post][:place].split(',')
     if @post.save
+      @post.save_places(place_list)
       redirect_to post_url(@post)
       flash[:success]= '投稿しました'
     else
@@ -34,7 +39,9 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    place_list = params[:post][:place].split(',')
     if @post.update(post_params)
+      @post.save_places(place_list)
       redirect_to post_url(@post)
       flash[:success]= '投稿を更新しました'
     else
