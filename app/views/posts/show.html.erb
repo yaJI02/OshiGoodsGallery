@@ -39,6 +39,12 @@
           <% end %>
         </div>
         <div class='mb-1'>
+          <%= Post.human_attribute_name(:place) %>：
+          <% @post_places.each do |place| %>
+            <%= place.name %>
+          <% end %>
+        </div>
+        <div class='mb-1'>
           <%= Post.human_attribute_name(:purchase_cost) %>：<%= @post.purchase_cost %>円
         </div>
       </div>
