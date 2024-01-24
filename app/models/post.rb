@@ -45,4 +45,22 @@ class Post < ApplicationRecord
       self.tags.find_or_create_by(name: new_name, tag_type: tag_type_value)
     end
   end
+
+  def save_post_stamps(post_stamp_list)
+    now_stamps = post_stamps.where(user_id: self.user_id) unless post_stamps.where(user_id: self.user_id).nil?
+    current_stamps = now_stamps.map(&:stamp)
+    old_stamps = current_stamps - post_stamp_list
+    new_stamps = post_stamp_list - current_stamps
+
+    old_stamps.each do |old_stamp|
+      stamp_value = PostStamp.stamps[old_stamp]
+      stamp = post_stamps.where(user_id: self.user_id).find_by(stamp: stamp_value)
+      self.post_stamps.delete(stamp) if stamp.present?
+    end
+
+    new_stamps.each do |new_stamp|
+      stamp_value = PostStamp.stamps[new_stamp]
+      self.post_stamps.create(stamp: stamp_value, user_id: self.user_id)
+    end
+  end
 end

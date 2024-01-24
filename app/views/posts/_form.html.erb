@@ -98,6 +98,22 @@
     </div>
   </div>
 
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :post_stamp, class: 'col-form-label' %>
+    </div>
+    <div class='col-9' style="display: flex; align-items: center;">
+      <% @stamps.each do |stamp| %>
+        <div class="form-check">
+          <%= f.check_box :post_stamp, { multiple: true, checked: @oshi_point_stamps_list.include?(stamp) }, stamp, nil %>
+          <%= f.label "post_stamp_#{stamp}", class: 'form-check-label' do %>
+            <%= t("enums.post_stamp.stamp.#{stamp}") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="text-center">
     <%= f.submit class: 'btn my-3 mx-auto form-btn' %>
   </div>

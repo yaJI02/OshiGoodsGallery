@@ -145,3 +145,27 @@ footer .footer-item:hover {
 .post-create-at {
   color: #6E6E6E;
 }
+
+.form-check .form-check-label {
+  cursor: pointer;
+  padding:5px;
+  border: 1px solid #66589c;
+  border-radius: 5px;
+}
+
+.form-check .form-check-label:hover {
+  background-color: #d3d3d3;
+}
+
+.form-check input[type=checkbox] {
+  display: none;
+}
+
+.form-check input[type=checkbox]:checked ~ .form-check-label {
+  background-color: #66589c;
+  color: white;
+}
+
+.no-data {
+  color: #6E6E6E;
+}

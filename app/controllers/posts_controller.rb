@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ edit update destroy ]
   before_action :set_list, only: %i[ cteate update ]
+  before_action :set_stamps, only: %i[ new edit ]
   skip_before_action :require_login, only: %i[index]
 
   # GET /posts or /posts.json
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @oshi_point_stamps_list = []
   end
 
   # GET /posts/1/edit
@@ -26,6 +28,7 @@ class PostsController < ApplicationController
     @place_list = @post.places.pluck(:name).join(',')
     @merchandise_tag_list = @post.tags.merchandise.pluck(:name).join(',')
     @content_tag_list = @post.tags.content.pluck(:name).join(',')
+    @oshi_point_stamps_list = @post.post_stamps.where(user_id: @post.user_id).pluck(:stamp)
   end
 
   # POST /posts or /posts.json
@@ -35,6 +38,7 @@ class PostsController < ApplicationController
     if @post.save
       @post.save_tags(@merchandise_tag_list, 0)
       @post.save_tags(@content_tag_list, 1)
+      @post.save_post_stamps(@post_stamp_list)
       redirect_to post_url(@post)
       flash[:success]= '投稿しました'
     else
@@ -49,6 +53,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       @post.save_tags(@merchandise_tag_list, 0)
       @post.save_tags(@content_tag_list, 1)
+      @post.save_post_stamps(@post_stamp_list)
       redirect_to post_url(@post)
       flash[:success]= '投稿を更新しました'
     else
@@ -74,7 +79,12 @@ class PostsController < ApplicationController
   def set_list
     @merchandise_tag_list = params[:post][:merchandise_tag].split(',')
     @content_tag_list = params[:post][:content_tag].split(',')
+    @post_stamp_list = params[:post][:post_stamp].nil? ? [] : params[:post][:post_stamp]
   end
+
+  def set_stamps
+    @stamps = PostStamp.stamps.keys
+    @stamps.shift
   end
 
   # Only allow a list of trusted parameters through.
