@@ -50,10 +50,22 @@
       </div>
       <div class='col-6'>
         <div class='content-box mb-1'>
-          グッズカテゴリ
+          <% if @post_merchandise_tags.present? %>
+            <% @post_merchandise_tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          <% else %>
+            <div class='no-data'>グッズカテゴリ未登録</div>
+          <% end %>
         </div>
         <div class='content-box mb-1'>
-          推しポイントタグ
+          <% if @post_content_tags.present? %>
+            <% @post_content_tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          <% else %>
+            <div class='no-data'>コンテンツカテゴリ未登録</div>
+          <% end %>
         </div>
         <div class='content-box'>
           コンテンツカテゴリ

@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_places = @post.places
+    @post_merchandise_tags = @post.tags.merchandise
+    @post_content_tags = @post.tags.content
   end
 
   # GET /posts/new
