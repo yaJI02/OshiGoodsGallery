@@ -17,50 +17,31 @@ class Post < ApplicationRecord
   enum purchase_status: { purchased: 0, reservation: 1, considering: 2 }
 
   def save_places(place_list)
-    current_places = places.pluck(:name) unless places.nil?
-    old_places = current_places - place_list
-    new_places = place_list - current_places
+    old_places = places.pluck(:name) - Array(place_list)
+    places.where(name: old_places).destroy_all
 
-    old_places.each do |old_name|
-      place = self.places.find_by(name: old_name)
-      self.places.delete(place) if place.present?
-    end
-
-    new_places.each do |new_name|
-      self.places.find_or_create_by(name: new_name)
+    (Array(place_list) - places.pluck(:name)).each do |new_name|
+      places.find_or_create_by(name: new_name)
     end
   end
 
   def save_tags(tag_list,tag_type_value)
-    current_tags = tags.where(tag_type: tag_type_value).pluck(:name) unless tags.nil?
-    old_tags = current_tags - tag_list
-    new_tags = tag_list - current_tags
+    old_tags = tags.where(tag_type: tag_type_value).pluck(:name) - Array(tag_list)
+    tags.where(name: old_tags, tag_type: tag_type_value).destroy_all
 
-    old_tags.each do |old_name|
-      tag = self.tags.find_by(name: old_name)
-      self.tags.delete(tag) if tag.present?
-    end
-
-    new_tags.each do |new_name|
-      self.tags.find_or_create_by(name: new_name, tag_type: tag_type_value)
+    (Array(tag_list) - tags.where(tag_type: tag_type_value).pluck(:name)).each do |new_name|
+      tags.find_or_create_by(name: new_name, tag_type: tag_type_value)
     end
   end
 
   def save_post_stamps(post_stamp_list)
-    now_stamps = post_stamps.where(user_id: self.user_id) unless post_stamps.where(user_id: self.user_id).nil?
-    current_stamps = now_stamps.map(&:stamp)
-    old_stamps = current_stamps - post_stamp_list
-    new_stamps = post_stamp_list - current_stamps
+    now_stamps = post_stamps.where(user_id: user_id)
+    current_stamps = now_stamps.pluck(:stamp)
+    old_stamps = current_stamps - Array(post_stamp_list)
+    now_stamps.where(stamp: PostStamp.stamps.slice(*old_stamps).values).destroy_all
 
-    old_stamps.each do |old_stamp|
-      stamp_value = PostStamp.stamps[old_stamp]
-      stamp = post_stamps.where(user_id: self.user_id).find_by(stamp: stamp_value)
-      self.post_stamps.delete(stamp) if stamp.present?
-    end
-
-    new_stamps.each do |new_stamp|
-      stamp_value = PostStamp.stamps[new_stamp]
-      self.post_stamps.create(stamp: stamp_value, user_id: self.user_id)
+    (Array(post_stamp_list) - current_stamps).each do |new_stamp|
+      post_stamps.create(stamp: PostStamp.stamps[new_stamp], user_id: user_id)
     end
   end
 end
