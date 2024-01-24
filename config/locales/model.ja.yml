@@ -34,6 +34,7 @@ ja:
         place: 購入場所
         merchandise_tag: グッズカテゴリ
         content_tag: コンテンツタグ
+        post_stamp: 推しポイント
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -67,3 +68,12 @@ ja:
       tag_type:
         merchandise_tag: グッズカテゴリ
         content_tag: コンテンツタグ
+    post_stamp:
+      stamp:
+        nice: いいね
+        cute: 可愛い
+        cool: かっこいい
+        great: 素敵
+        recommend: 推せる
+        loved: 愛した
+        awesome: サイコー
