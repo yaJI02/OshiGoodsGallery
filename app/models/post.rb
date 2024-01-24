@@ -29,4 +29,19 @@ class Post < ApplicationRecord
       self.places.find_or_create_by(name: new_name)
     end
   end
+
+  def save_tags(tag_list,tag_type_value)
+    current_tags = tags.where(tag_type: tag_type_value).pluck(:name) unless tags.nil?
+    old_tags = current_tags - tag_list
+    new_tags = tag_list - current_tags
+
+    old_tags.each do |old_name|
+      tag = self.tags.find_by(name: old_name)
+      self.tags.delete(tag) if tag.present?
+    end
+
+    new_tags.each do |new_name|
+      self.tags.find_or_create_by(name: new_name, tag_type: tag_type_value)
+    end
+  end
 end

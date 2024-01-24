@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ edit update destroy ]
+  before_action :set_list, only: %i[ cteate update ]
   skip_before_action :require_login, only: %i[index]
 
   # GET /posts or /posts.json
@@ -21,6 +22,8 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @place_list = @post.places.pluck(:name).join(',')
+    @merchandise_tag_list = @post.tags.merchandise.pluck(:name).join(',')
+    @content_tag_list = @post.tags.content.pluck(:name).join(',')
   end
 
   # POST /posts or /posts.json
@@ -28,7 +31,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     place_list = params[:post][:place].split(',')
     if @post.save
-      @post.save_places(place_list)
+      @post.save_tags(@merchandise_tag_list, 0)
+      @post.save_tags(@content_tag_list, 1)
       redirect_to post_url(@post)
       flash[:success]= '投稿しました'
     else
@@ -41,7 +45,8 @@ class PostsController < ApplicationController
   def update
     place_list = params[:post][:place].split(',')
     if @post.update(post_params)
-      @post.save_places(place_list)
+      @post.save_tags(@merchandise_tag_list, 0)
+      @post.save_tags(@content_tag_list, 1)
       redirect_to post_url(@post)
       flash[:success]= '投稿を更新しました'
     else
@@ -62,6 +67,12 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = current_user.posts.find(params[:id])
+  end
+
+  def set_list
+    @merchandise_tag_list = params[:post][:merchandise_tag].split(',')
+    @content_tag_list = params[:post][:content_tag].split(',')
+  end
   end
 
   # Only allow a list of trusted parameters through.

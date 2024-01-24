@@ -32,6 +32,8 @@ ja:
         post_type: 投稿タイプ
         purchase_status: ステータス
         place: 購入場所
+        merchandise_tag: グッズカテゴリ
+        content_tag: コンテンツタグ
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -50,6 +52,8 @@ ja:
     placeholder:
       post:
         place: ",で区切って入力してください"
+        merchandise_tag: ",で区切って入力してください"
+        content_tag: ",で区切って入力してください"
   enums:
     post:
       post_type:
