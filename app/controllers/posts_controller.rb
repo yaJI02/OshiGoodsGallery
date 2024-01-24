@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @post_places = @post.places
     @post_merchandise_tags = @post.tags.merchandise
     @post_content_tags = @post.tags.content
+    @oshi_point_stamps = @post.post_stamps.where(user_id: @post.user_id)
   end
 
   # GET /posts/new
