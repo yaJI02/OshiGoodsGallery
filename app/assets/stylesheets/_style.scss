@@ -29,7 +29,12 @@ header .navbar-toggler {
 
 @media screen and (max-width: 767px) {
   header .logo {
-    font-size: 20pt;
+    font-size: 17pt;
+  }
+
+  header .logo-img {
+    height: 25px;
+    width: 25px;
   }
 
   header .btn {
@@ -132,8 +137,8 @@ footer .footer-item:hover {
   border: 1px solid #66589c;
 }
 
-.container-box .content-box .body-box {
-  height: 200px;
+.container-box .body-box {
+  height: 150px;
   overflow-y: scroll;
 }
 
@@ -168,4 +173,24 @@ footer .footer-item:hover {
 
 .no-data {
   color: #6E6E6E;
+}
+
+image{
+  background-color: #ffffff;
+}
+.thumb {
+  max-width: 200px;
+  max-height: 100px;
+}
+
+.show-image {
+  max-width: 300px;
+  max-height: 200px;
+}
+
+@media screen and (max-width: 374px) {
+  .show-image {
+  max-width: 250px;
+  max-height: 200px;
+  }
 }

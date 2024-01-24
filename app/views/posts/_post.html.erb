@@ -2,22 +2,49 @@
   <div class='post-type-tag ps-2'>
     <%= post.post_type_i18n %>
   </div>
-  <div class='row'>
-    <div class='col-4'>
-      <div class='ms-2'>
-        a
-      </div>
+  <div class='row m-1'>
+    <div class='col-md-4'>
+      <%= image_tag post.photo.url, class:'thumb' %>
     </div>
-    <div class='col-8'>
-      <%= post.title %>
+    <div class='col-md-8'>
+      <div class='mb-1'>
+        <%= post.title %>
+      </div>
+      <div class='content-box mb-1'>
+        <% if post.tags.where(tag_type: Tag.tag_types[:merchandise_tag]).present? %>
+          <% post.tags.where(tag_type: Tag.tag_types[:merchandise_tag]).each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        <% else %>
+          <div class='no-data'>グッズカテゴリ</div>
+        <% end %>
+      </div>
+      <div class='content-box mb-1'>
+        <% if post.tags.where(tag_type: Tag.tag_types[:content_tag]).present? %>
+          <% post.tags.where(tag_type: Tag.tag_types[:content_tag]).each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        <% else %>
+          <div class='no-data'>コンテンツカテゴリ</div>
+        <% end %>
+      </div>
+      <div class='content-box mb-1'>
+        <% if post.post_stamps.where(user_id: post.user_id).present? %>
+          <% post.post_stamps.where(user_id: post.user_id).each do |stamp| %>
+            <%= stamp.stamp_i18n %>
+          <% end %>
+        <% else %>
+          <div class='no-data'>推しポイント</div>
+        <% end %>
+      </div>
     </div>
   </div>
 
   <div class='row mt-2'>
-    <div class='col ms-2'>
+    <div class='col-md ms-2'>
       <%= link_to "詳細を見る", post %>
     </div>
-    <div class='col me-2 d-flex justify-content-end post-create-at'>
+    <div class='col-md me-2 d-flex justify-content-end post-create-at'>
       <%= I18n.l(post.created_at, format: :only_date) %>
     </div>
   </div>
