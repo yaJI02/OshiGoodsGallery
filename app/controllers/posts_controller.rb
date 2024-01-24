@@ -35,8 +35,9 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = current_user.posts.new(post_params)
-    place_list = params[:post][:place].split(',')
+
     if @post.save
+      @post.save_places(@place_list)
       @post.save_tags(@merchandise_tag_list, 0)
       @post.save_tags(@content_tag_list, 1)
       @post.save_post_stamps(@post_stamp_list)
@@ -50,8 +51,8 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    place_list = params[:post][:place].split(',')
     if @post.update(post_params)
+      @post.save_places(@place_list)
       @post.save_tags(@merchandise_tag_list, 0)
       @post.save_tags(@content_tag_list, 1)
       @post.save_post_stamps(@post_stamp_list)
@@ -78,6 +79,7 @@ class PostsController < ApplicationController
   end
 
   def set_list
+    @place_list = params[:post][:place].split(',')
     @merchandise_tag_list = params[:post][:merchandise_tag].split(',')
     @content_tag_list = params[:post][:content_tag].split(',')
     @post_stamp_list = params[:post][:post_stamp].nil? ? [] : params[:post][:post_stamp]
