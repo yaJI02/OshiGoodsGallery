@@ -2,6 +2,18 @@
   <%= render 'shared/error_message', object: f.object %>
   <div class='form-group row my-4'>
     <div class='col-3 text-center'>
+      <%= f.label :post_type, class: 'col-form-label' %>
+    </div>
+    <div class='col-9' style="display: flex; align-items: center;">
+      <%= f.radio_button :post_type, :merchandise, checked: true %>
+      <%= f.label :post_type_merchandise, t('enums.post.post_type.merchandise'), class: 'me-2' %>
+      <%= f.radio_button :post_type, :showroom %>
+      <%= f.label :post_type_showroom, t('enums.post.post_type.showroom') %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
       <%= f.label :title, class: 'col-form-label' %>
     </div>
     <div class='col-9'>
@@ -24,6 +36,20 @@
     </div>
     <div class='col-9'>
       <%= f.text_area :body, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :purchase_status, class: 'col-form-label' %>
+    </div>
+    <div class='col-9' style="display: flex; align-items: center;">
+      <%= f.radio_button :purchase_status, :purchased, checked: true %>
+      <%= f.label :purchase_status_purchased, t('enums.post.purchase_status.purchased'), class: 'me-2' %>
+      <%= f.radio_button :purchase_status, :reservation %>
+      <%= f.label :purchase_status_reservation, t('enums.post.purchase_status.reservation'), class: 'me-2' %>
+      <%= f.radio_button :purchase_status, :considering %>
+      <%= f.label :purchase_status_considering, t('enums.post.purchase_status.considering') %>
     </div>
   </div>
 
@@ -56,27 +82,35 @@
 
   <div class='form-group row my-4'>
     <div class='col-3 text-center'>
-      <%= f.label :post_type, class: 'col-form-label' %>
+      <%= f.label :merchandise_tag, class: 'col-form-label' %>
     </div>
-    <div class='col-9' style="display: flex; align-items: center;">
-      <%= f.radio_button :post_type, :merchandise, checked: true %>
-      <%= f.label :post_type_merchandise, t('enums.post.post_type.merchandise'), class: 'me-2' %>
-      <%= f.radio_button :post_type, :showroom %>
-      <%= f.label :post_type_showroom, t('enums.post.post_type.showroom') %>
+    <div class='col-9'>
+      <%= f.text_field :merchandise_tag, value: @merchandise_tag_list, class: 'form-control', placeholder: true %>
     </div>
   </div>
 
   <div class='form-group row my-4'>
     <div class='col-3 text-center'>
-      <%= f.label :purchase_status, class: 'col-form-label' %>
+      <%= f.label :content_tag, class: 'col-form-label' %>
+    </div>
+    <div class='col-9'>
+      <%= f.text_field :content_tag, value: @content_tag_list, class: 'form-control', placeholder: true %>
+    </div>
+  </div>
+
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :post_stamp, class: 'col-form-label' %>
     </div>
     <div class='col-9' style="display: flex; align-items: center;">
-      <%= f.radio_button :purchase_status, :purchased, checked: true %>
-      <%= f.label :purchase_status_purchased, t('enums.post.purchase_status.purchased'), class: 'me-2' %>
-      <%= f.radio_button :purchase_status, :reservation %>
-      <%= f.label :purchase_status_reservation, t('enums.post.purchase_status.reservation'), class: 'me-2' %>
-      <%= f.radio_button :purchase_status, :considering %>
-      <%= f.label :purchase_status_considering, t('enums.post.purchase_status.considering') %>
+      <% @stamps.each do |stamp| %>
+        <div class="form-check">
+          <%= f.check_box :post_stamp, { multiple: true, checked: @oshi_point_stamps_list.include?(stamp) }, stamp, nil %>
+          <%= f.label "post_stamp_#{stamp}", class: 'form-check-label' do %>
+            <%= t("enums.post_stamp.stamp.#{stamp}") %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 

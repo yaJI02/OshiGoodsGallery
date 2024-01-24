@@ -4,20 +4,24 @@
   <div class='container-box'>
     <div class='container-label'>
       <div class='row'>
-        <div class='col ms-2'>
-          <%= @post.post_type_i18n %>／<%= @post.purchase_status_i18n %>
+        <div class='col-md-6'>
+          <div class='ms-2'>
+            <%= @post.post_type_i18n %>／<%= @post.purchase_status_i18n %>
+          </div>
         </div>
-        <div class='col me-2 d-flex justify-content-end'>
-          created at <%= I18n.l(@post.created_at, format: :only_date) %>
+        <div class='col-md-6'>
+          <div class='me-2 d-flex justify-content-end'>
+            created at <%= I18n.l(@post.created_at, format: :only_date) %>
+          </div>
         </div>
       </div>
     </div>
 
     <div class='row m-2'>
-      <div class='col-6'>
-        <%= image_tag(@post.photo.url, size:'170x170', style:'background-color: #ffffff;') %>
+      <div class='col-md-6'>
+        <%= image_tag @post.photo.url, class:'show-image' %>
       </div>
-      <div class='col-6'>
+      <div class='col-md-6'>
         <%= @post.title %>
         <div class='content-box body-box'>
           <%= @post.body %>
@@ -26,7 +30,7 @@
     </div>
 
     <div class='row m-2'>
-      <div class='col-6'>
+      <div class='col-md-6'>
         <div class='mb-1'>
           <% if @post.bought_at? %>
             <% if @post.purchased? %>
@@ -35,7 +39,7 @@
               購入予定日：<%= I18n.l(@post.bought_at) %>
             <% end %>
           <% else %>
-            購入予定日：未定
+            購入予定日：
           <% end %>
         </div>
         <div class='mb-1'>
@@ -45,32 +49,77 @@
           <% end %>
         </div>
         <div class='mb-1'>
-          <%= Post.human_attribute_name(:purchase_cost) %>：<%= @post.purchase_cost %>円
+            <%= Post.human_attribute_name(:purchase_cost) %>：<%= @post.purchase_cost %><% if @post.purchase_cost.present? %>円<% end %>
         </div>
       </div>
-      <div class='col-6'>
+      <div class='col-md-6'>
         <div class='content-box mb-1'>
-          グッズカテゴリ
+          <% if @post_merchandise_tags.present? %>
+            <% @post_merchandise_tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          <% else %>
+            <div class='no-data'>グッズカテゴリ未登録</div>
+          <% end %>
         </div>
         <div class='content-box mb-1'>
-          推しポイントタグ
+          <% if @post_content_tags.present? %>
+            <% @post_content_tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          <% else %>
+            <div class='no-data'>コンテンツカテゴリ未登録</div>
+          <% end %>
         </div>
         <div class='content-box'>
-          コンテンツカテゴリ
+          <% if @oshi_point_stamps.present? %>
+            <% @oshi_point_stamps.each do |stamp| %>
+              <%= stamp.stamp_i18n %>
+            <% end %>
+          <% else %>
+            <div class='no-data'>推しポイント未登録</div>
+          <% end %>
         </div>
       </div>
     </div>
 
-    <div class="row mt-5 mb-3">
-      <div class='col me-5 d-flex justify-content-end'>
-        <%= link_to '編集する', edit_post_path(@post), class: 'btn form-btn' %>
-      </div>
-      <div class='col ms-5'>
-        <%= button_to '削除する', @post, method: :delete, class: 'btn form-btn btn-del' %>
+    <div class='create-user'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <div class='ms-2'>
+            いいね機能（comming soon）
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div class='me-2 d-flex justify-content-end'>
+              presented by
+            <%= link_to '#', class:'nav-link myicon ms-1', 'data-bs-toggle'=>'dropdown', 'aria-haspopup'=>'true', 'aria-expanded'=>'false' do %>
+              <div class='row'>
+                <div class='col' style='padding-right: 0;'>
+                  <%= current_user.name %>
+                </div>
+                <div class='col'>
+                  <%= image_tag('sample.jpg', class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
+
+    <% if @post.user_id == current_user.id %>
+      <div class="row mt-5 mb-3">
+        <div class='col me-3 d-flex justify-content-end'>
+          <%= link_to '編集する', edit_post_path(@post), class: 'btn form-btn' %>
+        </div>
+        <div class='col ms-3'>
+          <%= button_to '削除する', @post, method: :delete, class: 'btn form-btn btn-del' %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div class='link-text text-center mt-3'>
+  <div class='link-text text-center my-3'>
     <%= link_to '投稿一覧に戻る', posts_path %>
   </div>
 </div>

@@ -32,6 +32,9 @@ ja:
         post_type: 投稿タイプ
         purchase_status: ステータス
         place: 購入場所
+        merchandise_tag: グッズカテゴリ
+        content_tag: コンテンツタグ
+        post_stamp: 推しポイント
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -50,6 +53,8 @@ ja:
     placeholder:
       post:
         place: ",で区切って入力してください"
+        merchandise_tag: ",で区切って入力してください"
+        content_tag: ",で区切って入力してください"
   enums:
     post:
       post_type:
@@ -59,3 +64,16 @@ ja:
         purchased: 購入済
         reservation: 予約
         considering: 検討中
+    tag:
+      tag_type:
+        merchandise_tag: グッズカテゴリ
+        content_tag: コンテンツタグ
+    post_stamp:
+      stamp:
+        nice: いいね
+        cute: 可愛い
+        cool: かっこいい
+        great: 素敵
+        recommend: 推せる
+        loved: 愛した
+        awesome: サイコー

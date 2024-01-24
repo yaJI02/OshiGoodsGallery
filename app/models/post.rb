@@ -3,6 +3,9 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :post_places, dependent: :destroy
   has_many :places, through: :post_places, dependent: :destroy
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, through: :post_tags, dependent: :destroy
+  has_many :post_stamps, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :body, length: { maximum: 65_535 }
@@ -25,6 +28,39 @@ class Post < ApplicationRecord
 
     new_places.each do |new_name|
       self.places.find_or_create_by(name: new_name)
+    end
+  end
+
+  def save_tags(tag_list,tag_type_value)
+    current_tags = tags.where(tag_type: tag_type_value).pluck(:name) unless tags.nil?
+    old_tags = current_tags - tag_list
+    new_tags = tag_list - current_tags
+
+    old_tags.each do |old_name|
+      tag = self.tags.find_by(name: old_name)
+      self.tags.delete(tag) if tag.present?
+    end
+
+    new_tags.each do |new_name|
+      self.tags.find_or_create_by(name: new_name, tag_type: tag_type_value)
+    end
+  end
+
+  def save_post_stamps(post_stamp_list)
+    now_stamps = post_stamps.where(user_id: self.user_id) unless post_stamps.where(user_id: self.user_id).nil?
+    current_stamps = now_stamps.map(&:stamp)
+    old_stamps = current_stamps - post_stamp_list
+    new_stamps = post_stamp_list - current_stamps
+
+    old_stamps.each do |old_stamp|
+      stamp_value = PostStamp.stamps[old_stamp]
+      stamp = post_stamps.where(user_id: self.user_id).find_by(stamp: stamp_value)
+      self.post_stamps.delete(stamp) if stamp.present?
+    end
+
+    new_stamps.each do |new_stamp|
+      stamp_value = PostStamp.stamps[new_stamp]
+      self.post_stamps.create(stamp: stamp_value, user_id: self.user_id)
     end
   end
 end

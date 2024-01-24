@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_20_081541) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_22_082010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,25 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_081541) do
     t.index ["post_id"], name: "index_post_places_on_post_id"
   end
 
+  create_table "post_stamps", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "stamp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_stamps_on_post_id"
+    t.index ["user_id"], name: "index_post_stamps_on_user_id"
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "body"
@@ -43,6 +62,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_081541) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "tag_type", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -55,5 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_081541) do
 
   add_foreign_key "post_places", "places"
   add_foreign_key "post_places", "posts"
+  add_foreign_key "post_stamps", "posts"
+  add_foreign_key "post_stamps", "users"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
 end
