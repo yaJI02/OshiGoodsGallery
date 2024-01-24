@@ -59,3 +59,7 @@ ja:
         purchased: 購入済
         reservation: 予約
         considering: 検討中
+    tag:
+      tag_type:
+        merchandise_tag: グッズカテゴリ
+        content_tag: コンテンツタグ
