@@ -194,3 +194,22 @@ image{
   max-height: 200px;
   }
 }
+
+.pagination>li>a {          
+  color: #66589c;
+}
+
+.pagination>.active>a {
+  color: white;
+  background: #66589c;
+  border: 1px solid #66589c;
+}
+
+.pagination>li>a:hover {
+  color: white; 
+  background: #8C78BA;
+}
+
+.page-info {
+  color: #6E6E6E;
+}

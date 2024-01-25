@@ -55,6 +55,14 @@ ja:
         place: ",で区切って入力してください"
         merchandise_tag: ",で区切って入力してください"
         content_tag: ",で区切って入力してください"
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "全 0 件"
+          one: "全 1 件中 <strong>1 - 1</strong> 件を表示中"
+          other: "全 %{total} 件中 <strong>1 - %{count}</strong> 件を表示中"
+      more_pages:
+        display_entries: "全 %{total} 件中 <strong>%{first} - %{last}</strong> 件を表示中"
   enums:
     post:
       post_type:
@@ -77,3 +85,10 @@ ja:
         recommend: 推せる
         loved: 愛した
         awesome: サイコー
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
