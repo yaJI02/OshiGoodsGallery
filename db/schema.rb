@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_22_082010) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_25_151823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_082010) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string "avatar"
+    t.string "sns_account"
+    t.integer "display_tag_type", default: 0, null: false
+    t.boolean "is_display_dislike_tag", default: true, null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_profiles_on_post_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.integer "tag_type", default: 0, null: false
@@ -86,4 +99,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_082010) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
+  add_foreign_key "profiles", "posts"
+  add_foreign_key "profiles", "users"
 end

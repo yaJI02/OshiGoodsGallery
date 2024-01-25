@@ -17,9 +17,11 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      post: 投稿
+      profile: プロフィール
     attributes:
       user:
-        name: 氏名
+        name: ユーザー名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
@@ -35,6 +37,12 @@ ja:
         merchandise_tag: グッズカテゴリ
         content_tag: コンテンツタグ
         post_stamp: 推しポイント
+      profile:
+        avatar: アバター写真
+        sns_account: SNSアカウント
+        display_tag_type: 表示タグ設定
+        is_display_dislike_tag: NGタグ公開設定
+        user_name: ユーザー名
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -85,6 +93,11 @@ ja:
         recommend: 推せる
         loved: 愛した
         awesome: サイコー
+    profile:
+      display_tag_type:
+        all_tag: 全て
+        not_ng: NGタグ以外
+        only_favorite: お気に入りタグのみ
   views:
     pagination:
       first: "&laquo;"
@@ -92,3 +105,10 @@ ja:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "..."
+  flash:
+    create:
+      success: "%{item}を作成しました"
+      danger: "%{item}の作成に失敗しました"
+    update:
+      success: "%{item}を更新しました"
+      danger: "%{item}の更新に失敗しました"

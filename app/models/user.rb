@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :post_stamps, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
   validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

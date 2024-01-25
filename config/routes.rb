@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profiles, only: %i[new create edit update show]
   resources :posts
   resources :users, only: %i[new create]
 
