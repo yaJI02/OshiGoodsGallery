@@ -60,7 +60,7 @@ ja:
         display_entries:
           zero: "全 0 件"
           one: "全 1 件中 <strong>1 - 1</strong> 件を表示中"
-          other: "全 %{total} 件中 <strong>1 - %{count}</strong> 件を表示中"
+          other: "全 %{count} 件中 <strong>1 - %{count}</strong> 件を表示中"
       more_pages:
         display_entries: "全 %{total} 件中 <strong>%{first} - %{last}</strong> 件を表示中"
   enums:
