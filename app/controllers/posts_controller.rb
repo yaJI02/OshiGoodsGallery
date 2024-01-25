@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ edit update destroy ]
-  before_action :set_list, only: %i[ cteate update ]
+  before_action :set_list, only: %i[ create update ]
   before_action :set_stamps, only: %i[ new edit ]
   skip_before_action :require_login, only: %i[index]
 
@@ -37,13 +37,19 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      @post.save_places(@place_list)
-      @post.save_tags(@merchandise_tag_list, 0)
-      @post.save_tags(@content_tag_list, 1)
-      @post.save_post_stamps(@post_stamp_list)
+      @post.save_places(@p_list)
+      @post.save_tags(@m_list, 0)
+      @post.save_tags(@c_list, 1)
+      @post.save_post_stamps(@s_list)
       redirect_to post_url(@post)
       flash[:success]= '投稿しました'
     else
+      @stamps = PostStamp.stamps.keys
+      @stamps.shift
+      @place_list = params[:post][:place]
+      @merchandise_tag_list = params[:post][:merchandise_tag]
+      @content_tag_list = params[:post][:content_tag]
+      @oshi_point_stamps_list = @s_list
       flash.now[:danger] = '投稿に失敗しました'
       render :new, status: :unprocessable_entity 
     end
@@ -52,13 +58,19 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
-      @post.save_places(@place_list)
-      @post.save_tags(@merchandise_tag_list, 0)
-      @post.save_tags(@content_tag_list, 1)
-      @post.save_post_stamps(@post_stamp_list)
+      @post.save_places(@p_list)
+      @post.save_tags(@m_list, 0)
+      @post.save_tags(@c_list, 1)
+      @post.save_post_stamps(@s_list)
       redirect_to post_url(@post)
       flash[:success]= '投稿を更新しました'
     else
+      @stamps = PostStamp.stamps.keys
+      @stamps.shift
+      @place_list = params[:post][:place]
+      @merchandise_tag_list = params[:post][:merchandise_tag]
+      @content_tag_list = params[:post][:content_tag]
+      @oshi_point_stamps_list = @s_list
       render :edit, status: :unprocessable_entity
       flash.now[:danger] = '投稿の更新に失敗しました'
     end
@@ -79,10 +91,10 @@ class PostsController < ApplicationController
   end
 
   def set_list
-    @place_list = params[:post][:place].split(',')
-    @merchandise_tag_list = params[:post][:merchandise_tag].split(',')
-    @content_tag_list = params[:post][:content_tag].split(',')
-    @post_stamp_list = params[:post][:post_stamp].nil? ? [] : params[:post][:post_stamp]
+    @p_list = params[:post][:place].split(',')
+    @m_list = params[:post][:merchandise_tag].split(',')
+    @c_list = params[:post][:content_tag].split(',')
+    @s_list = params[:post][:post_stamp].nil? ? [] : params[:post][:post_stamp]
   end
 
   def set_stamps
@@ -92,6 +104,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :purchase_cost, :bought_at, :post_type, :purchase_status, :photo)
+    params.require(:post).permit(:title, :body, :purchase_cost, :bought_at, :post_type, :purchase_status, :photo, :photo_cache)
   end
 end
