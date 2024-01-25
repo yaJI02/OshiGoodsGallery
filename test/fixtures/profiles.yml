@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  avatar: MyString
+  sns_account: MyString
+  display_tag_type: 1
+  is_display_dislike_tag: false
+  user: one
+  post: one
+
+two:
+  avatar: MyString
+  sns_account: MyString
+  display_tag_type: 1
+  is_display_dislike_tag: false
+  user: two
+  post: two

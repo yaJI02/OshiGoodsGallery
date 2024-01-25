@@ -22,11 +22,11 @@
             <%= link_to 'ランキング', '#', class: 'nav-link btn btn-outline-secondary' %>
           </li>
           <li class='nav-item dropdown dropdown-slider dropdown-center'>
-            <%= link_to image_tag('moon-icon-w.png', class:'rounded-circle', size:'40x40', style:'background-color: #ffffff;'), '#', class:'nav-link myicon', 'data-bs-toggle'=>'dropdown', 'aria-haspopup'=>'true', 'aria-expanded'=>'false' %>
+            <%= link_to image_tag(current_user.profile.avatar.url, class:'rounded-circle', size:'40x40', style:'background-color: #ffffff;'), '#', class:'nav-link myicon', 'data-bs-toggle'=>'dropdown', 'aria-haspopup'=>'true', 'aria-expanded'=>'false' %>
             <div class='dropdown-menu dropdown-menu-end'>
               <span class='dropdown-item disabled' style='color: #000000;'><%= current_user.name %></span>
               <%= link_to 'マイページ', '#', class:'dropdown-item' %>
-              <%= link_to 'マイプロフィール', '#', class:'dropdown-item' %>
+              <%= link_to 'マイプロフィール', profile_path(current_user.profile), class:'dropdown-item' %>
               <div class='dropdown-divider'></div>
               <%= link_to 'ログアウト', logout_path, class:'dropdown-item', data: { turbo_method: :delete }  %>
             </div>

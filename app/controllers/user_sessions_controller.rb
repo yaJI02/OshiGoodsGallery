@@ -7,8 +7,13 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to root_path
-      flash[:success]= 'ログインしました'
+      if @user.profile.nil?
+        redirect_to new_profile_path
+        flash[:success] = 'ログインしました'
+      else
+        redirect_to root_path
+        flash[:success] = 'ログインしました'
+      end
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new, status: :unprocessable_entity
