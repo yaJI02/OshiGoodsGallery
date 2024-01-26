@@ -5,4 +5,4 @@ ja:
     edit:
       title: プロフィール編集
     show:
-      title: "%{user_name} のプロフィール"
+      title: "%{user_name}のプロフィール"
