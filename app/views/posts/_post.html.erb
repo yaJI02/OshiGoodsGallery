@@ -11,8 +11,8 @@
         <%= post.title %>
       </div>
       <div class='content-box mb-1'>
-        <% if post.tags.where(tag_type: Tag.tag_types[:merchandise_tag]).present? %>
-          <% post.tags.where(tag_type: Tag.tag_types[:merchandise_tag]).each do |tag| %>
+        <% if post.tags.merchandise_tag.present? %>
+          <% post.tags.merchandise_tag.each do |tag| %>
             <%= tag.name %>
           <% end %>
         <% else %>
@@ -20,8 +20,8 @@
         <% end %>
       </div>
       <div class='content-box mb-1'>
-        <% if post.tags.where(tag_type: Tag.tag_types[:content_tag]).present? %>
-          <% post.tags.where(tag_type: Tag.tag_types[:content_tag]).each do |tag| %>
+        <% if post.tags.content_tag.present? %>
+          <% post.tags.content_tag.each do |tag| %>
             <%= tag.name %>
           <% end %>
         <% else %>

@@ -14,8 +14,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_user_profile = Profile.find_by(user_id: @post.user_id)
     @post_places = @post.places
-    @post_merchandise_tags = @post.tags.merchandise
-    @post_content_tags = @post.tags.content
+    @post_merchandise_tags = @post.tags.merchandise_tag
+    @post_content_tags = @post.tags.content_tag
     @oshi_point_stamps = @post.post_stamps.where(user_id: @post.user_id)
   end
 
@@ -28,8 +28,8 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @place_list = @post.places.pluck(:name).join(',')
-    @merchandise_tag_list = @post.tags.merchandise.pluck(:name).join(',')
-    @content_tag_list = @post.tags.content.pluck(:name).join(',')
+    @merchandise_tag_list = @post.tags.merchandise_tag.pluck(:name).join(',')
+    @content_tag_list = @post.tags.content_tag.pluck(:name).join(',')
     @oshi_point_stamps_list = @post.post_stamps.where(user_id: @post.user_id).pluck(:stamp)
   end
 
