@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @post_user_profile = Profile.find_by(user_id: @post.user_id)
     @post_places = @post.places
     @post_merchandise_tags = @post.tags.merchandise
     @post_content_tags = @post.tags.content
