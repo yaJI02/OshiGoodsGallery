@@ -17,7 +17,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      post: 投稿
+      post: 記事
       profile: プロフィール
     attributes:
       user:
@@ -112,4 +112,5 @@ ja:
     update:
       success: "%{item}を更新しました"
       danger: "%{item}の更新に失敗しました"
+    destroy: "%{item}を削除しました"
     not_authorized: 権限がありません
