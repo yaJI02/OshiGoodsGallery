@@ -87,7 +87,12 @@ class PostsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = current_user.posts.find(params[:id])
+    unless Post.find(params[:id]).user == current_user
+      redirect_to post_path(params[:id])
+      flash[:danger] = t('flash.not_authorized')
+    else
+      @post = current_user.posts.find(params[:id])
+    end
   end
 
   def set_list
