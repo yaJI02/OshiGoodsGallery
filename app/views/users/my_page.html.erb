@@ -19,7 +19,9 @@
       <div class='col-md-9'>
         <div class='mb-4 text-center'>
           <%= render 'shared/content_title', this_title: '累計投稿数' %>
-          comming soon!!
+          <div class='content-title'>
+            <%= current_user.total_post %>件
+          </div>
         </div>
         <div class='mb-4 text-center'>
           <%= render 'shared/content_title', this_title: 'これまで貰ったリアクション' %>
@@ -27,7 +29,9 @@
         </div>
         <div class='mb-4 text-center'>
           <%= render 'shared/content_title', this_title: '推しに捧げた応援' %>
-          comming soon!!
+          <div class='content-title'>
+            <%= number_to_currency(current_user.total_purchase_cost) %>
+          </div>
         </div>
       </div>
     </div>
