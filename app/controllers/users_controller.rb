@@ -19,10 +19,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_page
+    @posts = Post.where(user_id: current_user).includes(:tags, :post_stamps).page(params[:page])
+    @mybest_post = @posts.find(current_user.profile.post_id)
+  end
+
   private
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name)
-    end
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :name)
+  end
 end

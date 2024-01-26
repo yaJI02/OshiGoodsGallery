@@ -41,10 +41,26 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def my_best
+    post = Post.find(params[:id])
+    if post.user == current_user
+      current_user.profile.update(post_id: post.id)
+      redirect_to my_page_users_path
+    else
+      redirect_to my_page_users_path
+      flash[:danger] = t('flash.update.danger', item: 'マイベスト投稿')
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = current_user.profile
+      unless Profile.find(params[:id]).user_id == current_user.id
+        redirect_to profile_path(params[:id])
+        flash[:danger] = t('flash.not_authorized')
+      else
+        @profile = current_user.profile
+      end
     end
 
     # Only allow a list of trusted parameters through.

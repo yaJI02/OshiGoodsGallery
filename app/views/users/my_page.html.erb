@@ -1,0 +1,59 @@
+<% content_for :title, t('.title', name: current_user.name) %>
+
+<div class='container'>
+  <div class='col-md-10 col-lg-10 mx-auto mt-5 px-5'>
+    <div class='page-title-name text-center my-5'>
+      <h1><%= t('.title', name: current_user.name) %></h1>
+    </div>
+    <div class='row mb-5'>
+      <div class='col-md-3'>
+        <div class='d-flex justify-content-center mt-4'>
+          <%= image_tag current_user.profile.avatar.url, class:'rounded-circle avatar-image' %>
+        </div>
+        <div class="mt-2">
+          <div class='d-flex justify-content-center'>
+            <%= link_to 'マイプロフィール', profile_path(current_user), class: 'btn form-btn' %>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-9'>
+        <div class='mb-4 text-center'>
+          <%= render 'shared/content_title', this_title: '累計投稿数' %>
+          comming soon!!
+        </div>
+        <div class='mb-4 text-center'>
+          <%= render 'shared/content_title', this_title: 'これまで貰ったリアクション' %>
+          comming soon!!
+        </div>
+        <div class='mb-4 text-center'>
+          <%= render 'shared/content_title', this_title: '推しに捧げた応援' %>
+          comming soon!!
+        </div>
+      </div>
+    </div>
+
+    <% if @posts.present? %>
+      <div class='container mt-3'>
+        <div class='text-center my-2 my-page-selecter'>
+          <p>マイ投稿一覧</p>
+        </div>
+        <% @posts.each do |post| %>
+          <%= render 'user_post', post: post %>
+        <% end %>
+        <div class='text-center page-info'>
+          <%= page_entries_info @posts %>
+        </div>
+        <div class='d-flex justify-content-center'>
+          <%= paginate @posts, theme: 'bootstrap-5' %>
+        </div>
+      </div>
+    <% else %>
+      <div class='no-data text-center mb-3'>投稿がありません</div>
+      <div class="mt-2">
+        <div class='d-flex justify-content-center'>
+          <%= link_to 'グッズを投稿する', new_post_path, class: 'btn form-btn' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
