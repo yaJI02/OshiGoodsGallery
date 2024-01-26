@@ -43,7 +43,7 @@ class PostsController < ApplicationController
       @post.save_tags(@c_list, 1)
       @post.save_post_stamps(@s_list)
       redirect_to post_url(@post)
-      flash[:success]= '投稿しました'
+      flash[:success]= t('flash.create.success', item: Post.model_name.human)
     else
       @stamps = PostStamp.stamps.keys
       @stamps.shift
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
       @merchandise_tag_list = params[:post][:merchandise_tag]
       @content_tag_list = params[:post][:content_tag]
       @oshi_point_stamps_list = @s_list
-      flash.now[:danger] = '投稿に失敗しました'
+      flash.now[:danger] = t('flash.create.danger', item: Post.model_name.human)
       render :new, status: :unprocessable_entity 
     end
   end
@@ -64,7 +64,7 @@ class PostsController < ApplicationController
       @post.save_tags(@c_list, 1)
       @post.save_post_stamps(@s_list)
       redirect_to post_url(@post)
-      flash[:success]= '投稿を更新しました'
+      flash[:success]= t('flash.update.success', item: Post.model_name.human)
     else
       @stamps = PostStamp.stamps.keys
       @stamps.shift
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
       @content_tag_list = params[:post][:content_tag]
       @oshi_point_stamps_list = @s_list
       render :edit, status: :unprocessable_entity
-      flash.now[:danger] = '投稿の更新に失敗しました'
+      flash.now[:danger] = t('flash.update.danger', item: Post.model_name.human)
     end
   end
 
@@ -82,7 +82,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     redirect_to posts_url
-    flash[:success]= '投稿を削除しました'
+    flash[:success]= t('flash.destroy', item: Post.model_name.human)
   end
 
   private

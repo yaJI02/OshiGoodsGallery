@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     if @user.save
       login(user_params[:email], user_params[:password])
       redirect_to new_profile_path
-      flash[:success]= '新規登録が完了しました'
+      flash[:success]= t('flash.create.success', item: User.model_name.human)
     else
-      flash.now[:danger] = '新規登録に失敗しました'
+      flash.now[:danger] = t('flash.create.danger', item: User.model_name.human)
       render :new, status: :unprocessable_entity 
     end
   end
