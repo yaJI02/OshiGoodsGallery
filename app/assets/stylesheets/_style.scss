@@ -187,27 +187,14 @@ footer .footer-item:hover {
 image{
   background-color: #ffffff;
 }
-.thumb {
-  max-width: 200px;
-  max-height: 100px;
-}
 
-.show-image {
-  max-width: 300px;
-  max-height: 200px;
+.thumb {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .avatar-image {
-  max-width: 200px;
-  max-height: 200px;
   border: 1px solid #66589c;
-}
-
-@media screen and (max-width: 374px) {
-  .show-image {
-  max-width: 250px;
-  max-height: 200px;
-  }
 }
 
 .pagination>li>a {          

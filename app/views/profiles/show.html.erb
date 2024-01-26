@@ -8,7 +8,7 @@
     <div class='row mb-5'>
       <div class='col-md-3'>
         <div class='d-flex justify-content-center'>
-          <%= image_tag @profile.user.profile.avatar.url, class:'rounded-circle avatar-image' %>
+          <%= image_tag @profile.user.profile.avatar.url, class:'rounded-circle avatar-image thumb' %>
         </div>
         <% if @profile.user == current_user %>
           <div class="mt-2">
