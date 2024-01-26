@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :profiles, only: %i[new create edit update show]
+  resources :profiles, only: %i[new create edit update show] do
+    post :my_best, on: :member
+  end
   resources :posts
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create] do
+    get :my_page, on: :collection
+  end
 
   root 'top#index'
   get 'terms_of_use', to: 'top#terms_of_use'

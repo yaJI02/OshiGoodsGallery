@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @post_user_profile = Profile.find_by(user_id: @post.user_id)
     @post_places = @post.places
     @post_merchandise_tags = @post.tags.merchandise
     @post_content_tags = @post.tags.content
@@ -87,7 +88,12 @@ class PostsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = current_user.posts.find(params[:id])
+    unless Post.find(params[:id]).user == current_user
+      redirect_to post_path(params[:id])
+      flash[:danger] = t('flash.not_authorized')
+    else
+      @post = current_user.posts.find(params[:id])
+    end
   end
 
   def set_list

@@ -112,3 +112,4 @@ ja:
     update:
       success: "%{item}を更新しました"
       danger: "%{item}の更新に失敗しました"
+    not_authorized: 権限がありません

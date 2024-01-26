@@ -83,27 +83,24 @@
       </div>
     </div>
 
-    <div class='create-user'>
+    <div class='create-user mb-2'>
       <div class='row'>
         <div class='col-md-6'>
-          <div class='ms-2'>
+          <div class='ms-2 mt-1'>
             いいね機能（comming soon）
           </div>
         </div>
         <div class='col-md-6'>
-          <div class='me-2 d-flex justify-content-end'>
-              presented by
-            <%= link_to '#', class:'nav-link myicon ms-1', 'data-bs-toggle'=>'dropdown', 'aria-haspopup'=>'true', 'aria-expanded'=>'false' do %>
-              <div class='row'>
-                <div class='col' style='padding-right: 0;'>
-                  <%= current_user.name %>
-                </div>
-                <div class='col'>
-                  <%= image_tag('sample.jpg', class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
-                </div>
+          <%= link_to profile_path(@post_user_profile), class:'nav-link' do %>
+            <div class='row'>
+              <div class='col-10 text-end my-auto' style='padding-right: 0;'>
+                <%= t('.user_link_sentense') %><%= current_user.name %>
               </div>
-            <% end %>
-          </div>
+              <div class='col-2'>
+                <%= image_tag('sample.jpg', class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

@@ -3,3 +3,5 @@ ja:
     new:
       title: ユーザー登録
       link_login: ログインページへ
+    my_page:
+      title: "%{name}のマイページ"

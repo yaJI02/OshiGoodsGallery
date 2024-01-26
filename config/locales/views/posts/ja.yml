@@ -6,5 +6,6 @@ ja:
       title: 新規投稿フォーム
     show:
       title: "%{post_title} 詳細"
+      user_link_sentense: "presented by "
     edit:
       title: "%{post_title} 編集"

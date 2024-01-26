@@ -42,10 +42,10 @@
       <div class='no-data text-center mb-3'>未登録</div>
     <% end %>
     <% if @profile.user == current_user %>
-      <div class="mt-2">
+      <div class="my-2">
         <div class='d-flex justify-content-center'>
           <% if current_user.posts.present? %>
-            <%= link_to 'マイベスト投稿を変更する', '#', class: 'btn form-btn' %>
+            <%= link_to 'マイベスト投稿を変更する', my_page_users_path, class: 'btn form-btn' %>
           <% else %>
             <%= link_to 'グッズを投稿する', new_post_path, class: 'btn form-btn' %>
           <% end %>
