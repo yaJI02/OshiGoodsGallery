@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def my_page
     @posts = Post.where(user_id: current_user).includes(:tags, :post_stamps).page(params[:page])
-    @mybest_post = @posts.find(current_user.profile.post_id)
+    @mybest_post = current_user.profile.post_id.nil? ? [] : @posts.find(current_user.profile.post_id)
   end
 
   private
