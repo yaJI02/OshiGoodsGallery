@@ -1,0 +1,28 @@
+<%= link_to post, class:'nav-link' do %>
+  <div class='form-box'>
+    <div class='post-type-tag'>
+      <div class='row mx-1'>
+        <div class='col-4'>
+          <%= post.post_type_i18n %>
+        </div>
+        <div class='col-8 text-end'>
+          by <%= current_user.name %>
+        </div>
+      </div>
+    </div>
+    <div class='text-center'>
+      <%= image_tag post.photo.url, class:'thumb' %>
+    </div>
+    <div class='text-center'>
+      <%= post.title %>
+    </div>
+
+    <div class='row m-2'>
+      <div class='col-md'>
+      </div>
+      <div class='col-md d-flex justify-content-end post-create-at'>
+        <%= I18n.l(post.created_at, format: :only_date) %>
+      </div>
+    </div>
+  </div>
+<% end %>

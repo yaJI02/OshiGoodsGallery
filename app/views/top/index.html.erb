@@ -1,19 +1,55 @@
-<div class='container text-center'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<%= stylesheet_link_tag 'swiper' %>
+
+<div class='container'>
   <div class='content mb-5'>
     <%= render 'shared/content_title', this_title: 'newグッズ' %>
-    <p>comming soon!</p>
+    <div class="swiper">
+      <div class="swiper-wrapper mb-3">
+        <% @new_merchandise.each do |post| %>
+          <div class="swiper-slide">
+            <%= render 'top_post', post: post %>
+          </div>
+        <% end %>
+      </div>
+      <div class="slide-pagination-wrapper">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
   </div>
   <div class='content my-5'>
     <%= render 'shared/content_title', this_title: 'newショールーム' %>
-    <p>comming soon!</p>
+    <div class="swiper">
+      <div class="swiper-wrapper mb-3">
+        <% @new_showroom.each do |post| %>
+          <div class="swiper-slide">
+            <%= render 'top_post', post: post %>
+          </div>
+        <% end %>
+      </div>
+      <div class="slide-pagination-wrapper">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
   </div>
-  <div class='content my-5'>
+  <div class='content my-5 text-center'>
     <%= link_to 'グッズを投稿する', new_post_path, class: 'btn btn-outline-secondary mx-4' %>
     <%= link_to '投稿一覧を見る', posts_path, class: 'btn btn-outline-secondary mx-4' %>
   </div>
   <div class='content my-5'>
     <%= render 'shared/content_title', this_title: 'ranking' %>
-    <p>comming soon!</p>
-    <%= link_to 'もっとランキングを見る', '#', class: 'btn btn-outline-secondary mt-2' %>
+    <div class='text-center'>
+      <p>comming soon!</p>
+      <%= link_to 'もっとランキングを見る', '#', class: 'btn btn-outline-secondary mt-2' %>
+    </div>
   </div>
 </div>
+
+<script type="module">
+  import "swiper";
+</script>
