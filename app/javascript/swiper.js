@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const swiper = new Swiper(".swiper", {
     slidesPerView: 3,
     spaceBetween: 20,
