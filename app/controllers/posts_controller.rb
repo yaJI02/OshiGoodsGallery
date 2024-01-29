@@ -6,16 +6,13 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all.includes(:tags, :post_stamps).page(params[:page])
+    @posts = Post.all.order(created_at: :DESC).includes(:tags, :post_stamps).page(params[:page])
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:tags, :post_stamps).find(params[:id])
     @post_user_profile = Profile.find_by(user_id: @post.user_id)
-    @post_places = @post.places
-    @post_merchandise_tags = @post.tags.merchandise_tag
-    @post_content_tags = @post.tags.content_tag
     @oshi_point_stamps = @post.post_stamps.where(user_id: @post.user_id)
   end
 
@@ -38,19 +35,12 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      @post.save_places(@p_list)
-      @post.save_tags(@m_list, 0)
-      @post.save_tags(@c_list, 1)
-      @post.save_post_stamps(@s_list)
+      save_accessories
       redirect_to post_url(@post)
       flash[:success]= t('flash.create.success', item: Post.model_name.human)
     else
-      @stamps = PostStamp.stamps.keys
-      @stamps.shift
-      @place_list = params[:post][:place]
-      @merchandise_tag_list = params[:post][:merchandise_tag]
-      @content_tag_list = params[:post][:content_tag]
-      @oshi_point_stamps_list = @s_list
+      set_stamps
+      set_cache
       flash.now[:danger] = t('flash.create.danger', item: Post.model_name.human)
       render :new, status: :unprocessable_entity 
     end
@@ -59,19 +49,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
-      @post.save_places(@p_list)
-      @post.save_tags(@m_list, 0)
-      @post.save_tags(@c_list, 1)
-      @post.save_post_stamps(@s_list)
+      save_accessories
       redirect_to post_url(@post)
       flash[:success]= t('flash.update.success', item: Post.model_name.human)
     else
-      @stamps = PostStamp.stamps.keys
-      @stamps.shift
-      @place_list = params[:post][:place]
-      @merchandise_tag_list = params[:post][:merchandise_tag]
-      @content_tag_list = params[:post][:content_tag]
-      @oshi_point_stamps_list = @s_list
+      set_stamps
+      set_cache
       render :edit, status: :unprocessable_entity
       flash.now[:danger] = t('flash.update.danger', item: Post.model_name.human)
     end
@@ -106,6 +89,20 @@ class PostsController < ApplicationController
   def set_stamps
     @stamps = PostStamp.stamps.keys
     @stamps.shift
+  end
+
+  def set_cache
+    @place_list = params[:post][:place]
+    @merchandise_tag_list = params[:post][:merchandise_tag]
+    @content_tag_list = params[:post][:content_tag]
+    @oshi_point_stamps_list = @s_list
+  end
+
+  def save_accessories
+    @post.save_places(@p_list)
+    @post.save_tags(@m_list, 0)
+    @post.save_tags(@c_list, 1)
+    @post.save_post_stamps(@s_list)
   end
 
   # Only allow a list of trusted parameters through.

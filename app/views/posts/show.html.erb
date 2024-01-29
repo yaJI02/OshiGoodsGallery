@@ -44,7 +44,7 @@
         </div>
         <div class='mb-1'>
           <%= Post.human_attribute_name(:place) %>：
-          <% @post_places.each do |place| %>
+          <% @post.places.each do |place| %>
             <%= place.name %>
           <% end %>
         </div>
@@ -54,8 +54,8 @@
       </div>
       <div class='col-md-6'>
         <div class='content-box mb-1'>
-          <% if @post_merchandise_tags.present? %>
-            <% @post_merchandise_tags.each do |tag| %>
+          <% if @post.tags.merchandise_tag.present? %>
+            <% @post.tags.merchandise_tag.each do |tag| %>
               <%= tag.name %>
             <% end %>
           <% else %>
@@ -63,8 +63,8 @@
           <% end %>
         </div>
         <div class='content-box mb-1'>
-          <% if @post_content_tags.present? %>
-            <% @post_content_tags.each do |tag| %>
+          <% if @post.tags.content_tag.present? %>
+            <% @post.tags.content_tag.each do |tag| %>
               <%= tag.name %>
             <% end %>
           <% else %>
