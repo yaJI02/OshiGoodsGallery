@@ -11,7 +11,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(user_params[:email], user_params[:password])
-      redirect_to new_profile_path
+      @profile = Profile.new
+      @profile.user = current_user
+      @profile.save
+      redirect_to edit_profile_path(current_user.profile)
       flash[:success]= t('flash.create.success', item: User.model_name.human)
     else
       flash.now[:danger] = t('flash.create.danger', item: User.model_name.human)

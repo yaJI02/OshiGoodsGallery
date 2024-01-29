@@ -6,13 +6,14 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all.order(created_at: :DESC).includes(:tags, :post_stamps).page(params[:page])
+    @posts = Post.all.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).page(params[:page])
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.includes(:tags, :post_stamps).find(params[:id])
-    @post_user_profile = Profile.find_by(user_id: @post.user_id)
+    @post = Post.includes(:user, :profile, :tags, :post_stamps).find(params[:id])
+    @post_merchandise_tag = @post.tags.merchandise_tag
+    @post_cotent_tag = @post.tags.content_tag
     @oshi_point_stamps = @post.post_stamps.where(user_id: @post.user_id)
   end
 

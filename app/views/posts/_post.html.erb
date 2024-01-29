@@ -1,10 +1,17 @@
 <div class='form-box mb-3'>
-  <div class='post-type-tag ps-2'>
-    <%= post.post_type_i18n %>
+  <div class='post-type-tag px-2'>
+    <div class='row'>
+      <div class='col-md'>
+        <%= post.post_type_i18n %>
+      </div>
+      <div class='col-md d-flex justify-content-end'>
+        created at <%= I18n.l(post.created_at, format: :only_date) %>
+      </div>
+    </div>
   </div>
   <div class='row m-1'>
     <div class='col-md-4'>
-      <%= image_tag post.photo.url, class:'thumb' %>
+      <%= link_to image_tag(post.photo.url, class:'thumb'), post %>
     </div>
     <div class='col-md-8'>
       <div class='mb-1'>
@@ -29,8 +36,8 @@
         <% end %>
       </div>
       <div class='content-box mb-1'>
-        <% if post.post_stamps.where(user_id: post.user_id).present? %>
-          <% post.post_stamps.where(user_id: post.user_id).each do |stamp| %>
+        <% if post.post_stamps.where(user_id: post.user).present? %>
+          <% post.post_stamps.where(user_id: post.user).each do |stamp| %>
             <%= stamp.stamp_i18n %>
           <% end %>
         <% else %>
@@ -41,11 +48,20 @@
   </div>
 
   <div class='row m-2'>
-    <div class='col-md'>
+    <div class='col-md-6'>
       <%= link_to "詳細を見る", post %>
     </div>
-    <div class='col-md d-flex justify-content-end post-create-at'>
-      <%= I18n.l(post.created_at, format: :only_date) %>
+    <div class='col-md-6'>
+      <%= link_to profile_path(post.user.profile), class:'nav-link' do %>
+        <div class='row'>
+          <div class='col-11 text-end my-auto' style='padding-right: 0;'>
+            <%= t('posts.user_link_sentense') %><%= post.user.name %>
+          </div>
+          <div class='col-1'>
+            <%= image_tag(post.user.profile.avatar.url, class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
