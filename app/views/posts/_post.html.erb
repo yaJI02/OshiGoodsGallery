@@ -54,10 +54,10 @@
     <div class='col-md-6'>
       <%= link_to profile_path(post.user.profile), class:'nav-link' do %>
         <div class='row'>
-          <div class='col-11 text-end my-auto' style='padding-right: 0;'>
+          <div class='col-11 text-end my-auto'>
             <%= t('posts.user_link_sentense') %><%= post.user.name %>
           </div>
-          <div class='col-1'>
+          <div class='col-1' style='padding-left: 0;'>
             <%= image_tag(post.user.profile.avatar.url, class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
           </div>
         </div>
