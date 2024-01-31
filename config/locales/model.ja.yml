@@ -46,6 +46,7 @@ ja:
       contact:
         name: お名前／ユーザー名
         email: ご連絡先メールアドレス
+        email_confirmation: メールアドレス(確認用)
         subject: 問い合わせ内容
         message: 本文
   attributes:

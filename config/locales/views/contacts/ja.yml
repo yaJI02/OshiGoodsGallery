@@ -1,0 +1,8 @@
+ja:
+  contacts:
+    new:
+      title: お問い合わせ入力フォーム
+    confirm:
+      title: 入力確認画面
+    done:
+      title: お問い合わせが完了しました
