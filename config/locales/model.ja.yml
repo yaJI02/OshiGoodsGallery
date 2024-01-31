@@ -43,6 +43,11 @@ ja:
         display_tag_type: 表示タグ設定
         is_display_dislike_tag: NGタグ公開設定
         user_name: ユーザー名
+      contact:
+        name: お名前／ユーザー名
+        email: ご連絡先メールアドレス
+        subject: 問い合わせ内容
+        message: 本文
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -98,6 +103,10 @@ ja:
         all_tag: 全て
         not_ng: NGタグ以外
         only_favorite: お気に入りタグのみ
+    contact:
+      subject:
+        about_other: その他のお問い合わせ 
+        about_account: ログインおよびユーザーアカウントについて
   views:
     pagination:
       first: "&laquo;"
