@@ -24,7 +24,7 @@
       <div class='col-md-6'>
         <%= @post.title %>
         <div class='content-box body-box'>
-          <%= @post.body %>
+          <%=safe_join(@post.body.split("\n"),tag(:br))%>
         </div>
       </div>
     </div>
