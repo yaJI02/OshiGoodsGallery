@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ edit update ]
+  skip_before_action :require_login, only: %i[show]
 
   # GET /profiles/1 or /profiles/1.json
   def show
