@@ -1,7 +1,7 @@
 <header>
   <nav class='navbar'>
     <div class='container'>
-      <%= link_to root_path, class: 'navbar-brand logo', style:'display: flex; flex-direction: row;' do %>
+      <%= link_to root_path, class: 'navbar-brand logo', style:'display: flex; flex-direction: row;', data: { turbo_stream: true } do %>
         <div class='d-flex align-items-center me-3'>
           <%= image_tag('moon-icon-w.png', size:'40x40') %>
         </div>
