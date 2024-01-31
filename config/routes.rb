@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :profiles, only: %i[ edit update show] do
+  resources :contacts, only: %i[new create] do
+    get :done, on: :collection
+  end
+  resources :profiles, only: %i[edit update show] do
     post :my_best, on: :member
   end
   resources :posts

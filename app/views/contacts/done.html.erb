@@ -1,0 +1,20 @@
+<% content_for :title, t('.title') %>
+<style>
+body{background-color: white;}
+</style>
+
+<div class='container'>
+  <div class='row'>
+    <div class='login-box col-md-10 col-lg-8 mx-auto mt-5 px-5'>
+      <div class='page-title-name text-center my-5'>
+        <h1><%= t('.title') %></h1>
+      </div>
+      <p>お問い合わせいただきありがとうございました。</p>
+      <p>確認が取れ次第、ご入力いただいたメールアドレスへご連絡させていただきます。</p>
+      <p>※お問い合わせ内容が当サイトの利用規約に反する場合、ご連絡しない場合があります。</p>
+    </div>
+    <div class='link-text text-center mt-5'>
+      <%= link_to 'トップページに戻る', root_path, data: { turbo_stream: true } %>
+    </div>
+  </div>
+</div>

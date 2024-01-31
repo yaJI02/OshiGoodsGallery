@@ -1,0 +1,7 @@
+<%= @contact.name %> 様 から問い合わせがありました。
+===========================================
+【ログインデータ】：<%= @contact.login_user if @contact.login_user? %>
+【Mail】：<%= @contact.email %>
+【用件】：<%= @contact.subject_i18n %>
+【お問い合わせ内容】
+<%= @contact.message %>
