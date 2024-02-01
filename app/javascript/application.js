@@ -5,3 +5,4 @@ import "controllers"
 import "bootstrap"
 import "@popperjs/core"
 import "controllers/footerFixed";
+import "controllers/swiper";

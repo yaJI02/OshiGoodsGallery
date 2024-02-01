@@ -11,14 +11,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(user_params[:email], user_params[:password])
-      @profile = Profile.new
-      @profile.user = current_user
-      @profile.save
-      redirect_to edit_profile_path(current_user.profile)
-      flash[:success]= t('flash.create.success', item: User.model_name.human)
+      @profile = Profile.create(user: current_user)
+      redirect_to edit_profile_path(current_user.profile), flash: { success: t('flash.create.success', item: User.model_name.human) }
     else
       flash.now[:danger] = t('flash.create.danger', item: User.model_name.human)
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 

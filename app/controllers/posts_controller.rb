@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ edit update destroy ]
-  before_action :set_list, only: %i[ create update ]
-  before_action :set_stamps, only: %i[ new edit ]
+  before_action :set_post, only: %i[edit update destroy]
+  before_action :set_list, only: %i[create update]
+  before_action :set_stamps, only: %i[new edit]
   skip_before_action :require_login, only: %i[index show]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).page(params[:page])
+    @posts = Post.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).page(params[:page])
   end
 
   # GET /posts/1 or /posts/1.json
@@ -37,13 +37,12 @@ class PostsController < ApplicationController
 
     if @post.save
       save_accessories
-      redirect_to post_url(@post)
-      flash[:success]= t('flash.create.success', item: Post.model_name.human)
+      redirect_to post_url(@post), flash: { success: t('flash.create.success', item: Post.model_name.human) }
     else
       set_stamps
       set_cache
       flash.now[:danger] = t('flash.create.danger', item: Post.model_name.human)
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -51,8 +50,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       save_accessories
-      redirect_to post_url(@post)
-      flash[:success]= t('flash.update.success', item: Post.model_name.human)
+      redirect_to post_url(@post), flash: { success: t('flash.update.success', item: Post.model_name.human) }
     else
       set_stamps
       set_cache
@@ -65,18 +63,17 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
 
-    redirect_to posts_url
-    flash[:success]= t('flash.destroy', item: Post.model_name.human)
+    redirect_to posts_url, flash: { success: t('flash.destroy', item: Post.model_name.human) }
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    unless Post.find(params[:id]).user == current_user
-      redirect_to post_path(params[:id])
-      flash[:danger] = t('flash.not_authorized')
-    else
+    if Post.find(params[:id]).user == current_user
       @post = current_user.posts.find(params[:id])
+    else
+      redirect_to post_path(params[:id]), flash: { danger: t('flash.not_authorized') }
     end
   end
 
