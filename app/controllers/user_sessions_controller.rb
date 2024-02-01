@@ -8,21 +8,18 @@ class UserSessionsController < ApplicationController
 
     if @user
       if @user.profile.nil?
-        redirect_to new_profile_path
-        flash[:success] = 'ログインしました'
+        redirect_to new_profile_path, flash: { success: t('flash.login.success') }
       else
-        redirect_to root_path
-        flash[:success] = 'ログインしました'
+        redirect_to root_path, flash: { success: t('flash.login.success') }
       end
     else
-      flash.now[:danger] = 'ログインに失敗しました'
+      flash.now[:danger] = t('flash.login.danger')
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     logout
-    redirect_to login_path, status: :see_other
-    flash[:success]= 'ログアウトしました'
+    redirect_to login_path, status: :see_other, flash: { success: t('flash.logout') }
   end
 end

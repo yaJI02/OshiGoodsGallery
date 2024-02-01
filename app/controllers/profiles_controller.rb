@@ -15,8 +15,7 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       current_user.update(name: params[:profile][:user_name])
-      redirect_to profile_url(@profile)
-      flash[:success] = t('flash.update.success', item: Profile.model_name.human)
+      redirect_to profile_url(@profile), flash: { success: t('flash.update.success', item: Profile.model_name.human) }
     else
       flash.now[:danger] = t('flash.update.danger', item: Profile.model_name.human)
       render :edit, status: :unprocessable_entity
@@ -29,8 +28,7 @@ class ProfilesController < ApplicationController
       current_user.profile.update(post_id: post.id)
       redirect_to my_page_users_path
     else
-      redirect_to my_page_users_path
-      flash[:danger] = t('flash.update.danger', item: 'マイベスト投稿')
+      redirect_to my_page_users_path, flash: { danger: t('flash.update.danger', item: 'マイベスト投稿') }
     end
   end
 
@@ -41,8 +39,7 @@ class ProfilesController < ApplicationController
     if Profile.find(params[:id]).user_id == current_user.id
       @profile = current_user.profile
     else
-      redirect_to profile_path(params[:id])
-      flash[:danger] = t('flash.not_authorized')
+      redirect_to profile_path(params[:id]), flash: { danger: t('flash.not_authorized') }
     end
   end
 

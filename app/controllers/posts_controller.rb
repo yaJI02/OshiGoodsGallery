@@ -37,8 +37,7 @@ class PostsController < ApplicationController
 
     if @post.save
       save_accessories
-      redirect_to post_url(@post)
-      flash[:success] = t('flash.create.success', item: Post.model_name.human)
+      redirect_to post_url(@post), flash: { success: t('flash.create.success', item: Post.model_name.human) }
     else
       set_stamps
       set_cache
@@ -51,8 +50,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       save_accessories
-      redirect_to post_url(@post)
-      flash[:success] = t('flash.update.success', item: Post.model_name.human)
+      redirect_to post_url(@post), flash: { success: t('flash.update.success', item: Post.model_name.human) }
     else
       set_stamps
       set_cache
@@ -65,8 +63,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
 
-    redirect_to posts_url
-    flash[:success] = t('flash.destroy', item: Post.model_name.human)
+    redirect_to posts_url, flash: { success: t('flash.destroy', item: Post.model_name.human) }
   end
 
   private
@@ -76,8 +73,7 @@ class PostsController < ApplicationController
     if Post.find(params[:id]).user == current_user
       @post = current_user.posts.find(params[:id])
     else
-      redirect_to post_path(params[:id])
-      flash[:danger] = t('flash.not_authorized')
+      redirect_to post_path(params[:id]), flash: { danger: t('flash.not_authorized') }
     end
   end
 

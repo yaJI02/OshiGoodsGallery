@@ -124,3 +124,12 @@ ja:
       danger: "%{item}の更新に失敗しました"
     destroy: "%{item}を削除しました"
     not_authorized: 権限がありません
+    not_login: ログインしてください
+    login: 
+      success: ログインしました
+      danger: ログインに失敗しました
+    logout: ログアウトしました
+  errors:
+    messages:
+      email_confirmation: が一致しません
+      extension_allowlist_error: は jpg/jpeg/gif/png のみ使用可能です

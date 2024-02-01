@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       @profile.user = current_user
       @profile.save
       redirect_to edit_profile_path(current_user.profile)
-      flash[:success] = t('flash.create.success', item: User.model_name.human)
+      redirect_to edit_profile_path(current_user.profile), flash: { success: t('flash.create.success', item: User.model_name.human) }
     else
       flash.now[:danger] = t('flash.create.danger', item: User.model_name.human)
       render :new, status: :unprocessable_entity
