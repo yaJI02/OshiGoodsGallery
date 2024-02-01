@@ -26,7 +26,7 @@ class Post < ApplicationRecord
     end
   end
 
-  def save_tags(tag_list,tag_type_value)
+  def save_tags(tag_list, tag_type_value)
     old_tags = tags.where(tag_type: tag_type_value).pluck(:name) - Array(tag_list)
     tags.where(name: old_tags, tag_type: tag_type_value).destroy_all
 

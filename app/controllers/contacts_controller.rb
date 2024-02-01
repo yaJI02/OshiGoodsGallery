@@ -12,15 +12,15 @@ class ContactsController < ApplicationController
       ContactMailer.send_mail(@contact).deliver_now
       redirect_to done_contacts_path
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
-  def done;end
+  def done; end
 
   private
 
   def contact_params
-    params.require(:contact).permit(:name,:email,:email_confirmation,:subject,:message)
+    params.require(:contact).permit(:name, :email, :email_confirmation, :subject, :message)
   end
 end

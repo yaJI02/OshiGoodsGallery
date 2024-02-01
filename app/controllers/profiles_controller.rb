@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: %i[ edit update ]
+  before_action :set_profile, only: %i[edit update]
   skip_before_action :require_login, only: %i[show]
 
   # GET /profiles/1 or /profiles/1.json
@@ -35,18 +35,19 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      unless Profile.find(params[:id]).user_id == current_user.id
-        redirect_to profile_path(params[:id])
-        flash[:danger] = t('flash.not_authorized')
-      else
-        @profile = current_user.profile
-      end
-    end
 
-    # Only allow a list of trusted parameters through.
-    def profile_params
-      params.require(:profile).permit(:avatar, :sns_account, :display_tag_type, :is_display_dislike_tag)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    if Profile.find(params[:id]).user_id == current_user.id
+      @profile = current_user.profile
+    else
+      redirect_to profile_path(params[:id])
+      flash[:danger] = t('flash.not_authorized')
     end
+  end
+
+  # Only allow a list of trusted parameters through.
+  def profile_params
+    params.require(:profile).permit(:avatar, :sns_account, :display_tag_type, :is_display_dislike_tag)
+  end
 end
