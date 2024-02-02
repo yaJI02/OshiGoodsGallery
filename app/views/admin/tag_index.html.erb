@@ -1,0 +1,15 @@
+<% content_for :title, t('.title') %>
+
+<div class='container mt-3'>
+  <%= button_to '全てのタグと購入場所を削除する', admin_destroy_all_tag_place_path, method: :delete, class: 'btn form-btn btn-del mb-5' %>
+  <h3><%= t('.title') %></h3>
+  <% @tags.each do |tag| %>
+    <%= render 'admin_tag', tag: tag %>
+  <% end %>
+  <div class='text-center page-info'>
+    <%= page_entries_info @tags %>
+  </div>
+  <div class='d-flex justify-content-center'>
+    <%= paginate @tags, theme: 'bootstrap-5' %>
+  </div>
+</div>

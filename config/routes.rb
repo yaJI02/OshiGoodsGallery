@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     get :my_page, on: :collection
   end
 
+  resources :places, only: %i[destroy]
+  resources :tags, only: %i[destroy]
+
   get 'admin/index', to: 'admin#index'
+  get 'admin/tag_index', to: 'admin#tag_index'
+  get 'admin/place_index', to: 'admin#place_index'
   delete 'admin/destroy_all_tag_place', to: 'admin#destroy_all_tag_place'
 
   root 'top#index'

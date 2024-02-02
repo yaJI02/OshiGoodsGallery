@@ -1,0 +1,11 @@
+<div class='form-box mb-3'>
+  <div class='m-1'>
+    <p>place_id：<%= place.id %></p>
+  </div>
+  <div class='m-1'>
+    <p>name：<%= place.name %></p>
+  </div>
+  <div class='mb-3'>
+    <%= button_to '削除する', place, method: :delete, class: 'btn btn-del form-btn' %>
+  </div>
+</div>

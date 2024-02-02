@@ -72,6 +72,8 @@ class PostsController < ApplicationController
   def set_post
     if Post.find(params[:id]).user == current_user
       @post = current_user.posts.find(params[:id])
+    elsif current_user.admin_user?
+      @post = Post.find(params[:id])
     else
       redirect_to post_path(params[:id]), flash: { danger: t('flash.not_authorized') }
     end

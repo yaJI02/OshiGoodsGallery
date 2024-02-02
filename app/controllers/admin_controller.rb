@@ -1,7 +1,17 @@
 class AdminController < ApplicationController
   before_action :admin_authorized
 
-  def index; end
+  def index
+    @posts = Post.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).page(params[:page])
+  end
+
+  def tag_index
+    @tags = Tag.order(created_at: :DESC).page(params[:page])
+  end
+
+  def place_index
+    @places = Place.order(created_at: :DESC).page(params[:page])
+  end
 
   def destroy_all_tag_place
     Place.all.destroy_all
@@ -12,7 +22,7 @@ class AdminController < ApplicationController
     private
 
   def admin_authorized
-    if ENV['ADMIN_USER_EMAIL'] != current_user.email
+    unless current_user.admin_user?
       redirect_to root_path, flash: { danger: t('flash.not_authorized') }
     end
   end

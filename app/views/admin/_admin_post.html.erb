@@ -1,0 +1,81 @@
+<div class='form-box mb-3'>
+  <div class='post-type-tag px-2'>
+    <div class='row'>
+      <div class='col-md'>
+        <%= post.post_type_i18n %>（post_id:<%= post.id %>）／<%= post.purchase_status_i18n %>
+      </div>
+      <div class='col-md d-flex justify-content-end'>
+        created at <%= I18n.l(post.created_at, format: :only_date) %>
+      </div>
+    </div>
+  </div>
+  <div class='row m-1'>
+    <div class='col-md-2'>
+      <%= link_to image_tag(post.photo.url, size:'100x100'), post %>
+    </div>
+    <div class='col-md-8'>
+      <div class='mb-1'>
+        <%= post.user.name %>（user_id:<%= post.user.id %>）
+      </div>
+      <div class='mb-1'>
+        <%= post.title %>
+      </div>
+      <div class='mb-1'>
+        <%= Post.human_attribute_name(:body) %>：<%= post.body %>
+      </div>
+      <div class='mb-1'>
+        <% if post.bought_at? %>
+          <% if post.purchased? %>
+            <%= Post.human_attribute_name(:bought_at) %>：<%= I18n.l(post.bought_at) %>
+          <% else %>
+            購入予定日：<%= I18n.l(post.bought_at) %>
+          <% end %>
+        <% else %>
+          購入予定日：
+        <% end %>
+      </div>
+      <div class='mb-1'>
+        <%= Post.human_attribute_name(:place) %>：
+        <% post.places.each do |place| %>
+          <%= place.name %>
+        <% end %>
+      </div>
+      <div class='mb-1'>
+          <%= Post.human_attribute_name(:purchase_cost) %>：<%= post.purchase_cost %><% if post.purchase_cost.present? %>円<% end %>
+      </div>
+      <div class='content-box mb-1'>
+        <% if post.tags.merchandise_tag.present? %>
+          <% post.tags.merchandise_tag.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        <% else %>
+          <div class='no-data'>グッズカテゴリ</div>
+        <% end %>
+      </div>
+      <div class='content-box mb-1'>
+        <% if post.tags.content_tag.present? %>
+          <% post.tags.content_tag.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        <% else %>
+          <div class='no-data'>コンテンツカテゴリ</div>
+        <% end %>
+      </div>
+      <div class='content-box mb-1'>
+        <% if post.post_stamps.where(user_id: post.user).present? %>
+          <% post.post_stamps.where(user_id: post.user).each do |stamp| %>
+            <%= stamp.stamp_i18n %>
+          <% end %>
+        <% else %>
+          <div class='no-data'>推しポイント</div>
+        <% end %>
+      </div>
+    </div>
+    <div class='col-md-2 text-center'>
+      <div class='mb-3'>
+        <%= link_to '編集する', edit_post_path(post), class: 'btn form-btn' %>
+      </div>
+      <%= button_to '削除する', post, method: :delete, class: 'btn btn-del form-btn' %>
+    </div>
+  </div>
+</div>
