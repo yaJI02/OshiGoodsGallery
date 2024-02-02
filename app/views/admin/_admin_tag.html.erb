@@ -1,0 +1,14 @@
+<div class='form-box mb-3'>
+  <div class='m-1'>
+    <p>tag_id：<%= tag.id %></p>
+  </div>
+  <div class='m-1'>
+    <p>name：<%= tag.name %></p>
+  </div>
+  <div class='m-1'>
+    <p>tag_type：<%= tag.tag_type_i18n %></p>
+  </div>
+  <div class='mb-3'>
+    <%= button_to '削除する', tag, method: :delete, class: 'btn btn-del form-btn' %>
+  </div>
+</div>

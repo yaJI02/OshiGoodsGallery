@@ -11,6 +11,10 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true, length: { maximum: 255 }
 
+  def admin_user?
+    ENV['ADMIN_USER_EMAIL'] == self.email
+  end
+
   def total_post
     posts.count
   end

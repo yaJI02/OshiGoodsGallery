@@ -19,6 +19,8 @@ ja:
       user: ユーザー
       post: 記事
       profile: プロフィール
+      tag: タグ
+      place: 購入場所
     attributes:
       user:
         name: ユーザー名

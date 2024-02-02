@@ -1,0 +1,8 @@
+ja:
+  admin:
+    index:
+      title: 投稿一覧【admin】
+    tag_index:
+      title: タグ一覧【admin】
+    place_index:
+      title: 購入場所一覧【admin】
