@@ -18,20 +18,42 @@ class Post < ApplicationRecord
   enum purchase_status: { purchased: 0, reservation: 1, considering: 2 }
 
   def save_places(place_list)
-    old_places = places.pluck(:name) - Array(place_list)
-    places.where(name: old_places).destroy_all
+    current_places = places.nil? ? [] : places.pluck(:name)
+    old_places = current_places - (place_list.nil? ? [] : place_list)
+    new_places = (place_list.nil? ? [] : place_list) - current_places
 
-    (Array(place_list) - places.pluck(:name)).each do |new_name|
-      places.find_or_create_by(name: new_name)
+    old_places.each do |old_name|
+      place = self.places.find_by(name: old_name)
+      post_place = self.post_places.find_by(place_id: place)
+      post_place.delete
+    end
+
+    new_places.each do |new_name|
+      if place = Place.find_by(name: new_name)
+        self.post_places.create(place_id: place.id)
+      else
+        self.places.create(name: new_name)
+      end
     end
   end
 
   def save_tags(tag_list, tag_type_value)
-    old_tags = tags.where(tag_type: tag_type_value).pluck(:name) - Array(tag_list)
-    tags.where(name: old_tags, tag_type: tag_type_value).destroy_all
+    current_tags = tags.where(tag_type: tag_type_value).nil? ? [] : tags.where(tag_type: tag_type_value).pluck(:name)
+    old_tags = current_tags - (tag_list.nil? ? [] : tag_list)
+    new_tags = (tag_list.nil? ? [] : tag_list) - current_tags
 
-    (Array(tag_list) - tags.where(tag_type: tag_type_value).pluck(:name)).each do |new_name|
-      tags.find_or_create_by(name: new_name, tag_type: tag_type_value)
+    old_tags.each do |old_name|
+      tag = self.tags.find_by(name: old_name, tag_type: tag_type_value)
+      post_tag = self.post_tags.find_by(tag_id: tag)
+      post_tag.delete
+    end
+
+    new_tags.each do |new_name|
+      if tag = Tag.find_by(name: new_name, tag_type: tag_type_value)
+        self.post_tags.create(tag_id: tag.id)
+      else
+        self.tags.create(name: new_name, tag_type: tag_type_value)
+      end
     end
   end
 

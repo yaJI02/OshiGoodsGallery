@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_30_081306) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_02_112440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_081306) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_post_places_on_place_id"
+    t.index ["post_id", "place_id"], name: "index_post_places_on_post_id_and_place_id", unique: true
     t.index ["post_id"], name: "index_post_places_on_post_id"
   end
 
@@ -45,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_081306) do
     t.integer "stamp", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id", "user_id", "stamp"], name: "index_post_stamps_on_post_id_and_user_id_and_stamp", unique: true
     t.index ["post_id"], name: "index_post_stamps_on_post_id"
     t.index ["user_id"], name: "index_post_stamps_on_user_id"
   end
@@ -54,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_081306) do
     t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id", "tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
     t.index ["post_id"], name: "index_post_tags_on_post_id"
     t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
