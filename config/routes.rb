@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     get :my_page, on: :collection
   end
 
+  get 'admin/index', to: 'admin#index'
+  delete 'admin/destroy_all_tag_place', to: 'admin#destroy_all_tag_place'
+
   root 'top#index'
   get 'terms_of_use', to: 'top#terms_of_use'
   get 'about', to: 'top#about'
