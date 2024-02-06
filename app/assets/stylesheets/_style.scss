@@ -110,6 +110,16 @@ footer .footer-item:hover {
   background-color: #8C78BA;
 }
 
+.required .col-form-label{
+  display: inline;
+  vertical-align:middle;
+}
+
+.required .required-coron {
+color: red;
+display: inline;
+}
+
 .mybest-btn {
   font-size: 10pt;
   padding: 3px 3px;

@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   resources :places, only: %i[destroy]
   resources :tags, only: %i[destroy]
+  get 'tags/get_all_post_place', to: 'tags#get_all_post_place'
+  get 'tags/get_all_post_content_tag', to: 'tags#get_all_post_content_tag'
+  get 'tags/get_all_post_merchandise_tag', to: 'tags#get_all_post_merchandise_tag'
 
   get 'admin/index', to: 'admin#index'
   get 'admin/tag_index', to: 'admin#tag_index'
