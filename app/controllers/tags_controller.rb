@@ -9,4 +9,18 @@ class TagsController < ApplicationController
     end
   end
 
+  def get_all_post_place
+    @tags = Place.pluck(:name)
+    render json: @tags
+  end
+
+  def get_all_post_content_tag
+    @tags = Tag.content_tag.pluck(:name)
+    render json: @tags
+  end
+
+  def get_all_post_merchandise_tag
+    @tags = Tag.merchandise_tag.pluck(:name)
+    render json: @tags
+  end
 end
