@@ -63,7 +63,11 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
 
-    redirect_to posts_url, flash: { success: t('flash.destroy', item: Post.model_name.human) }
+    if current_user.admin_user?
+      redirect_to admin_index_path, flash: { success: t('flash.destroy', item: Post.model_name.human) }
+    else
+      redirect_to posts_url, flash: { success: t('flash.destroy', item: Post.model_name.human) }
+    end
   end
 
   private
