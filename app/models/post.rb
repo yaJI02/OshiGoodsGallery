@@ -23,16 +23,16 @@ class Post < ApplicationRecord
     new_places = (place_list.nil? ? [] : place_list) - current_places
 
     old_places.each do |old_name|
-      place = self.places.find_by(name: old_name)
-      post_place = self.post_places.find_by(place_id: place)
+      place = places.find_by(name: old_name)
+      post_place = post_places.find_by(place_id: place)
       post_place.delete
     end
 
     new_places.each do |new_name|
-      if place = Place.find_by(name: new_name)
-        self.post_places.create(place_id: place.id)
+      if place = Place.find_by(name: new_name) # rubocop:disable Lint/AssignmentInCondition
+        post_places.create(place_id: place.id)
       else
-        self.places.create(name: new_name)
+        places.create(name: new_name)
       end
     end
   end
@@ -43,16 +43,16 @@ class Post < ApplicationRecord
     new_tags = (tag_list.nil? ? [] : tag_list) - current_tags
 
     old_tags.each do |old_name|
-      tag = self.tags.find_by(name: old_name, tag_type: tag_type_value)
-      post_tag = self.post_tags.find_by(tag_id: tag)
+      tag = tags.find_by(name: old_name, tag_type: tag_type_value)
+      post_tag = post_tags.find_by(tag_id: tag)
       post_tag.delete
     end
 
     new_tags.each do |new_name|
-      if tag = Tag.find_by(name: new_name, tag_type: tag_type_value)
-        self.post_tags.create(tag_id: tag.id)
+      if tag = Tag.find_by(name: new_name, tag_type: tag_type_value) # rubocop:disable Lint/AssignmentInCondition
+        post_tags.create(tag_id: tag.id)
       else
-        self.tags.create(name: new_name, tag_type: tag_type_value)
+        tags.create(name: new_name, tag_type: tag_type_value)
       end
     end
   end

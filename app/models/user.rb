@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 255 }
 
   def admin_user?
-    ENV['ADMIN_USER_EMAIL'] == self.email
+    ENV['ADMIN_USER_EMAIL'] == email
   end
 
   def total_post

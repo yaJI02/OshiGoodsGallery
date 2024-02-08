@@ -14,16 +14,16 @@ class AdminController < ApplicationController
   end
 
   def destroy_all_tag_place
-    Place.all.destroy_all
-    Tag.all.destroy_all
+    Place.destroy_all
+    Tag.destroy_all
     redirect_to posts_url
   end
 
-    private
+  private
 
   def admin_authorized
-    unless current_user.admin_user?
-      redirect_to root_path, flash: { danger: t('flash.not_authorized') }
-    end
+    return if current_user.admin_user?
+
+    redirect_to root_path, flash: { danger: t('flash.not_authorized') }
   end
 end
