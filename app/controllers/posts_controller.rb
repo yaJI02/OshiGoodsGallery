@@ -80,10 +80,10 @@ class PostsController < ApplicationController
   end
 
   def set_list
-    @p_list = params[:post][:place].present? ? JSON.parse(params[:post][:place]).map { |tag| tag["value"] } : []
-    @m_list = params[:post][:merchandise_tag].present? ? JSON.parse(params[:post][:merchandise_tag]).map { |tag| tag["value"] } : []
-    @c_list = params[:post][:content_tag].present? ? JSON.parse(params[:post][:content_tag]).map { |tag| tag["value"] } : []
-    @s_list = params[:post][:post_stamp].present? ? params[:post][:post_stamp] : []
+    @p_list = params[:post][:place].present? ? JSON.parse(params[:post][:place]).pluck('value') : []
+    @m_list = params[:post][:merchandise_tag].present? ? JSON.parse(params[:post][:merchandise_tag]).pluck('value') : []
+    @c_list = params[:post][:content_tag].present? ? JSON.parse(params[:post][:content_tag]).pluck('value') : []
+    @s_list = params[:post][:post_stamp].presence || []
   end
 
   def set_stamps
