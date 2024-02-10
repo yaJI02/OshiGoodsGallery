@@ -1,54 +1,58 @@
 <%= search_form_for @q do |f| %>
-  <div class='row mb-3'>
-    <div class='col-md-11'>
+  <div class='row mb-3 justify-content-center'>
+    <div class='col-md-5'>
       <%= f.search_field :title_or_body_or_user_name_or_places_name_or_tags_name_cont, class: 'form-control', placeholder: '検索ワード' %>
     </div>
     <div class='col-md-1' style='display: flex; align-items: center;'>
       <%= f.submit '検索', class: 'btn form-btn search-btn' %>
     </div>
   </div>
-  <div class='mb-3'>
-    <%= label_tag 'post_type_eq_all' do %>
-      <%= f.radio_button :post_type_eq, '', checked: true, id: 'post_type_eq_all' %>
-      <%= t("enums.post.post_type.all") %>
-    <% end %>
-    <%= label_tag 'post_type_eq_merchandise' do %>
-      <%= f.radio_button :post_type_eq, 0, id: 'post_type_eq_merchandise' %>
-      <%= t("enums.post.post_type.merchandise") %>
-    <% end %>
-    <%= label_tag 'post_type_eq_showroom' do %>
-      <%= f.radio_button :post_type_eq, 1, id: 'post_type_eq_showroom' %>
-      <%= t("enums.post.post_type.showroom") %>
-    <% end %>
-  </div>
-  <div class='mb-3'>
-    <%= label_tag 'author_stamped_posts_all' do %>
-      <%= f.radio_button :author_stamped_posts, '', checked: true, id: 'author_stamped_posts_all' %>
-      <%= t("enums.post.post_type.all") %>
-    <% end %>
-    <%= label_tag 'author_stamped_posts_cute' do %>
-      <%= f.radio_button :author_stamped_posts, 1, id: 'author_stamped_posts_cute' %>
-      <%= t("enums.post_stamp.stamp.cute") %>
-    <% end %>
-    <%= label_tag 'author_stamped_posts_cool' do %>
-      <%= f.radio_button :author_stamped_posts, 2, id: 'author_stamped_posts_cool' %>
-      <%= t("enums.post_stamp.stamp.cool") %>
-    <% end %>
-    <%= label_tag 'author_stamped_posts_great' do %>
-      <%= f.radio_button :author_stamped_posts, 3, id: 'author_stamped_posts_great' %>
-      <%= t("enums.post_stamp.stamp.great") %>
-    <% end %>
-    <%= label_tag 'author_stamped_posts_recommend' do %>
-      <%= f.radio_button :author_stamped_posts, 4, id: 'author_stamped_posts_recommend' %>
-      <%= t("enums.post_stamp.stamp.recommend") %>
-    <% end %>
-    <%= label_tag 'author_stamped_posts_loved' do %>
-      <%= f.radio_button :author_stamped_posts, 5, id: 'author_stamped_posts_loved' %>
-      <%= t("enums.post_stamp.stamp.loved") %>
-    <% end %>
-    <%= label_tag 'author_stamped_posts_awesome' do %>
-      <%= f.radio_button :author_stamped_posts, 6, id: 'author_stamped_posts_awesome' %>
-      <%= t("enums.post_stamp.stamp.awesome") %>
-    <% end %>
+  <div class='row justify-content-center'>
+    <div class='mb-3 col-lg-3'>
+      タイプ：
+      <%= label_tag 'post_type_eq_all', class: 'search-tag-box' do %>
+        <%= f.radio_button :post_type_eq, '', checked: true, id: 'post_type_eq_all' %>
+        <%= link_to t("enums.post.post_type.all"), { controller: "posts", action: "index", q: { post_type_eq: '' }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'post_type_eq_merchandise', class: 'search-tag-box' do %>
+        <%= f.radio_button :post_type_eq, 0, id: 'post_type_eq_merchandise' %>
+        <%= link_to t("enums.post.post_type.merchandise"), { controller: "posts", action: "index", q: { post_type_eq: 0 }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'post_type_eq_showroom', class: 'search-tag-box' do %>
+        <%= f.radio_button :post_type_eq, 1, id: 'post_type_eq_showroom' %>
+        <%= link_to t("enums.post.post_type.showroom"), { controller: "posts", action: "index", q: { post_type_eq: 1 }}, class: 'search-tag' %>
+      <% end %>
+    </div>
+    <div class='mb-3 col-lg-6'>
+      推しポイント：
+      <%= label_tag 'author_stamped_posts_all', class: 'search-tag-box' do %>
+        <%= f.radio_button :author_stamped_posts, '', checked: true, id: 'author_stamped_posts_all' %>
+        <%= link_to t("enums.post.post_type.all"), { controller: "posts", action: "index", q: { author_stamped_posts: '' }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'author_stamped_posts_cute', class: 'search-tag-box' do %>
+        <%= f.radio_button :author_stamped_posts, 1, id: 'author_stamped_posts_cute' %>
+        <%= link_to t("enums.post_stamp.stamp.cute"), { controller: "posts", action: "index", q: { author_stamped_posts: 1 }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'author_stamped_posts_cool', class: 'search-tag-box' do %>
+        <%= f.radio_button :author_stamped_posts, 2, id: 'author_stamped_posts_cool' %>
+        <%= link_to t("enums.post_stamp.stamp.cool"), { controller: "posts", action: "index", q: { author_stamped_posts: 2 }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'author_stamped_posts_great', class: 'search-tag-box' do %>
+        <%= f.radio_button :author_stamped_posts, 3, id: 'author_stamped_posts_great' %>
+        <%= link_to t("enums.post_stamp.stamp.great"), { controller: "posts", action: "index", q: { author_stamped_posts: 3 }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'author_stamped_posts_recommend', class: 'search-tag-box' do %>
+        <%= f.radio_button :author_stamped_posts, 4, id: 'author_stamped_posts_recommend' %>
+        <%= link_to t("enums.post_stamp.stamp.recommend"), { controller: "posts", action: "index", q: { author_stamped_posts: 4 }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'author_stamped_posts_loved', class: 'search-tag-box' do %>
+        <%= f.radio_button :author_stamped_posts, 5, id: 'author_stamped_posts_loved' %>
+        <%= link_to t("enums.post_stamp.stamp.loved"), { controller: "posts", action: "index", q: { author_stamped_posts: 5 }}, class: 'search-tag' %>
+      <% end %>
+      <%= label_tag 'author_stamped_posts_awesome', class: 'search-tag-box' do %>
+        <%= f.radio_button :author_stamped_posts, 6, id: 'author_stamped_posts_awesome' %>
+        <%= link_to t("enums.post_stamp.stamp.awesome"), { controller: "posts", action: "index", q: { author_stamped_posts: 6 }}, class: 'search-tag' %>
+      <% end %>
+    </div>
   </div>
 <% end %>

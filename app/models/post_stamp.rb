@@ -6,13 +6,14 @@ class PostStamp < ApplicationRecord
 
   enum stamp: { nice: 0, cute: 1, cool: 2, great: 3, recommend: 4, loved: 5, awesome: 6 }
 
-  private
+  private_class_method :ransackable_attributes
+  private_class_method :ransackable_associations
 
   def self.ransackable_attributes(auth_object = nil)
-    ['stamp']
+    %w[stamp]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ['post']
+    %w[post]
   end
 end
