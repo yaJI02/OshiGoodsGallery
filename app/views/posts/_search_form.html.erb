@@ -7,4 +7,18 @@
       <%= f.submit '検索', class: 'btn form-btn search-btn' %>
     </div>
   </div>
+  <div class='mb-3'>
+    <%= label_tag 'post_type_eq_all' do %>
+      <%= f.radio_button :post_type_eq, '', checked: true, id: 'post_type_eq_all' %>
+      <%= t("enums.post.post_type.all") %>
+    <% end %>
+    <%= label_tag 'post_type_eq_merchandise' do %>
+      <%= f.radio_button :post_type_eq, 0, id: 'post_type_eq_merchandise' %>
+      <%= t("enums.post.post_type.merchandise") %>
+    <% end %>
+    <%= label_tag 'post_type_eq_showroom' do %>
+      <%= f.radio_button :post_type_eq, 1, id: 'post_type_eq_showroom' %>
+      <%= t("enums.post.post_type.showroom") %>
+    <% end %>
+  </div>
 <% end %>

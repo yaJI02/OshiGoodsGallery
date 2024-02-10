@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
+    @post_types = Post.post_types.keys
     @q = Post.includes(:user, :profile, :tags, :post_stamps).ransack(params[:q])
       @posts = @q.result.group(:id).order(created_at: :DESC).page(params[:page])
   end

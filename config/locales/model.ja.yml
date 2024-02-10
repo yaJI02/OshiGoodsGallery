@@ -84,6 +84,7 @@ ja:
       post_type:
         merchandise: グッズ
         showroom: ショールーム
+        all: 全て
       purchase_status:
         purchased: 購入済
         reservation: 予約
