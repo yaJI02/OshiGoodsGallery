@@ -7,13 +7,14 @@ class Tag < ApplicationRecord
 
   enum tag_type: { merchandise_tag: 0, content_tag: 1 }
 
-  private
+  private_class_method :ransackable_attributes
+  private_class_method :ransackable_associations
 
   def self.ransackable_attributes(auth_object = nil)
-    ['name']
+    %w[name]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ['posts']
+    %w[posts]
   end
 end
