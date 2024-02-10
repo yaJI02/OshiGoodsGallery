@@ -130,6 +130,29 @@ display: inline;
   padding: 3px 3px;
 }
 
+.search-btn {
+  font-size: 13pt;
+  padding: 5px 17px;
+}
+
+.tag {
+  color: white;
+  background-color: #8C78BA;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 3px 5px;
+}
+
+.tag:hover {
+  color: white;
+  filter: brightness(0.8);
+}
+
+.tag-stamp {
+  color: white;
+  background-color: #66589c;
+}
+
 .my-page-selecter {
   font-size: 15pt;
 }

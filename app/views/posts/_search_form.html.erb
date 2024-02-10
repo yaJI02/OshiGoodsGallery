@@ -1,0 +1,54 @@
+<%= search_form_for @q do |f| %>
+  <div class='row mb-3'>
+    <div class='col-md-11'>
+      <%= f.search_field :title_or_body_or_user_name_or_places_name_or_tags_name_cont, class: 'form-control', placeholder: '検索ワード' %>
+    </div>
+    <div class='col-md-1' style='display: flex; align-items: center;'>
+      <%= f.submit '検索', class: 'btn form-btn search-btn' %>
+    </div>
+  </div>
+  <div class='mb-3'>
+    <%= label_tag 'post_type_eq_all' do %>
+      <%= f.radio_button :post_type_eq, '', checked: true, id: 'post_type_eq_all' %>
+      <%= t("enums.post.post_type.all") %>
+    <% end %>
+    <%= label_tag 'post_type_eq_merchandise' do %>
+      <%= f.radio_button :post_type_eq, 0, id: 'post_type_eq_merchandise' %>
+      <%= t("enums.post.post_type.merchandise") %>
+    <% end %>
+    <%= label_tag 'post_type_eq_showroom' do %>
+      <%= f.radio_button :post_type_eq, 1, id: 'post_type_eq_showroom' %>
+      <%= t("enums.post.post_type.showroom") %>
+    <% end %>
+  </div>
+  <div class='mb-3'>
+    <%= label_tag 'author_stamped_posts_all' do %>
+      <%= f.radio_button :author_stamped_posts, '', checked: true, id: 'author_stamped_posts_all' %>
+      <%= t("enums.post.post_type.all") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_cute' do %>
+      <%= f.radio_button :author_stamped_posts, 1, id: 'author_stamped_posts_cute' %>
+      <%= t("enums.post_stamp.stamp.cute") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_cool' do %>
+      <%= f.radio_button :author_stamped_posts, 2, id: 'author_stamped_posts_cool' %>
+      <%= t("enums.post_stamp.stamp.cool") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_great' do %>
+      <%= f.radio_button :author_stamped_posts, 3, id: 'author_stamped_posts_great' %>
+      <%= t("enums.post_stamp.stamp.great") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_recommend' do %>
+      <%= f.radio_button :author_stamped_posts, 4, id: 'author_stamped_posts_recommend' %>
+      <%= t("enums.post_stamp.stamp.recommend") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_loved' do %>
+      <%= f.radio_button :author_stamped_posts, 5, id: 'author_stamped_posts_loved' %>
+      <%= t("enums.post_stamp.stamp.loved") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_awesome' do %>
+      <%= f.radio_button :author_stamped_posts, 6, id: 'author_stamped_posts_awesome' %>
+      <%= t("enums.post_stamp.stamp.awesome") %>
+    <% end %>
+  </div>
+<% end %>

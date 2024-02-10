@@ -22,4 +22,14 @@ class User < ApplicationRecord
   def total_purchase_cost
     posts.sum(:purchase_cost)
   end
+
+  private
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['name']
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ['posts']
+  end
 end
