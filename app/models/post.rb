@@ -67,4 +67,14 @@ class Post < ApplicationRecord
       post_stamps.create(stamp: PostStamp.stamps[new_stamp], user_id: user_id) # rubocop:disable Style/HashSyntax
     end
   end
+
+  private
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['title', 'body', 'post_type']
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ['user', 'tags', 'places', 'post_stamps']
+  end
 end

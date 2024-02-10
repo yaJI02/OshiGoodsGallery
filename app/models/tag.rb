@@ -6,4 +6,14 @@ class Tag < ApplicationRecord
   validates :tag_type, presence: true
 
   enum tag_type: { merchandise_tag: 0, content_tag: 1 }
+
+  private
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['name']
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ['posts']
+  end
 end
