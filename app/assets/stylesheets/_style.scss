@@ -218,6 +218,25 @@ display: inline;
   color: white;
 }
 
+.search-tag-box input[type=radio] {
+  display: none;
+}
+
+.search-tag-box .search-tag {
+  cursor: pointer;
+  padding: 3px 5px;
+  background-color: white;
+  border: 1px solid #66589c;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.search-tag-box input[type=radio]:checked ~  .search-tag {
+  background-color: #66589c;
+  color: white;
+}
+
 .no-data {
   color: #6E6E6E;
 }
