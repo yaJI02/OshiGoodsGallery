@@ -21,4 +21,34 @@
       <%= t("enums.post.post_type.showroom") %>
     <% end %>
   </div>
+  <div class='mb-3'>
+    <%= label_tag 'author_stamped_posts_all' do %>
+      <%= f.radio_button :author_stamped_posts, '', checked: true, id: 'author_stamped_posts_all' %>
+      <%= t("enums.post.post_type.all") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_cute' do %>
+      <%= f.radio_button :author_stamped_posts, 1, id: 'author_stamped_posts_cute' %>
+      <%= t("enums.post_stamp.stamp.cute") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_cool' do %>
+      <%= f.radio_button :author_stamped_posts, 2, id: 'author_stamped_posts_cool' %>
+      <%= t("enums.post_stamp.stamp.cool") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_great' do %>
+      <%= f.radio_button :author_stamped_posts, 3, id: 'author_stamped_posts_great' %>
+      <%= t("enums.post_stamp.stamp.great") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_recommend' do %>
+      <%= f.radio_button :author_stamped_posts, 4, id: 'author_stamped_posts_recommend' %>
+      <%= t("enums.post_stamp.stamp.recommend") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_loved' do %>
+      <%= f.radio_button :author_stamped_posts, 5, id: 'author_stamped_posts_loved' %>
+      <%= t("enums.post_stamp.stamp.loved") %>
+    <% end %>
+    <%= label_tag 'author_stamped_posts_awesome' do %>
+      <%= f.radio_button :author_stamped_posts, 6, id: 'author_stamped_posts_awesome' %>
+      <%= t("enums.post_stamp.stamp.awesome") %>
+    <% end %>
+  </div>
 <% end %>

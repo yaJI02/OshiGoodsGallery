@@ -8,7 +8,11 @@ class PostsController < ApplicationController
   def index
     @post_types = Post.post_types.keys
     @q = Post.includes(:user, :profile, :tags, :post_stamps).ransack(params[:q])
+    if params[:q] && params[:q][:author_stamped_posts].present?
+      @posts = @q.result.order(created_at: :DESC).page(params[:page])
+    else
       @posts = @q.result.group(:id).order(created_at: :DESC).page(params[:page])
+    end
   end
 
   # GET /posts/1 or /posts/1.json

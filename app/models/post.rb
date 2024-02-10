@@ -17,6 +17,11 @@ class Post < ApplicationRecord
   enum post_type: { merchandise: 0, showroom: 1 }
   enum purchase_status: { purchased: 0, reservation: 1, considering: 2 }
 
+  scope :author_stamped_posts, ->(select_value) {
+    joins(:post_stamps)
+    .where('posts.user_id = post_stamps.user_id AND post_stamps.stamp = ?', "#{select_value}")
+  }
+
   def save_places(place_list)
     current_places = places.nil? ? [] : places.pluck(:name)
     old_places = current_places - (place_list.nil? ? [] : place_list)
@@ -76,5 +81,9 @@ class Post < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     ['user', 'tags', 'places', 'post_stamps']
+  end
+
+  def self.ransackable_scopes(auth_object=nil)
+    ['author_stamped_posts']
   end
 end
