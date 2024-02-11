@@ -7,12 +7,25 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @post_types = Post.post_types.keys
-    @q = Post.includes(:user, :profile, :tags, :post_stamps).ransack(params[:q])
-    if params[:q] && params[:q][:author_stamped_posts].present? # rubocop:disable Style/ConditionalAssignment
-      @posts = @q.result.order(created_at: :DESC).page(params[:page])
-    else
-      @posts = @q.result.group(:id).order(created_at: :DESC).page(params[:page])
+    @q = Post.includes(:user, :profile, :tags, :post_stamps)
+
+    if params[:q].present?
+      search_freeword = params[:q][:title_or_body_or_user_name_or_places_name_or_tags_name_cont].presence
+      search_type = params[:q][:post_type_eq].presence
+      search_stamp = params[:q][:author_stamped_posts].presence
     end
+
+    if search_freeword.present?
+      keywords = search_freeword.split(',')
+      grouping_hash = keywords.map { |word| { title_or_body_or_user_name_or_places_name_or_tags_name_cont: word } }
+      grouping_hash << { post_type_eq: search_type } if search_type.present?
+      @q = @q.ransack(combinator: 'and', groupings: grouping_hash)
+    else
+      @q = @q.ransack(params[:q])
+    end
+
+    @posts = search_stamp.present? ? @q.result.author_stamped_posts(search_stamp) : @q.result.group(:id)
+    @posts = @posts.order(created_at: :DESC).page(params[:page])
   end
 
   # GET /posts/1 or /posts/1.json
