@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
     @posts = search_stamp.present? ? @q.result.author_stamped_posts(search_stamp) : @q.result.group(:id)
     @posts = @posts.order(created_at: :DESC).page(params[:page])
+    @search_words = search_freeword.presence
   end
 
   # GET /posts/1 or /posts/1.json

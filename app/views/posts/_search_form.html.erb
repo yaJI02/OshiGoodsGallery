@@ -1,7 +1,7 @@
 <%= search_form_for @q do |f| %>
   <div class='row mb-3 justify-content-center'>
     <div class='col-md-5'>
-      <%= f.search_field :title_or_body_or_user_name_or_places_name_or_tags_name_cont, class: 'form-control', placeholder: '検索ワード　( ,で区切ってください )',value: params[:q].try(:[], :title_or_body_or_user_name_or_places_name_or_tags_name_cont) %>
+      <%= f.search_field :title_or_body_or_user_name_or_places_name_or_tags_name_cont, class: 'form-control', placeholder: '検索ワード　( ,で区切ってください )',value: @search_words %>
     </div>
     <div class='col-md-1' style='display: flex; align-items: center;'>
       <%= f.submit '検索', class: 'btn form-btn search-btn' %>
