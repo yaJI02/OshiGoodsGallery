@@ -89,8 +89,12 @@
     <div class='create-user mb-2'>
       <div class='row'>
         <div class='col-md-6'>
-          <div class='ms-2 mt-1'>
-            いいね機能（comming soon）
+          <div class='ms-3'>
+            <% if @post.my_lists.present? %>
+              <%= button_to 'マイリスト解除', my_list_path(@post), method: :delete, class: 'btn form-btn mybest-btn btn-del' %>
+            <% else %>
+              <%= button_to 'マイリスト登録', registration_my_list_path(@post), method: :post, class: 'btn form-btn mybest-btn' %>
+            <% end %>
           </div>
         </div>
         <div class='col-md-6'>

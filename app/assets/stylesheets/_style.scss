@@ -127,7 +127,7 @@ display: inline;
 
 .mybest-btn {
   font-size: 10pt;
-  padding: 3px 3px;
+  padding: 3px 5px;
 }
 
 .search-btn {
@@ -154,7 +154,40 @@ display: inline;
 }
 
 .my-page-selecter {
+  cursor: pointer;
+  background-color: #66589c;
+  border: 2px solid #66589c;
+  border-bottom-style: none;
+  padding:5px;
+}
+
+.my-page-selecter .my-page-selecter-text {
+  color: white;
   font-size: 15pt;
+  text-decoration: none;
+}
+
+.my-page-selecter:hover {
+  color: white;
+  filter: brightness(0.8);
+}
+
+.my-page-selecter.not-select {
+  background-color: white;
+  border-color: gray;
+}
+
+.my-page-selecter.not-select .my-page-selecter-text {
+  color: black;
+}
+
+.my-list .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.my-list-box {
+  border: 2px solid #66589c;
 }
 
 .btn-del {

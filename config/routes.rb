@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :my_list, only: %i[destroy] do
+    post :registration, on: :member
+  end
   resources :contacts, only: %i[new create] do
     get :done, on: :collection
   end
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create] do
     get :my_page, on: :collection
   end
+  get 'set_user_post_list', to: 'users#set_user_post_list'
+  get 'set_my_list', to: 'users#set_my_list'
 
   resources :places, only: %i[destroy]
   resources :tags, only: %i[destroy]
