@@ -31,7 +31,7 @@
 
     <div class='row m-2'>
       <div class='col-md-6'>
-        <div class='mb-1'>
+        <div>
           <% if @post.bought_at? %>
             <% if @post.purchased? %>
               <%= Post.human_attribute_name(:bought_at) %>：<%= I18n.l(@post.bought_at) %>
@@ -42,10 +42,10 @@
             購入予定日：
           <% end %>
         </div>
-        <div class='mb-1'>
+        <div class='my-2'>
           <%= Post.human_attribute_name(:place) %>：
           <% @post.places.each do |place| %>
-            <%= place.name %>
+            <%= link_to place.name, { controller: "posts", action: "index", q: { places_name_eq: place.name }}, class: 'tag tag-place' %>
           <% end %>
         </div>
         <div class='mb-1'>
@@ -53,31 +53,34 @@
         </div>
       </div>
       <div class='col-md-6'>
-        <div class='content-box mb-1'>
+        <div class='mb-2'>
+          <span><%= Post.human_attribute_name(:merchandise_tag) %>：</span>
           <% if @post_merchandise_tag.present? %>
             <% @post_merchandise_tag.each do |tag| %>
-              <%= tag.name %>
+              <%= link_to tag.name, { controller: "posts", action: "index", q: { tags_name_eq: tag.name }}, class: 'tag' %>
             <% end %>
           <% else %>
-            <div class='no-data'>グッズカテゴリ未登録</div>
+            <span class='no-data'>グッズカテゴリ未登録</span>
           <% end %>
         </div>
-        <div class='content-box mb-1'>
+        <div class='mb-3'>
+          <span><%= Post.human_attribute_name(:content_tag) %>：</span>
           <% if @post_cotent_tag.present? %>
             <% @post_cotent_tag.each do |tag| %>
-              <%= tag.name %>
+              <%= link_to tag.name, { controller: "posts", action: "index", q: { tags_name_eq: tag.name }}, class: 'tag' %>
             <% end %>
           <% else %>
-            <div class='no-data'>コンテンツカテゴリ未登録</div>
+            <span class='no-data'>コンテンツカテゴリ未登録</span>
           <% end %>
         </div>
-        <div class='content-box'>
+        <div>
+          <span><%= Post.human_attribute_name(:post_stamp) %>　：</span>
           <% if @oshi_point_stamps.present? %>
             <% @oshi_point_stamps.each do |stamp| %>
-              <%= stamp.stamp_i18n %>
+              <%= link_to stamp.stamp_i18n, { controller: "posts", action: "index", q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp' %>
             <% end %>
           <% else %>
-            <div class='no-data'>推しポイント未登録</div>
+            <span class='no-data'>推しポイント未登録<span>
           <% end %>
         </div>
       </div>

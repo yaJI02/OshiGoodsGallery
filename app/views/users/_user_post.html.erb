@@ -7,34 +7,47 @@
       <%= image_tag post.photo.url, class:'thumb' %>
     </div>
     <div class='col-md-9'>
-      <div class='mb-1'>
+      <div class='mt-1 mb-4'>
         <%= post.title %>
       </div>
-      <div class='content-box mb-1'>
+      <div class='mt-2 mb-3'>
+        <span><%= Post.human_attribute_name(:place) %>：</span>
+        <% if post.places.present? %>
+          <% post.places.each do |place| %>
+            <%= link_to place.name, { controller: "posts", action: "index", q: { places_name_eq: place.name }}, class: 'tag tag-place' %>
+          <% end %>
+        <% else %>
+          <span class='no-data'>購入場所未登録</span>
+        <% end %>
+      </div>
+      <div class='my-2'>
+        <span><%= Post.human_attribute_name(:merchandise_tag) %>：</span>
         <% if post.tags.merchandise_tag.present? %>
           <% post.tags.merchandise_tag.each do |tag| %>
-            <%= tag.name %>
+            <%= link_to tag.name, { controller: "posts", action: "index", q: { tags_name_eq: tag.name }}, class: 'tag' %>
           <% end %>
         <% else %>
-          <div class='no-data'>グッズカテゴリ</div>
+          <span class='no-data'>グッズカテゴリ未登録</span>
         <% end %>
       </div>
-      <div class='content-box mb-1'>
+      <div class='mt-2 mb-3'>
+        <span><%= Post.human_attribute_name(:content_tag) %>：</span>
         <% if post.tags.content_tag.present? %>
           <% post.tags.content_tag.each do |tag| %>
-            <%= tag.name %>
+            <%= link_to tag.name, { controller: "posts", action: "index", q: { tags_name_eq: tag.name }}, class: 'tag' %>
           <% end %>
         <% else %>
-          <div class='no-data'>コンテンツカテゴリ</div>
+          <span class='no-data'>コンテンツカテゴリ未登録</span>
         <% end %>
       </div>
-      <div class='content-box mb-1'>
-        <% if post.post_stamps.where(user_id: post.user_id).present? %>
-          <% post.post_stamps.where(user_id: post.user_id).each do |stamp| %>
-            <%= stamp.stamp_i18n %>
+      <div>
+        <span><%= Post.human_attribute_name(:post_stamp) %>　：</span>
+        <% if post.post_stamps.where(user_id: post.user).present? %>
+          <% post.post_stamps.where(user_id: post.user).each do |stamp| %>
+            <%= link_to stamp.stamp_i18n, { controller: "posts", action: "index", q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp' %>
           <% end %>
         <% else %>
-          <div class='no-data'>推しポイント</div>
+          <span class='no-data'>推しポイント未登録</span>
         <% end %>
       </div>
     </div>
