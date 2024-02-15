@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[create new]
+  before_action :set_user_post, only: %i[my_page set_user_post_list]
 
   # GET /users/new
   def new
@@ -19,9 +20,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def my_page
-    @posts = Post.where(user_id: current_user).includes(:tags, :post_stamps).page(params[:page])
-    @mybest_post = current_user.profile.post_id.nil? ? [] : @posts.find(current_user.profile.post_id)
+  def my_page; end
+
+  def set_user_post_list
+    render turbo_stream: turbo_stream.update('change-mypage-list', partial: 'user_post_list')
+  end
+
+  def set_my_list
+    @posts = Post.includes(:user, :profile, :tags, :post_stamps, :my_lists).where(my_lists: { user_id: current_user.id }).page(params[:page])
+    render turbo_stream: turbo_stream.update('change-mypage-list', partial: 'my_list')
   end
 
   private
@@ -29,5 +36,10 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :name)
+  end
+
+  def set_user_post
+    @posts = Post.where(user_id: current_user).includes(:tags, :post_stamps).page(params[:page])
+    @mybest_post = current_user.profile.post_id.nil? ? [] : @posts.find(current_user.profile.post_id)
   end
 end

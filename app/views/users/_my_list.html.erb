@@ -1,0 +1,30 @@
+<div class='row text-center'>
+  <div class='me-2 col my-page-selecter not-select' onclick="Turbo.visit('<%= set_user_post_list_path %>', { action: 'replace' })">
+    <div class='my-page-selecter-text'>マイ投稿一覧</div>
+  </div>
+  <div class='ms-2 col my-page-selecter'>
+    <div class='my-page-selecter-text'>マイリスト</div>
+  </div>
+</div>
+<div class='mb-3 my-list-box'>
+  <div class='m-3'>
+    <% if @posts.present? %>
+      <% @posts.each do |post| %>
+        <%= render 'my_list_post', post: post %>
+      <% end %>
+      <div class='text-center page-info'>
+        <%= page_entries_info @posts %>
+      </div>
+      <div class='d-flex justify-content-center'>
+        <%= paginate @posts, theme: 'bootstrap-5' %>
+      </div>
+    <% else %>
+      <div class='no-data text-center mb-3'>マイリスト登録がありません</div>
+      <div class="mt-2">
+        <div class='d-flex justify-content-center'>
+          <%= link_to 'マイリストを登録する', posts_path, class: 'btn form-btn', 'data-turbo' => 'false' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

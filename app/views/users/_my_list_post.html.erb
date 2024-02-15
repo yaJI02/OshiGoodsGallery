@@ -61,17 +61,27 @@
   </div>
 
   <div class='row m-2'>
-    <div class='col-md-2'>
+    <div class='col-md-5'>
       <%= link_to "詳細を見る", post, 'data-turbo' => 'false' %>
     </div>
-    <div class='col-md-8'>
+    <div class='col-md-2'>
       <div class='d-flex justify-content-center'>
-        <% if @mybest_post == post %>
-          👑マイベスト投稿👑
-        <% else %>
-          <%= button_to 'マイベスト登録', my_best_profile_path(post), method: :post, class: 'btn form-btn mybest-btn' %>
+        <% if post.my_lists.present? %>
+          <%= button_to 'マイリスト解除', my_list_path(post), method: :delete, class: 'btn form-btn mybest-btn btn-del', 'data-turbo' => 'false' %>
         <% end %>
       </div>
+    </div>
+    <div class='col-md-5 d-flex justify-content-end post-create-at'>
+      <%= link_to profile_path(post.user.profile), class:'nav-link', 'data-turbo' => 'false' do %>
+        <div class='row'>
+          <div class='col-11 text-end my-auto'>
+            <%= t('posts.user_link_sentense') %><%= post.user.name %>
+          </div>
+          <div class='col-1' style='padding-left: 0;'>
+            <%= image_tag(post.user.profile.avatar.url, class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
