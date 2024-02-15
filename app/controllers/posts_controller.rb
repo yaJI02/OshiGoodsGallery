@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.includes(:user, :profile, :tags, :post_stamps).find(params[:id])
+    @post = Post.includes(:user, :profile, :tags, :post_stamps, :my_lists).find(params[:id])
     @post_merchandise_tag = @post.tags.merchandise_tag
     @post_cotent_tag = @post.tags.content_tag
     @oshi_point_stamps = @post.post_stamps.where(user_id: @post.user_id)

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :my_list, only: %i[destroy] do
+    post :registration, on: :member
+  end
   resources :contacts, only: %i[new create] do
     get :done, on: :collection
   end
