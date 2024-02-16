@@ -111,8 +111,7 @@ class PostsController < ApplicationController
   end
 
   def set_stamps
-    @stamps = PostStamp.stamps.keys
-    @stamps.shift
+    @stamps = PostStamp.icons
   end
 
   def set_cache

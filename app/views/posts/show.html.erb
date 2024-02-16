@@ -77,7 +77,10 @@
           <span><%= Post.human_attribute_name(:post_stamp) %>　：</span>
           <% if @oshi_point_stamps.present? %>
             <% @oshi_point_stamps.each do |stamp| %>
-              <%= link_to stamp.stamp_i18n, { controller: "posts", action: "index", q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp' %>
+              <%= link_to({ controller: "posts", action: "index", q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp me-1') do %>
+                <%= stamp.stamp_i18n %>
+                <i class="bi <%= stamp.icon_name %>"></i>
+              <% end %>
             <% end %>
           <% else %>
             <span class='no-data'>推しポイント未登録<span>
@@ -134,11 +137,11 @@
   </div>
   <% if @post.user != current_user %>
     <div class='container-box py-3 px-2'>
-      <% @stamps.each do |stamp| %>
+      <% @stamps.each do |stamp, icon| %>
         <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: stamp) %>
-          <%= render "reaction_stamps/#{stamp}_done", post: @post %>
+          <%= render "reaction_stamps/done", post: @post, stamp: stamp, icon: icon %>
         <% else %>
-          <%= render "reaction_stamps/#{stamp}_yet", post: @post %>
+          <%= render "reaction_stamps/yet", post: @post, stamp: stamp, icon: icon %>
         <% end %>
       <% end %>
     </div>
