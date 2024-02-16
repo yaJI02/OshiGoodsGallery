@@ -96,10 +96,12 @@
               <%= button_to 'マイリスト登録', registration_my_list_path(@post), method: :post, class: 'btn form-btn mybest-btn' %>
             <% end %>
             <div class='ms-3'>
-              <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: 'nice') %>
-                <%= render 'reaction_stamps/nice_done', post: @post %>
-              <% else %>
-                <%= render 'reaction_stamps/nice_yet', post: @post %>
+              <% if @post.user != current_user %>
+                <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: 'nice') %>
+                  <%= render 'reaction_stamps/nice_done', post: @post %>
+                <% else %>
+                  <%= render 'reaction_stamps/nice_yet', post: @post %>
+                <% end %>
               <% end %>
             </div>
           </div>

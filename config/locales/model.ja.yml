@@ -140,6 +140,7 @@ ja:
       success: "「%{item}」スタンプしました！"
       danger: "「%{item}」スタンプに失敗しました"
       destroy: "「%{item}」を解除しました"
+      mypost: 自分の投稿にいいねはできません
   errors:
     messages:
       email_confirmation: が一致しません
