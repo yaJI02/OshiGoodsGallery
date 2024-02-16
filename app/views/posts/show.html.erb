@@ -96,10 +96,12 @@
               <%= button_to 'マイリスト登録', registration_my_list_path(@post), method: :post, class: 'btn form-btn mybest-btn' %>
             <% end %>
             <div class='ms-3'>
-              <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: 'nice') %>
-                <%= render 'reaction_stamps/nice_done', post: @post %>
-              <% else %>
-                <%= render 'reaction_stamps/nice_yet', post: @post %>
+              <% if @post.user != current_user %>
+                <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: 'nice') %>
+                  <%= render 'reaction_stamps/nice_done', post: @post %>
+                <% else %>
+                  <%= render 'reaction_stamps/nice_yet', post: @post %>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -130,6 +132,17 @@
       </div>
     <% end %>
   </div>
+  <% if @post.user != current_user %>
+    <div class='container-box py-3 px-2'>
+      <% @stamps.each do |stamp| %>
+        <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: stamp) %>
+          <%= render "reaction_stamps/#{stamp}_done", post: @post %>
+        <% else %>
+          <%= render "reaction_stamps/#{stamp}_yet", post: @post %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
   <div class='link-text text-center my-3'>
     <%= link_to '投稿一覧に戻る', posts_path %>
   </div>
