@@ -319,6 +319,32 @@ image{
   color: #66589c;
   margin-right: 0;
   margin-left: 0;
+  font-size: 17px;
+}
+
 .reaction-stamp.defo {
   font-size: 20px;
+}
+
+.reaction-stamp.not-nice {
+  text-decoration: none;
+  border: 1px solid #66589c;
+  background-color: white;
+  padding: 3px 5px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.reaction-stamp.not-nice:hover {
+  color: #66589c;
+  filter: brightness(0.8);
+}
+
+.reaction-stamp.not-nice.done {
+  background-color: #66589c;
+  color: white;
+}
+
+.reaction-stamp.done {
+  color: white;
 }

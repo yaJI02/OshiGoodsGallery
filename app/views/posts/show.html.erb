@@ -132,6 +132,17 @@
       </div>
     <% end %>
   </div>
+  <% if @post.user != current_user %>
+    <div class='container-box py-3 px-2'>
+      <% @stamps.each do |stamp| %>
+        <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: stamp) %>
+          <%= render "reaction_stamps/#{stamp}_done", post: @post %>
+        <% else %>
+          <%= render "reaction_stamps/#{stamp}_yet", post: @post %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
   <div class='link-text text-center my-3'>
     <%= link_to '投稿一覧に戻る', posts_path %>
   </div>
