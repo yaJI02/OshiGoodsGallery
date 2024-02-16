@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :post_stamps, only: %i[destroy] do
+    post :registration, on: :member
+  end
   resources :my_list, only: %i[destroy] do
     post :registration, on: :member
   end

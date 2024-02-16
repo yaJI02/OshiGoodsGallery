@@ -136,6 +136,10 @@ ja:
       success: マイリスト登録に成功しました
       danger: マイリスト登録に失敗しました
       destroy: マイリスト登録を解除しました
+    post_stamp:
+      success: "「%{item}」スタンプしました！"
+      danger: "「%{item}」スタンプに失敗しました"
+      destroy: "「%{item}」を解除しました"
   errors:
     messages:
       email_confirmation: が一致しません
