@@ -109,16 +109,15 @@
       <%= f.label :post_stamp, class: 'col-form-label' %>
     </div>
     <div class='col-9'>
-      <div class='row'>
-        <% @stamps.each do |stamp| %>
-          <div class="text-center form-check col-2">
-            <%= f.check_box :post_stamp, { multiple: true, checked: @oshi_point_stamps_list.include?(stamp) }, stamp, nil %>
-            <%= f.label "post_stamp_#{stamp}", class: 'form-check-label' do %>
-              <%= t("enums.post_stamp.stamp.#{stamp}") %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <% @stamps.each do |stamp, icon| %>
+        <div class='form-check' style='display: inline-block; margin-right: 10px;'>
+          <%= f.check_box :post_stamp, { multiple: true, checked: @oshi_point_stamps_list.include?(stamp.to_s) }, stamp, nil %>
+          <%= f.label "post_stamp_#{stamp}", class: 'form-check-label' do %>
+            <%= t("enums.post_stamp.stamp.#{stamp}") %>
+            <i class="bi <%= icon %>"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 

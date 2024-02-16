@@ -77,7 +77,10 @@
           <span><%= Post.human_attribute_name(:post_stamp) %>　：</span>
           <% if @oshi_point_stamps.present? %>
             <% @oshi_point_stamps.each do |stamp| %>
-              <%= link_to stamp.stamp_i18n, { controller: "posts", action: "index", q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp' %>
+              <%= link_to({ controller: "posts", action: "index", q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp me-1') do %>
+                <%= stamp.stamp_i18n %>
+                <i class="bi <%= stamp.icon_name %>"></i>
+              <% end %>
             <% end %>
           <% else %>
             <span class='no-data'>推しポイント未登録<span>
