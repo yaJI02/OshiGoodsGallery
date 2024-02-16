@@ -1,0 +1,4 @@
+<%= link_to registration_post_stamp_path(post, stamp: stamp), id: "#{stamp}-stamp-yet", class: 'reaction-stamp not-nice', data: { turbo_method: :post } do %>
+  <span><%= t("enums.post_stamp.stamp.#{stamp}") %></span>
+  <i class="bi <%= icon %>  reaction-stamp"></i>
+<% end %>

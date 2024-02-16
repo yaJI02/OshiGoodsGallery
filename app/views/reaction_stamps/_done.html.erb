@@ -1,0 +1,4 @@
+<%= link_to post_stamp_path(post, stamp: stamp), id: "#{stamp}-stamp-done", class: 'reaction-stamp not-nice done', data: { turbo_method: :delete } do %>
+  <span><%= t("enums.post_stamp.stamp.#{stamp}") %></span>
+  <i class="bi <%= icon %> reaction-stamp done"></i>
+<% end %>

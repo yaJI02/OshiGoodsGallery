@@ -6,6 +6,8 @@ class PostStamp < ApplicationRecord
 
   enum stamp: { nice: 0, cute: 1, cool: 2, great: 3, recommend: 4, loved: 5, awesome: 6 }
 
+  ICONS = { cute: 'bi-flower2', cool: 'bi-suit-diamond-fill', great: 'bi-stars', recommend: 'bi-fire', loved: 'bi-heart-fill', awesome: 'bi-sun-fill' }.freeze
+
   private_class_method :ransackable_attributes
   private_class_method :ransackable_associations
 
@@ -15,5 +17,13 @@ class PostStamp < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     %w[post]
+  end
+
+  def icon_name
+    ICONS[stamp.to_sym]
+  end
+
+  def self.icons
+    ICONS
   end
 end
