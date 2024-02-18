@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
   before_action :set_list, only: %i[create update]
-  before_action :set_stamps, only: %i[new edit show]
+  before_action :set_stamps, only: %i[new edit show index]
   skip_before_action :require_login, only: %i[index show]
 
   # GET /posts or /posts.json
