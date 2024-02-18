@@ -1,0 +1,26 @@
+<% content_for :title, t('.title') %>
+
+<div class='container mt-3'>
+  <%= render 'shared/content_title', this_title: 'ranking' %>
+  <% last_nice = 0 %>
+  <% j = 1 %>
+  <% @nice_ranking.each.with_index(1) do |post, i| %>
+    <% if i == 1 %>
+      <% last_nice = post.nice_count %>
+    <% end %>
+    <% if post.nice_count != last_nice %>
+      <% j += 1 %>
+      <% last_nice = post.nice_count %>
+    <% else %>
+      <% last_nice = post.nice_count %>
+    <% end %>
+    <div class='row'>
+      <div class='col-lg-1 d-flex align-items-center'>
+        <div class='top-rank ranking-rank'>第 <%= j %> 位</div>
+      </div>
+      <div class='col-lg-11'>
+        <%= render 'posts/post', post: post %>
+      </div>
+    </div>
+  <% end %>
+</div>
