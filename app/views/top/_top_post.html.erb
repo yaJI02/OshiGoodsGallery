@@ -17,6 +17,13 @@
       <%= post.title %>
     </div>
 
+    <% if rank != 'none' %>
+      <div class='text-center top-rank'>
+        <div class='mt-3 mb-1'>第 <%= rank %> 位</div>
+        <div class='mb-3'><%= post.nice_count %> いいね</div>
+      </div>
+    <% end %>
+
     <%= link_to profile_path(post.user.profile), class:'nav-link mb-2' do %>
       <div class='row'>
         <div class='col-10 text-end my-auto'>
