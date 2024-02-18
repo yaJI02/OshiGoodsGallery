@@ -1,3 +1,4 @@
-<%= link_to post_stamp_path(post, stamp: 'nice'), id: 'nice-stamp-done', data: { turbo_method: :delete } do %>
-  <i class="bi bi-hand-thumbs-up-fill reaction-stamp defo"></i>
+<%= link_to post_stamp_path(post, stamp: 'nice'), id: 'nice-stamp-done', class: 'reaction-stamp', data: { turbo_method: :delete } do %>
+  <i class="bi bi-hand-thumbs-up-fill reaction-stamp defo mt-1"></i>
+  <span class='mx-2'><%= post.post_stamps.where(stamp: 'nice').count %></span>
 <% end %>

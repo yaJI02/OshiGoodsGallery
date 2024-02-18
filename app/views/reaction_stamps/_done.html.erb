@@ -1,4 +1,5 @@
-<%= link_to post_stamp_path(post, stamp: stamp), id: "#{stamp}-stamp-done", class: 'reaction-stamp not-nice done', data: { turbo_method: :delete } do %>
+<%= link_to post_stamp_path(post, stamp: stamp), id: "#{stamp}-stamp-done", class: 'reaction-stamp not-nice done my-3 mx-2', data: { turbo_method: :delete } do %>
   <span><%= t("enums.post_stamp.stamp.#{stamp}") %></span>
   <i class="bi <%= icon %> reaction-stamp done"></i>
+  <span class='mx-2'><%= post.post_stamps.where(stamp: stamp).count %></span>
 <% end %>
