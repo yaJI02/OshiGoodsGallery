@@ -320,6 +320,7 @@ image{
   margin-right: 0;
   margin-left: 0;
   font-size: 17px;
+  text-decoration: none;
 }
 
 .reaction-stamp.defo {
@@ -327,7 +328,6 @@ image{
 }
 
 .reaction-stamp.not-nice {
-  text-decoration: none;
   border: 1px solid #66589c;
   background-color: white;
   padding: 3px 5px;
@@ -335,7 +335,7 @@ image{
   border-radius: 5px;
 }
 
-.reaction-stamp.not-nice:hover {
+.reaction-stamp:hover {
   color: #66589c;
   filter: brightness(0.8);
 }
@@ -347,4 +347,9 @@ image{
 
 .reaction-stamp.done {
   color: white;
+}
+
+.get-reaction {
+  color: #66589c;
+  font-size: 17px;
 }

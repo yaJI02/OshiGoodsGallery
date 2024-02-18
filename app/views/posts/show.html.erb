@@ -136,7 +136,7 @@
     <% end %>
   </div>
   <% if @post.user != current_user %>
-    <div class='container-box py-3 px-2'>
+    <div class='container-box' style='display: flex; justify-content: start;'>
       <% @stamps.each do |stamp, icon| %>
         <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: stamp) %>
           <%= render "reaction_stamps/done", post: @post, stamp: stamp, icon: icon %>

@@ -80,4 +80,18 @@
       <% end %>
     </div>
   </div>
+  <div class='m-3 get-reaction'>
+    <div style='display: flex; justify-content: start;'>
+      <div class='me-4'>
+        <i class='bi bi-hand-thumbs-up-fill'></i>
+        <span class='ms-2'><%= post.post_stamps.where(stamp: 'nice').count %></span>
+      </div>
+      <% @stamps.each do |stamp, icon| %>
+        <div class='me-4'>
+          <i class="bi <%= icon %>"></i>
+          <span class='ms-2'><%= post.post_stamps.where(stamp: stamp).count %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
