@@ -86,4 +86,8 @@ class Post < ApplicationRecord
   def self.ransackable_scopes(auth_object = nil)
     %w[author_stamped_posts]
   end
+
+  def nice_count
+    post_stamps.where(stamp: 'nice').count
+  end
 end

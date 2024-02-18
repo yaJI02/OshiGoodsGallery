@@ -5,9 +5,9 @@
     <%= render 'shared/content_title', this_title: 'newグッズ' %>
     <div class="swiper">
       <div class="swiper-wrapper mb-3">
-        <% @new_merchandise.each do |post| %>
+        <% @new_merchandise.each.with_index(1) do |post, i| %>
           <div class="swiper-slide">
-            <%= render 'top_post', post: post %>
+            <%= render 'top_post', post: post, rank: 'none'  %>
           </div>
         <% end %>
       </div>
@@ -22,9 +22,9 @@
     <%= render 'shared/content_title', this_title: 'newショールーム' %>
     <div class="swiper">
       <div class="swiper-wrapper mb-3">
-        <% @new_showroom.each do |post| %>
+        <% @new_showroom.each.with_index(1) do |post, i| %>
           <div class="swiper-slide">
-            <%= render 'top_post', post: post %>
+            <%= render 'top_post', post: post, rank: 'none'  %>
           </div>
         <% end %>
       </div>
@@ -40,9 +40,33 @@
     <%= link_to '投稿一覧を見る', posts_path, class: 'btn btn-outline-secondary mx-4' %>
   </div>
   <div class='content my-5'>
-    <%= render 'shared/content_title', this_title: 'ranking' %>
-    <div class='text-center'>
-      <p>comming soon!</p>
+    <%= render 'shared/content_title', this_title: 'いいね数 ranking' %>
+    <div class="swiper">
+      <div class="swiper-wrapper mb-3">
+        <% last_nice = 0 %>
+        <% j = 1 %>
+        <% @nice_ranking.each.with_index(1) do |post, i| %>
+          <% if i == 1 %>
+            <% last_nice = post.nice_count %>
+          <% end %>
+          <% if post.nice_count != last_nice %>
+            <% j += 1 %>
+            <% last_nice = post.nice_count %>
+          <% else %>
+            <% last_nice = post.nice_count %>
+          <% end %>
+          <div class="swiper-slide">
+            <%= render 'top_post', post: post, rank: j %>
+          </div>
+        <% end %>
+      </div>
+      <div class="slide-pagination-wrapper">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+    <div class='content my-5 text-center'>
       <%= link_to 'もっとランキングを見る', '#', class: 'btn btn-outline-secondary mt-2' %>
     </div>
   </div>
