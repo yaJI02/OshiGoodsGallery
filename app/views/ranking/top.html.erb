@@ -1,0 +1,8 @@
+<% content_for :title, t('.title') %>
+
+<div class='container mt-5'>
+  <%= render 'shared/content_title', this_title: 'ranking' %>
+  <%= turbo_frame_tag 'change-ranking-list' do %>
+    <%= render 'nice_ranking' %>
+  <% end %>
+</div>

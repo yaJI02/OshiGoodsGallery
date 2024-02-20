@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get 'admin/place_index', to: 'admin#place_index'
   delete 'admin/destroy_all_tag_place', to: 'admin#destroy_all_tag_place'
 
+  get 'ranking', to: 'ranking#top'
+  post 'set_ranking', to: 'ranking#set_ranking'
+
   root 'top#index'
   get 'terms_of_use', to: 'top#terms_of_use'
   get 'about', to: 'top#about'

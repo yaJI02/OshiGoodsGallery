@@ -87,7 +87,7 @@ class Post < ApplicationRecord
     %w[author_stamped_posts]
   end
 
-  def nice_count
-    post_stamps.where(stamp: 'nice').count
+  def stamp_count(stamp)
+    post_stamps.where(stamp: stamp).count
   end
 end
