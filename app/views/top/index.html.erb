@@ -47,13 +47,13 @@
         <% j = 1 %>
         <% @nice_ranking.each.with_index(1) do |post, i| %>
           <% if i == 1 %>
-            <% last_nice = post.nice_count %>
+            <% last_nice = post.stamp_count('nice') %>
           <% end %>
-          <% if post.nice_count != last_nice %>
+          <% if post.stamp_count('nice') != last_nice %>
             <% j += 1 %>
-            <% last_nice = post.nice_count %>
+            <% last_nice = post.stamp_count('nice') %>
           <% else %>
-            <% last_nice = post.nice_count %>
+            <% last_nice = post.stamp_count('nice') %>
           <% end %>
           <div class="swiper-slide">
             <%= render 'top_post', post: post, rank: j %>

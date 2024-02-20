@@ -1,0 +1,24 @@
+<% last_stamp = 0 %>
+<% j = 1 %>
+<% @ranking_data.each.with_index(1) do |post, i| %>
+  <% if i == 1 %>
+    <% last_stamp = post.stamp_count(stamp) %>
+  <% end %>
+  <% if post.stamp_count(stamp) != last_stamp %>
+    <% j += 1 %>
+    <% last_stamp = post.stamp_count(stamp) %>
+  <% else %>
+    <% last_stamp = post.stamp_count(stamp) %>
+  <% end %>
+  <div class='row'>
+    <div class='col-lg-1 d-flex align-items-center justify-content-center'>
+      <div class='text-center'>
+        <div class='top-rank ranking-rank'>第 <%= j %> 位</div>
+        <div class='mb-3' style='font-size: 14px;'><%= post.stamp_count(stamp) %> <%= t("enums.post_stamp.stamp.#{stamp}") %></div>
+      </div>
+    </div>
+    <div class='col-lg-11'>
+      <%= render 'posts/post', post: post %>
+    </div>
+  </div>
+<% end %>

@@ -4,7 +4,7 @@ class TopController < ApplicationController
   def index
     @new_merchandise = Post.merchandise.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).limit(10)
     @new_showroom = Post.showroom.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).limit(10)
-    @nice_ranking = Post.includes(:user, :profile, :tags, :post_stamps).sort_by { |post| -post.nice_count }.first(10)
+    @nice_ranking = Post.includes(:user, :profile, :tags, :post_stamps).sort_by { |post| -post.stamp_count('nice') }.first(10)
   end
 
   def terms_of_use; end
