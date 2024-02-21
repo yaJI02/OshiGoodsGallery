@@ -1,7 +1,0 @@
-<div class='text-center rank-ber mb-3 mt-5'>
-  <span><%= link_to '＜', set_ranking_path(stamp: 'loved'), class: 'rank-btn my-3 mx-2', data: { turbo_method: :post } %></span>
-  <span class='mx-3'><%= t('enums.post_stamp.stamp.awesome') %><i class="bi <%= @rank_icon %>"></i></span>
-  <span><%= link_to '＞', set_ranking_path(stamp: 'nice'), class: 'rank-btn my-3 mx-2', data: { turbo_method: :post } %></span>
-</div>
-
-<%= render 'ranking_post', stamp: 'awesome' %>
