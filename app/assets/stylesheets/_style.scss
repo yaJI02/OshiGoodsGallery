@@ -376,3 +376,23 @@ image{
   color: #AEA2D2;
   font-weight: bold;
 }
+
+.rank-period {
+  text-decoration: none;
+  color: white;
+  background-color: #66589c;
+  cursor: pointer;
+  padding: 2px 6px;
+  border: 1px solid #66589c;
+  border-radius: 5px;
+}
+
+.rank-period:hover {
+  color: white;
+  filter: brightness(0.8);
+}
+
+.rank-period.yet {
+  color: #66589c;
+  background-color: white;
+}

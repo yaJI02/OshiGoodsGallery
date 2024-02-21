@@ -4,4 +4,10 @@
   <span><%= link_to '＞', set_ranking_path(stamp: @next_stamp), class: 'rank-btn my-3 mx-2', data: { turbo_method: :post } %></span>
 </div>
 
+<div class='justify-content-center mt-2 mb-3' style='display: flex; align-items: center;'>
+  <span>集計期間：</span>
+  <span class='rank-period my-3 mx-2'>全期間</span>
+  <%= link_to '月間', set_ranking_path(stamp: @current_stamp, period: true), class: 'rank-period yet my-3 mx-2', data: { turbo_method: :post } %>
+</div>
+
 <%= render 'ranking_post', stamp: @current_stamp %>
