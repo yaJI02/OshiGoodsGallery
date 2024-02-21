@@ -9,7 +9,8 @@ class RankingController < ApplicationController
   def set_ranking
     @current_stamp = params[:stamp]
     set_stamps_data
-    render turbo_stream: turbo_stream.update('change-ranking-list', partial: 'replacement_for_ranking')
+    partial_url = @set_period.present? ? 'replacement_for_ranking_this_month' : 'replacement_for_ranking'
+    render turbo_stream: turbo_stream.update('change-ranking-list', partial: partial_url)
   end
 
   private
@@ -19,7 +20,10 @@ class RankingController < ApplicationController
   end
 
   def set_stamps_data
-    @ranking_data = Post.includes(:user, :profile, :tags, :post_stamps).sort_by { |post| -post.stamp_count(@current_stamp) }.first(10)
+    @set_period = params[:period].presence
+    posts = Post.includes(:user, :profile, :tags, :post_stamps)
+    posts = posts.where('created_at >= ?', Time.zone.today.beginning_of_month) if @set_period.present?
+    @ranking_data = posts.sort_by { |post| -post.stamp_count(@current_stamp) }.first(10)
     current_stamp_value = PostStamp.stamps[@current_stamp.to_sym]
     @previous_stamp = @current_stamp == 'nice' ? 'awesome' : PostStamp.stamps.key(current_stamp_value - 1)
     @next_stamp = @current_stamp == 'awesome' ? 'nice' : PostStamp.stamps.key(current_stamp_value + 1)
