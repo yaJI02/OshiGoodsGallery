@@ -19,7 +19,7 @@
             <%= link_to '投稿一覧', posts_path, class: 'nav-link btn btn-outline-secondary' %>
           </li>
           <li class='nav-item'>
-            <%= link_to 'ランキング', '#', class: 'nav-link btn btn-outline-secondary' %>
+            <%= link_to 'ランキング', ranking_path, class: 'nav-link btn btn-outline-secondary' %>
           </li>
           <li class='nav-item dropdown dropdown-slider dropdown-center'>
             <%= link_to image_tag(current_user.profile.avatar.url, class:'rounded-circle', size:'40x40', style:'background-color: #ffffff;'), profile_path(current_user.profile), class:'nav-link myicon', 'data-bs-toggle'=>'dropdown', 'aria-haspopup'=>'true', 'aria-expanded'=>'false' %>
