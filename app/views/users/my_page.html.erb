@@ -25,7 +25,20 @@
         </div>
         <div class='mb-4 text-center'>
           <%= render 'shared/content_title', this_title: 'これまで貰ったリアクション' %>
-          comming soon!!
+          <div class='mt-3 get-reaction'>
+            <div style='display: flex; justify-content: center;'>
+              <div class='mx-2'>
+                <i class='bi bi-hand-thumbs-up-fill'></i>
+                <span class='ms-2'><%= @get_stamps.where(stamp: 'nice').count %></span>
+              </div>
+              <% @stamps.each do |stamp, icon| %>
+                <div class='mx-2'>
+                  <i class="bi <%= icon %>"></i>
+                  <span class='ms-2'><%= @get_stamps.where(stamp: stamp).count %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
         <div class='mb-4 text-center'>
           <%= render 'shared/content_title', this_title: '推しに捧げた応援' %>

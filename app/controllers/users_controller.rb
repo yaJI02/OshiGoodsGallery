@@ -20,7 +20,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def my_page; end
+  def my_page
+    @stamps = PostStamp.icons
+    @get_stamps = PostStamp.includes(:post).where(posts: { user_id: current_user} )
+  end
 
   def set_user_post_list
     render turbo_stream: turbo_stream.update('change-mypage-list', partial: 'user_post_list')
