@@ -47,7 +47,7 @@
           <span class='no-data'>コンテンツカテゴリ未登録</span>
         <% end %>
       </div>
-      <div>
+      <div class='mb-4'>
         <span><%= Post.human_attribute_name(:post_stamp) %>　：</span>
         <% if post.post_stamps.where(user_id: post.user).present? %>
           <% post.post_stamps.where(user_id: post.user).each do |stamp| %>
@@ -59,6 +59,20 @@
         <% else %>
           <span class='no-data'>推しポイント未登録</span>
         <% end %>
+      </div>
+      <div class='get-reaction'>
+        <div style='display: flex; justify-content: start;'>
+          <div class='me-4'>
+            <i class='bi bi-hand-thumbs-up-fill'></i>
+            <span class='ms-2'><%= post.post_stamps.where(stamp: 'nice').count %></span>
+          </div>
+          <% @stamps.each do |stamp, icon| %>
+            <div class='me-4'>
+              <i class="bi <%= icon %>"></i>
+              <span class='ms-2'><%= post.post_stamps.where(stamp: stamp).count %></span>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
