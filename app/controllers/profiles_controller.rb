@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     @post = Post.find_by(id: @profile.post_id)
+    @stamps = PostStamp.icons
   end
 
   # GET /profiles/1/edit
