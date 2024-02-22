@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :profiles, only: %i[edit update show] do
     post :my_best, on: :member
   end
-  resources :posts
+  resources :posts do
+    resources :comments, only: %i[create edit update destroy], shallow: true
+  end
   resources :users, only: %i[new create] do
     get :my_page, on: :collection
   end

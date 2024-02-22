@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[create new]
   before_action :set_user_post, only: %i[my_page set_user_post_list]
+  before_action :set_stamps, only: %i[my_page set_user_post_list set_my_list]
 
   # GET /users/new
   def new
@@ -21,8 +22,7 @@ class UsersController < ApplicationController
   end
 
   def my_page
-    @stamps = PostStamp.icons
-    @get_stamps = PostStamp.includes(:post).where(posts: { user_id: current_user} )
+    @get_stamps = PostStamp.includes(:post).where(posts: { user_id: current_user })
   end
 
   def set_user_post_list
@@ -44,5 +44,9 @@ class UsersController < ApplicationController
   def set_user_post
     @posts = Post.where(user_id: current_user).includes(:tags, :post_stamps).page(params[:page])
     @mybest_post = current_user.profile.post_id.nil? ? [] : @posts.find(current_user.profile.post_id)
+  end
+
+  def set_stamps
+    @stamps = PostStamp.icons
   end
 end
