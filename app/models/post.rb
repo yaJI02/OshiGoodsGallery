@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags, dependent: :destroy
   has_many :post_stamps, dependent: :destroy
   has_many :my_lists, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one :profile # rubocop:disable Rails/HasManyOrHasOneDependent
 
   validates :title, presence: true, length: { maximum: 255 }
