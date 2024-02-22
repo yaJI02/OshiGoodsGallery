@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def my_page
     @stamps = PostStamp.icons
-    @get_stamps = PostStamp.includes(:post).where(posts: { user_id: current_user} )
+    @get_stamps = PostStamp.includes(:post).where(posts: { user_id: current_user })
   end
 
   def set_user_post_list
