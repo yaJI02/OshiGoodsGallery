@@ -35,6 +35,8 @@ class PostsController < ApplicationController
     @post_merchandise_tag = @post.tags.merchandise_tag
     @post_cotent_tag = @post.tags.content_tag
     @oshi_point_stamps = @post.post_stamps.where(user_id: @post.user_id)
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 
   # GET /posts/new

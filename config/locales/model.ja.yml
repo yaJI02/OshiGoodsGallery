@@ -66,6 +66,8 @@ ja:
         create: 新規登録する
       post:
         create: 投稿する
+      comment:
+        create: コメント投稿
     label:
       email: メールアドレス
       password: パスワード
