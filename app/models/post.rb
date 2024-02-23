@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   validates :purchase_cost, length: { maximum: 255 }
   validates :post_type, presence: true
   validates :purchase_status, presence: true
+  validates :display_comment, inclusion: { in: [true, false] }
 
   enum post_type: { merchandise: 0, showroom: 1 }
   enum purchase_status: { purchased: 0, reservation: 1, considering: 2 }

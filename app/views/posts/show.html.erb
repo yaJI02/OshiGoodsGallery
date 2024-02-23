@@ -152,23 +152,32 @@
         <%= Comment.model_name.human %>
       </div>
     </div>
-    <%= form_with model:@comment, url: post_comments_path(@post.id) do |f| %>
-      <%= render 'shared/error_message', object: f.object %>
-      <div class='form-group mt-4 mx-3'>
-        <%= f.text_area :body, rows: 3, class: 'form-control' %>
-      </div>
+    <% if @post.display_comment == true %>
+      <%= form_with model:@comment, url: post_comments_path(@post.id) do |f| %>
+        <%= render 'shared/error_message', object: f.object %>
+        <div class='form-group mt-4 mx-3'>
+          <%= f.text_area :body, rows: 3, class: 'form-control' %>
+        </div>
 
-      <div class="text-center">
-        <%= f.submit class: 'btn mt-3 mb-5 mx-auto form-btn' %>
-      </div>
-    <% end %>
-    <div class='pt-3' style='border-top: 2px dotted #66589c;'>
-      <p class='ms-3'>コメント一覧</p>
-      <% @comments.each do |comment| %>
-        <%= render 'comments/comment', comment: comment %>
+        <div class="text-center">
+          <%= f.submit class: 'btn mt-3 mb-5 mx-auto form-btn' %>
+        </div>
       <% end %>
-    </div>
+      <div class='pt-3' style='border-top: 2px dotted #66589c;'>
+        <p class='ms-3'>コメント一覧</p>
+        <% if @comments.present? %>
+          <% @comments.each do |comment| %>
+            <%= render 'comments/comment', comment: comment %>
+          <% end %>
+        <% else %>
+          <div class='text-center no-data mb-5'>コメントはまだありません</div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class='text-center no-data my-3'>コメント機能はオフになっています</div>
+    <% end %>
   </div>
+
   <div class='link-text text-center my-3'>
     <%= link_to '投稿一覧に戻る', posts_path %>
   </div>
