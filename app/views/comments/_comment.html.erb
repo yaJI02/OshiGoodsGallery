@@ -16,12 +16,16 @@
           <%= I18n.l(comment.created_at, format: :short) %>
         </div>
       </div>
-      <div class='comment-box mx-auto'>
-        <%=safe_join(comment.body.split("\n"),tag(:br))%>
-      </div>
-      <div style='display: flex; justify-content: end;'>
-        <%= link_to '編集', edit_comment_path(comment), class:'me-5' %>
-        <%= link_to '削除', comment_path(comment), data: { turbo_method: :delete }, class:'me-2' %>
+      <div id="comment_<%= comment.id %>_body">
+        <div class='comment-box mx-auto'>
+          <%=safe_join(comment.body.split("\n"),tag(:br))%>
+        </div>
+        <% if comment.user == current_user %>
+          <div style='display: flex; justify-content: end;'>
+            <%= link_to '編集', edit_comment_path(comment), data: { turbo_stream: true }, class:'me-5' %>
+            <%= link_to '削除', comment_path(comment), data: { turbo_method: :delete }, class:'me-2' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

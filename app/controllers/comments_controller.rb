@@ -5,27 +5,24 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(new_comment_params)
+    @comments = Comment.where(post_id: @comment.post_id).includes(:user).order(created_at: :desc)
+    @post = @comment.post
 
     if @comment.save
-      redirect_to post_path(@comment.post_id), flash: { success: t('flash.create.success', item: Comment.model_name.human) }
+      @comment = Comment.new
     else
-      redirect_to post_path(@comment.post_id), flash: { danger: t('flash.create.danger', item: Comment.model_name.human) }
+      flash.now[:danger] = t('flash.create.danger', item: Comment.model_name.human)
     end
   end
 
   def update
-    if @comment.update(comment_params)
-      redirect_to post_path(@comment.post_id), flash: { success: t('flash.update.success', item: Comment.model_name.human) }
-    else
-      render :edit, status: :unprocessable_entity
-      flash.now[:danger] = t('flash.update.danger', item: Comment.model_name.human)
-    end
+    return if @comment.update(comment_params)
+    render :edit, status: :unprocessable_entity
+    flash.now[:danger] = t('flash.update.danger', item: Comment.model_name.human)
   end
 
   def destroy
     @comment.destroy
-
-    redirect_to post_path(@comment.post_id), flash: { success: t('flash.destroy', item: Comment.model_name.human) }
   end
 
   private
