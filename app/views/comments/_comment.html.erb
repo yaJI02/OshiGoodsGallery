@@ -15,6 +15,7 @@
         <div class='col text-end no-data'>
           <%= I18n.l(comment.created_at, format: :short) %>
         </div>
+      </div>
       <div class='comment-box mx-auto'>
         <%=safe_join(comment.body.split("\n"),tag(:br))%>
       </div>
