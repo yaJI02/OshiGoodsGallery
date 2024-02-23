@@ -121,6 +121,22 @@
     </div>
   </div>
 
+  <div class='form-group row my-4'>
+    <div class='col-3 text-center'>
+      <%= f.label :display_comment, class: 'col-form-label' %>
+    </div>
+    <div class='col-9' style="display: flex; align-items: center;">
+      <%= label_tag 'display_comment_true', class: 'me-2' do %>
+        <span><%= f.radio_button :display_comment, true, id: 'display_comment_true' %></span>
+        <span>オン</span>
+      <% end %>
+      <%= label_tag 'display_comment_false' do %>
+        <span><%= f.radio_button :display_comment, false, id: 'display_comment_false' %></span>
+        <span>オフ</span>
+      <% end %>
+    </div>
+  </div>
+
   <div class="text-center">
     <%= f.submit class: 'btn my-3 mx-auto form-btn' %>
   </div>
