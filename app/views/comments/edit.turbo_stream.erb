@@ -1,0 +1,3 @@
+<%= turbo_stream.update "comment_#{@comment.id}_body" do %>
+  <%= render 'form', comment: @comment, to_url: comment_path(@comment) %>
+<% end %>

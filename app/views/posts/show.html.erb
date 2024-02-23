@@ -153,17 +153,10 @@
       </div>
     </div>
     <% if @post.display_comment == true %>
-      <%= form_with model:@comment, url: post_comments_path(@post.id) do |f| %>
-        <%= render 'shared/error_message', object: f.object %>
-        <div class='form-group mt-4 mx-3'>
-          <%= f.text_area :body, rows: 3, class: 'form-control' %>
-        </div>
-
-        <div class="text-center">
-          <%= f.submit class: 'btn mt-3 mb-5 mx-auto form-btn' %>
-        </div>
-      <% end %>
-      <div class='pt-3' style='border-top: 2px dotted #66589c;'>
+      <div id='post-comment-form'>
+        <%= render 'comments/form', comment: @comment, to_url: post_comments_path(@post.id) %>
+      </div>
+      <div id='post-comment-box', class='pt-3' style='border-top: 2px dotted #66589c;'>
         <p class='ms-3'>コメント一覧</p>
         <% if @comments.present? %>
           <% @comments.each do |comment| %>
