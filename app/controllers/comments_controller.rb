@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
 
   def update
     return if @comment.update(comment_params)
+
     render :edit, status: :unprocessable_entity
     flash.now[:danger] = t('flash.update.danger', item: Comment.model_name.human)
   end
