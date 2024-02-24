@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :post_stamps, dependent: :destroy
   has_many :my_lists, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_one :profile, dependent: :destroy
 
   validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
@@ -23,6 +24,10 @@ class User < ApplicationRecord
 
   def total_purchase_cost
     posts.sum(:purchase_cost)
+  end
+
+  def notifications_exists?
+    notifications.exists?(checked: false)
   end
 
   private_class_method :ransackable_attributes

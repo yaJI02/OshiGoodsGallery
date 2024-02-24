@@ -137,17 +137,34 @@
       </div>
     <% end %>
   </div>
-  <% if logged_in? && @post.user != current_user %>
-    <div class='container-box' style='display: flex; justify-content: start;'>
-      <% @stamps.each do |stamp, icon| %>
-        <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: stamp) %>
-          <%= render "reaction_stamps/done", post: @post, stamp: stamp, icon: icon %>
-        <% else %>
-          <%= render "reaction_stamps/yet", post: @post, stamp: stamp, icon: icon %>
+  <div class='container-box' id='post-stamp-index'>
+    <% if logged_in? && @post.user != current_user %>
+      <div style='display: flex; justify-content: start;'>
+        <% @stamps.each do |stamp, icon| %>
+          <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: stamp) %>
+            <%= render "reaction_stamps/done", post: @post, stamp: stamp, icon: icon %>
+          <% else %>
+            <%= render "reaction_stamps/yet", post: @post, stamp: stamp, icon: icon %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% else %>
+      <div class='m-3 get-reaction'>
+        <div style='display: flex; justify-content: start;'>
+          <div class='me-4'>
+            <i class='bi bi-hand-thumbs-up-fill'></i>
+            <span class='ms-2'><%= @post.post_stamps.where(stamp: 'nice').count %></span>
+          </div>
+          <% @stamps.each do |stamp, icon| %>
+            <div class='me-4'>
+              <i class="bi <%= icon %>"></i>
+              <span class='ms-2'><%= @post.post_stamps.where(stamp: stamp).count %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <div class='container-box'>
     <div class='container-label'>
       <div class='ms-2'>
