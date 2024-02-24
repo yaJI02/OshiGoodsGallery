@@ -1,0 +1,7 @@
+<%= link_to notification.subject.user.name, profile_path(notification.subject.user) %>
+さんが
+<%= link_to notification.subject.post.title, post_path(notification.subject.post, anchor: "post-stamp-index") %>
+に
+<%= notification.subject.stamp_i18n %>
+しました
+<%= " (#{time_ago_in_words(notification.created_at)}前)" %>

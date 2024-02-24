@@ -1,0 +1,26 @@
+<% content_for :title, t('.title') %>
+
+<div class='container mt-3'>
+  <div class='page-title-name text-center mt-5'>
+      <%= render 'shared/content_title', this_title: t('.title') %>
+  </div>
+  <% if @notifications.present? %>
+    <div class='mb-3'>
+      <%= link_to "全通知を削除", destroy_all_notifications_path, data: { turbo_method: :delete } %>
+    </div>
+    <% @notifications.each do |notification| %>
+        <div class='form-box mb-2 py-1 px-2'>
+          <div class='row'>
+            <div class='col-11'>
+              <%= render "#{notification.action_type}", notification: notification %>
+            </div>
+            <div class='col-1'>
+              <%= link_to "削除", notification_path(notification.id), data: { turbo_method: :delete } %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  <% else %>
+    通知はありません
+  <% end %>
+</div>
