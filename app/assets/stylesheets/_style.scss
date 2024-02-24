@@ -19,8 +19,36 @@ header .btn {
   padding: 10px 15px;
 }
 
+header .myicon-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 header .myicon {
   margin: 0px 10px;
+  position: relative;
+}
+
+header .notification-mark {
+  display: block;
+	width: 17px;
+	height: 17px;
+	margin: 0 0 27px 10px !important;
+	border-radius: 50%;
+	background: red;
+	z-index: 10;
+
+	font-size: 10px;
+	text-align: center;
+	color: white;
+
+	position: absolute;
+}
+
+header .notification-alert{
+  font-size: 15px;
+  color: red;
 }
 
 header .navbar-toggler {
