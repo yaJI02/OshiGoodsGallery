@@ -26,6 +26,10 @@ class User < ApplicationRecord
     posts.sum(:purchase_cost)
   end
 
+  def notifications_exists?
+    notifications.exists?(checked: false)
+  end
+
   private_class_method :ransackable_attributes
   private_class_method :ransackable_associations
 
