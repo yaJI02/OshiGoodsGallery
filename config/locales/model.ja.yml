@@ -117,6 +117,10 @@ ja:
       subject:
         about_other: その他のお問い合わせ 
         about_account: ログインおよびユーザーアカウントについて
+    choosy_tag:
+      choosy_type:
+        favorite_tag: お気に入りタグ
+        dislike_tag: NGタグ（地雷タグ）
   views:
     pagination:
       first: "&laquo;"

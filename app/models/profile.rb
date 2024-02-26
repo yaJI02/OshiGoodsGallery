@@ -2,6 +2,7 @@ class Profile < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   belongs_to :user
   has_one :post # rubocop:disable Rails/HasManyOrHasOneDependent
+  has_many :choosy_tags, dependent: :destroy
 
   validates :sns_account, length: { maximum: 255 }
   validates :display_tag_type, presence: true
