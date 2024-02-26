@@ -101,6 +101,7 @@ ja:
       tag_type:
         merchandise_tag: グッズカテゴリ
         content_tag: コンテンツタグ
+        choosy_tag: こだわりタグ
     post_stamp:
       stamp:
         nice: いいね

@@ -19,6 +19,7 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       current_user.update(name: params[:profile][:user_name])
+      save_choosy_tags_list
       redirect_to profile_url(@profile), flash: { success: t('flash.update.success', item: Profile.model_name.human) }
     else
       flash.now[:danger] = t('flash.update.danger', item: Profile.model_name.human)
@@ -45,6 +46,13 @@ class ProfilesController < ApplicationController
     else
       redirect_to profile_path(params[:id]), flash: { danger: t('flash.not_authorized') }
     end
+  end
+
+  def save_choosy_tags_list
+    @f_list = params[:profile][:favorite_tag].present? ? JSON.parse(params[:profile][:favorite_tag]).pluck('value') : []
+    @profile.save_choosy_tags(@f_list, 0)
+    @d_list = params[:profile][:dislike_tag].present? ? JSON.parse(params[:profile][:dislike_tag]).pluck('value') : []
+    @profile.save_choosy_tags(@d_list, 1)
   end
 
   # Only allow a list of trusted parameters through.
