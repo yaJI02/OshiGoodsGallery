@@ -47,6 +47,8 @@ ja:
         display_tag_type: 表示タグ設定
         is_display_dislike_tag: NGタグ公開設定
         user_name: ユーザー名
+        favorite_tag: お気に入りタグ
+        dislike_tag: NGタグ（地雷タグ）
       contact:
         name: お名前／ユーザー名
         email: ご連絡先メールアドレス

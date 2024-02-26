@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'tags/get_all_post_place', to: 'tags#get_all_post_place'
   get 'tags/get_all_post_content_tag', to: 'tags#get_all_post_content_tag'
   get 'tags/get_all_post_merchandise_tag', to: 'tags#get_all_post_merchandise_tag'
+  get 'tags/get_all_profile_favorite_tag', to: 'tags#get_all_tags'
+  get 'tags/get_all_profile_dislike_tag', to: 'tags#get_all_tags'
 
   get 'admin/index', to: 'admin#index'
   get 'admin/tag_index', to: 'admin#tag_index'

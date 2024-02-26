@@ -10,7 +10,10 @@ class ProfilesController < ApplicationController
   end
 
   # GET /profiles/1/edit
-  def edit; end
+  def edit
+    @favorite_tag_list = Tag.joins(:choosy_tags).where(choosy_tags: { choosy_type: :favorite_tag }).pluck(:name).join(',')
+    @dislike_tag_list = Tag.joins(:choosy_tags).where(choosy_tags: { choosy_type: :dislike_tag }).pluck(:name).join(',')
+  end
 
   # PATCH/PUT /profiles/1 or /profiles/1.json
   def update
