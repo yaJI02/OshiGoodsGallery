@@ -1,12 +1,12 @@
 <% content_for :title, t('.title', user_name: @profile.user.name) %>
 
 <div class='container'>
-  <div class='col-md-10 col-lg-10 mx-auto mt-5 px-5'>
+  <div class='col-lg-10 mx-auto mt-5 px-5'>
     <div class='page-title-name text-center my-5'>
         <h1><%= t('.title', user_name: @profile.user.name) %></h1>
     </div>
-    <div class='row mb-5'>
-      <div class='col-md-3'>
+    <div class='row mb-5 d-flex align-items-center'>
+      <div class='col-lg-3'>
         <div class='d-flex justify-content-center'>
           <%= image_tag @profile.user.profile.avatar.url, class:'rounded-circle avatar-image' %>
         </div>
@@ -18,21 +18,61 @@
           </div>
         <% end %>
       </div>
-      <div class='col-md-9'>
+      <div class='col-lg-9'>
         <div class='row mb-4 mt-5'>
-          <div class='col-3'>
+          <div class='col-3 text-end'>
             <%= User.human_attribute_name(:name) %>：
           </div>
-          <div class='content-box col-9'>
+          <div class='content-border col-9'>
             <%= @profile.user.name %>
           </div>
         </div>
         <div class='row mb-4'>
-          <div class='col-3'>
+          <div class='col-3 text-end'>
             <%= Profile.human_attribute_name(:sns_account) %>：
           </div>
-          <div class='content-box col-9'>
-            <%= @profile.sns_account %>
+          <div class='content-border col-9'>
+            <% if @profile.sns_account.present? %>
+              <%= @profile.sns_account %>
+            <% else %>
+              <span class='no-data'>未登録</span>
+            <% end %>
+          </div>
+        </div>
+        <div class='row mb-4'>
+          <div class='col-3 text-end'>表示設定：</div>
+          <div class='content-border col-9'>
+            <%= @profile.display_tag_type_i18n %>の投稿を表示する
+          </div>
+        </div>
+        <div class='row mb-4 d-flex align-items-center'>
+          <div class='col-3 text-end'>
+            <%= Profile.human_attribute_name(:favorite_tag) %>：
+          </div>
+          <div class='content-border pb-1 col-9'>
+            <% if @profile.choosy_tags.favorite_tag.present? %>
+              <% @profile.choosy_tags.favorite_tag.each do |tag| %>
+                <span class='tag'><%= tag.tag.name %></span>
+              <% end %>
+            <% else %>
+              <span class='no-data'>未登録</span>
+            <% end %>
+          </div>
+        </div>
+        <div class='row mb-4 d-flex align-items-center'>
+          <div class='col-3 text-end'>
+            <%= Profile.human_attribute_name(:dislike_tag) %>：
+          </div>
+          <div class='content-border pb-1 col-9'>
+            <% if @profile.is_display_dislike_tag == false %>
+              <span class='no-data'>非公開</span>
+            <% elsif @profile.choosy_tags.dislike_tag.present? %>
+              <% @profile.choosy_tags.dislike_tag.each do |tag| %>
+                <span class='tag' style='background-color: #7B2323;'><%= tag.tag.name %></span>
+              <% end %>
+            <% else %>
+              <span class='no-data'>未登録</span>
+            <% end %>
           </div>
         </div>
       </div>

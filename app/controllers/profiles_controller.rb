@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
-    @profile = Profile.find(params[:id])
+    @profile = Profile.includes(:choosy_tags).find(params[:id])
     @post = Post.find_by(id: @profile.post_id)
     @stamps = PostStamp.icons
   end
