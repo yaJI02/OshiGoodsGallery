@@ -21,7 +21,7 @@ class RankingController < ApplicationController
 
   def set_stamps_data
     @set_period = params[:period].presence
-    posts = Post.includes(:user, :profile, :tags, :post_stamps)
+    posts = Post.filtered_posts_for_user(current_user).includes(:user, :profile, :tags, :post_stamps)
     posts = posts.where('created_at >= ?', Time.zone.today.beginning_of_month) if @set_period.present?
     @ranking_data = posts.sort_by { |post| -post.stamp_count(@current_stamp) }.first(10)
     current_stamp_value = PostStamp.stamps[@current_stamp.to_sym]
