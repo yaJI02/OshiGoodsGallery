@@ -23,4 +23,9 @@ class TagsController < ApplicationController
     @tags = Tag.merchandise_tag.pluck(:name)
     render json: @tags
   end
+
+  def get_all_tags
+    @tags = Tag.pluck(:name)
+    render json: @tags
+  end
 end

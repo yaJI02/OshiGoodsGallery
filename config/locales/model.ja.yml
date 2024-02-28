@@ -47,6 +47,8 @@ ja:
         display_tag_type: 表示タグ設定
         is_display_dislike_tag: NGタグ公開設定
         user_name: ユーザー名
+        favorite_tag: お気に入りタグ
+        dislike_tag: NG(地雷)タグ
       contact:
         name: お名前／ユーザー名
         email: ご連絡先メールアドレス
@@ -99,6 +101,7 @@ ja:
       tag_type:
         merchandise_tag: グッズカテゴリ
         content_tag: コンテンツタグ
+        choosy_tag: こだわりタグ
     post_stamp:
       stamp:
         nice: いいね
@@ -117,6 +120,10 @@ ja:
       subject:
         about_other: その他のお問い合わせ 
         about_account: ログインおよびユーザーアカウントについて
+    choosy_tag:
+      choosy_type:
+        favorite_tag: お気に入りタグ
+        dislike_tag: NGタグ（地雷タグ）
   views:
     pagination:
       first: "&laquo;"

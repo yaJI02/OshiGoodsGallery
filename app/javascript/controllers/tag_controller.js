@@ -6,6 +6,8 @@ export default class extends Controller {
     this.applyTagify("post_place");
     this.applyTagify("post_content_tag");
     this.applyTagify("post_merchandise_tag");
+    this.applyTagify("profile_favorite_tag");
+    this.applyTagify("profile_dislike_tag");
   }
 
   applyTagify(inputId) {
