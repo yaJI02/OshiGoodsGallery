@@ -2,7 +2,7 @@ class TopController < ApplicationController
   skip_before_action :require_login
 
   def index
-    posts = Post.filtered_posts_for_user(current_user).includes(:user, :profile, :tags, :post_stamps)
+    posts = Post.filtered_posts_for_user(current_user).includes(:user, :profile, :tags, :post_stamps).group(:id)
     @new_merchandise = posts.merchandise.order(created_at: :DESC).limit(10)
     @new_showroom = posts.showroom.order(created_at: :DESC).limit(10)
     @nice_ranking = posts.sort_by { |post| -post.stamp_count('nice') }.first(10)
