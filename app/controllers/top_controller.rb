@@ -2,9 +2,10 @@ class TopController < ApplicationController
   skip_before_action :require_login
 
   def index
-    @new_merchandise = Post.merchandise.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).limit(10)
-    @new_showroom = Post.showroom.order(created_at: :DESC).includes(:user, :profile, :tags, :post_stamps).limit(10)
-    @nice_ranking = Post.includes(:user, :profile, :tags, :post_stamps).sort_by { |post| -post.stamp_count('nice') }.first(10)
+    posts = Post.filtered_posts_for_user(current_user).includes(:user, :profile, :tags, :post_stamps)
+    @new_merchandise = posts.merchandise.order(created_at: :DESC).limit(10)
+    @new_showroom = posts.showroom.order(created_at: :DESC).limit(10)
+    @nice_ranking = posts.sort_by { |post| -post.stamp_count('nice') }.first(10)
   end
 
   def terms_of_use; end

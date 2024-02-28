@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @post_types = Post.post_types.keys
-    @q = Post.includes(:user, :profile, :tags, :post_stamps)
+    @q = Post.filtered_posts_for_user(current_user).includes(:user, :profile, :tags, :post_stamps)
 
     if params[:q].present?
       search_freeword = params[:q][:title_or_body_or_user_name_or_places_name_or_tags_name_cont].presence
