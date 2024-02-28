@@ -21,10 +21,10 @@ class Post < ApplicationRecord
   enum purchase_status: { purchased: 0, reservation: 1, considering: 2 }
 
   scope :author_stamped_posts, ->(select_value) { joins(:post_stamps).where('posts.user_id = post_stamps.user_id AND post_stamps.stamp = ?', select_value.to_s) }
-  scope :not_disliked_by_user, ->(user) { where.not(id: PostTag.where(tag_id: user.profile.choosy_tags.dislike_tag.pluck(:tag_id)).select(:post_id)) }
+  scope :not_disliked_by_user, ->(user) { joins(:post_tags).where.not('post_tags IS NULL OR post_tags.post_id IN (?)', PostTag.where(tag_id: user.profile.choosy_tags.dislike_tag.pluck(:tag_id)).select(:post_id)) }
   scope :only_favorite_of_user, lambda { |user|
     not_favorite_tags = Tag.pluck(:id) - user.profile.choosy_tags.favorite_tag.pluck(:tag_id)
-    where.not(id: PostTag.where(tag_id: not_favorite_tags).select(:post_id))
+    joins(:post_tags).where.not('post_tags IS NULL OR post_tags.post_id IN (?)', PostTag.where(tag_id: not_favorite_tags).select(:post_id))
   }
 
   def save_places(place_list)
