@@ -1,13 +1,25 @@
-<div class='text-center rank-ber mb-3 mt-5'>
-  <span><%= link_to '＜', set_ranking_path(stamp: @previous_stamp, period: true), class: 'rank-btn my-3 mx-2', data: { turbo_method: :post } %></span>
-  <span class='mx-3'><%= t("enums.post_stamp.stamp.#{@current_stamp}") %><i class="bi <%= @rank_icon %>"></i></span>
-  <span><%= link_to '＞', set_ranking_path(stamp: @next_stamp, period: true), class: 'rank-btn my-3 mx-2', data: { turbo_method: :post } %></span>
+<div class='justify-content-center mb-2' style='display: flex; align-items: center;'>
+  一覧：
+  <% PostStamp.stamps.keys.each do |key| %>
+    <% if key == @current_stamp %>
+      <span class='rank-period my-3 mx-2'><%= t("enums.post_stamp.stamp.#{key}") %></span>
+    <% else %>
+      <%= link_to t("enums.post_stamp.stamp.#{key}"), set_ranking_path(stamp: key, period: true), class: 'rank-period yet my-3 mx-2', data: { turbo_method: :post } %>
+    <% end %>
+  <% end %>
 </div>
 
-<div class='justify-content-center mt-2' style='display: flex; align-items: center;'>
+<div class='justify-content-center mb-5' style='display: flex; align-items: center;'>
   <span>集計期間：</span>
   <%= link_to '全期間', set_ranking_path(stamp: @current_stamp), class: 'rank-period yet my-3 mx-2', data: { turbo_method: :post } %>
   <span class='rank-period my-3 mx-2'>月間</span>
+</div>
+
+<div class='text-center rank-ber mb-3'>
+  <span class='mx-3'>
+    <%= t("enums.post_stamp.stamp.#{@current_stamp}") %>
+    <i class="bi <%= @rank_icon %>"></i>
+  </span>
 </div>
 
 <%= render 'ranking_post', stamp: @current_stamp %>

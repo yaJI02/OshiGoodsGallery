@@ -24,9 +24,6 @@ class RankingController < ApplicationController
     posts = Post.filtered_posts_for_user(current_user).includes(:user, :profile, :tags, :post_stamps).group(:id)
     posts = posts.where('posts.created_at >= ?', Time.zone.today.beginning_of_month) if @set_period.present?
     @ranking_data = posts.sort_by { |post| -post.stamp_count(@current_stamp) }.first(10)
-    current_stamp_value = PostStamp.stamps[@current_stamp.to_sym]
-    @previous_stamp = @current_stamp == 'nice' ? 'awesome' : PostStamp.stamps.key(current_stamp_value - 1)
-    @next_stamp = @current_stamp == 'awesome' ? 'nice' : PostStamp.stamps.key(current_stamp_value + 1)
     @rank_icon =  @current_stamp == 'nice' ? 'bi-hand-thumbs-up-fill' : PostStamp::ICONS[@current_stamp.to_sym]
   end
 end
