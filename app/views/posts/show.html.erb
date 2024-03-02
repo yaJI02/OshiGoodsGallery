@@ -92,7 +92,10 @@
     <div class='create-user mb-2'>
       <div class='row'>
         <div class='col-md-6'>
-          <div class='ms-3' style='display: flex; justify-content: start;'>
+          <div class='ms-3 d-flex align-items-center justify-content-start'>
+            <div class='me-3' id='share-btn'>
+              <i class="bi bi-box-arrow-up reaction-stamp defo mt-1"></i>
+            </div>
             <% if logged_in? %>
               <% if @post.my_lists.find_by(user_id: current_user.id).present? %>
                 <%= button_to 'マイリスト解除', my_list_path(@post), method: :delete, class: 'btn form-btn mybest-btn btn-del' %>
@@ -123,6 +126,8 @@
             </div>
           <% end %>
         </div>
+      </div>
+      <div class='ms-3 no-data' id='share-massage'>
       </div>
     </div>
 

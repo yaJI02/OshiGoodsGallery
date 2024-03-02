@@ -296,6 +296,10 @@ display: inline;
   color: black;
 }
 
+#share-btn {
+  cursor: pointer;
+}
+
 .search-tag-box input[type=radio]:checked ~  .search-tag {
   background-color: #66589c;
   color: white;
