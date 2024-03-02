@@ -3,35 +3,35 @@
 <div class='container'>
   <div class='content mb-5'>
     <%= render 'shared/content_title', this_title: 'newグッズ' %>
-    <div class="swiper">
-      <div class="swiper-wrapper mb-3">
+    <div class='swiper1'>
+      <div class='swiper-wrapper mb-3'>
         <% @new_merchandise.each.with_index(1) do |post, i| %>
-          <div class="swiper-slide">
+          <div class='swiper-slide'>
             <%= render 'top_post', post: post, rank: 'none'  %>
           </div>
         <% end %>
       </div>
-      <div class="slide-pagination-wrapper">
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
+      <div class='slide-pagination-wrapper'>
+        <div class='swiper-button-prev'></div>
+        <div class='swiper-pagination'></div>
+        <div class='swiper-button-next'></div>
       </div>
     </div>
   </div>
   <div class='content my-5'>
     <%= render 'shared/content_title', this_title: 'newショールーム' %>
-    <div class="swiper">
-      <div class="swiper-wrapper mb-3">
+    <div class='swiper2'>
+      <div class='swiper-wrapper mb-3'>
         <% @new_showroom.each.with_index(1) do |post, i| %>
-          <div class="swiper-slide">
+          <div class='swiper-slide'>
             <%= render 'top_post', post: post, rank: 'none'  %>
           </div>
         <% end %>
       </div>
-      <div class="slide-pagination-wrapper">
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
+      <div class='slide-pagination-wrapper'>
+        <div class='swiper-button-prev'></div>
+        <div class='swiper-pagination'></div>
+        <div class='swiper-button-next'></div>
       </div>
     </div>
   </div>
@@ -41,8 +41,8 @@
   </div>
   <div class='content my-5'>
     <%= render 'shared/content_title', this_title: 'いいね数 ranking' %>
-    <div class="swiper">
-      <div class="swiper-wrapper mb-3">
+    <div class='swiper3'>
+      <div class='swiper-wrapper mb-3'>
         <% last_nice = 0 %>
         <% j = 1 %>
         <% @nice_ranking.each.with_index(1) do |post, i| %>
@@ -55,15 +55,15 @@
           <% else %>
             <% last_nice = post.stamp_count('nice') %>
           <% end %>
-          <div class="swiper-slide">
+          <div class='swiper-slide'>
             <%= render 'top_post', post: post, rank: j %>
           </div>
         <% end %>
       </div>
-      <div class="slide-pagination-wrapper">
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
+      <div class='slide-pagination-wrapper'>
+        <div class='swiper-button-prev'></div>
+        <div class='swiper-pagination'></div>
+        <div class='swiper-button-next'></div>
       </div>
     </div>
     <div class='content my-5 text-center'>
@@ -71,7 +71,3 @@
     </div>
   </div>
 </div>
-
-<script type="module">
-  import "swiper";
-</script>
