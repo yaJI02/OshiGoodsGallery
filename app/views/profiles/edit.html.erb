@@ -40,7 +40,7 @@
             <%= f.label :favorite_tag, class: 'col-form-label' %>
           </div>
           <div class='col-9'>
-            <%= f.text_field :favorite_tag, value: @favorite_tag_list, class: 'form-control', placeholder: '［Enter］キーで区切って入力してください', data: { controller: "tag" } %>
+            <%= f.text_field :favorite_tag, value: @favorite_tag_list, class: 'form-control', placeholder: '［Enter］キーで区切って入力してください', data: { controller: 'tag' } %>
           </div>
         </div>
 
@@ -49,7 +49,7 @@
             <%= f.label :dislike_tag, class: 'col-form-label' %>
           </div>
           <div class='col-9'>
-            <%= f.text_field :dislike_tag, value: @dislike_tag_list, class: 'form-control', placeholder: '［Enter］キーで区切って入力してください', data: { controller: "tag" } %>
+            <%= f.text_field :dislike_tag, value: @dislike_tag_list, class: 'form-control', placeholder: '［Enter］キーで区切って入力してください', data: { controller: 'tag' } %>
           </div>
         </div>
 
@@ -57,7 +57,7 @@
           <div class='col-3 text-center'>
             <%= f.label :display_tag_type, class: 'col-form-label' %>
           </div>
-          <div class='col-9' style="display: flex; align-items: center;">
+          <div class='col-9' style='display: flex; align-items: center;'>
             <%= f.radio_button :display_tag_type, :all_tag, checked: true %>
             <%= f.label :display_tag_type_all_tag, t('enums.profile.display_tag_type.all_tag'), class: 'me-2' %>
             <%= f.radio_button :display_tag_type, :not_ng %>
@@ -71,7 +71,7 @@
           <div class='col-3 text-center'>
             <%= f.label :is_display_dislike_tag, class: 'col-form-label' %>
           </div>
-          <div class='col-9' style="display: flex; align-items: center;">
+          <div class='col-9' style='display: flex; align-items: center;'>
             <%= f.radio_button :is_display_dislike_tag, true %>
             <%= f.label :is_display_dislike_tag, '公開する', class: 'me-2' %>
             <%= f.radio_button :is_display_dislike_tag, false%>
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <div class="text-center">
+        <div class='text-center'>
           <%= f.submit class: 'btn my-3 mx-auto form-btn' %>
         </div>
       <% end %>
@@ -88,5 +88,5 @@
 </div>
 
 <div class='link-text text-center my-5'>
-  <%= link_to "マイプロフィールに戻る", @profile %>
+  <%= link_to 'マイプロフィールに戻る', @profile %>
 </div>

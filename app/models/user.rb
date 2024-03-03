@@ -6,8 +6,8 @@ class User < ApplicationRecord
   has_many :my_lists, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :follower, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
-  has_many :followed, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy
+  has_many :follower, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy, inverse_of: :follower
+  has_many :followed, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy, inverse_of: :followed
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
   has_one :profile, dependent: :destroy
