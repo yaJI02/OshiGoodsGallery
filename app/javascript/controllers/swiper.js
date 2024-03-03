@@ -1,5 +1,5 @@
-document.addEventListener('turbo:load', function () {
-  const swiper = document.querySelector('.swiper1');
+document.addEventListener("turbo:load", function () {
+  const swiper = document.querySelector(".swiper1");
   if (swiper) {
     const swiperOptions = {
       slidesPerView: 1,
@@ -15,21 +15,21 @@ document.addEventListener('turbo:load', function () {
       centeredSlides: true,
 
       pagination: {
-        el: '.swiper-pagination',
+        el: ".swiper-pagination",
         clickable: true,
       },
 
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
       },
 
       scrollbar: {
-        el: '.swiper-scrollbar',
+        el: ".swiper-scrollbar",
       },
     };
 
-    const swipers = ['.swiper1', '.swiper2', '.swiper3'];
+    const swipers = [".swiper1", ".swiper2", ".swiper3"];
     swipers.forEach(function (swiper_name) {
       let slideshow = document.querySelector(swiper_name);
       let slidesCount = slideshow.querySelectorAll(".swiper-slide").length;

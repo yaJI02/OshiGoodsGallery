@@ -1,9 +1,18 @@
 <% content_for :title, t('.title', user_name: @profile.user.name) %>
+<% set_meta_tags og:{image: image_url(@profile.user.profile.avatar.url)}, twitter:{image: image_url(@profile.user.profile.avatar.url)} %>
 
 <div class='container'>
   <div class='col-lg-10 mx-auto mt-5 px-5'>
-    <div class='page-title-name text-center my-5'>
+    <div class='page-title-name text-center mt-5'>
         <h1><%= t('.title', user_name: @profile.user.name) %></h1>
+    </div>
+    <div class='text-center'>
+      <div class='mt-3' id='share-btn'>
+        <span>URLをコピー</span>
+        <i class='bi bi-box-arrow-up reaction-stamp defo mt-1'></i>
+      </div>
+      <div class='ms-3 no-data' id='share-massage'>
+      </div>
     </div>
     <div class='row mb-5 d-flex align-items-center'>
       <div class='col-lg-3'>
@@ -11,7 +20,7 @@
           <%= image_tag @profile.user.profile.avatar.url, class:'rounded-circle avatar-image' %>
         </div>
         <% if @profile.user == current_user %>
-          <div class="mt-2">
+          <div class='mt-2'>
             <div class='d-flex justify-content-center'>
               <%= link_to 'プロフィールを編集', edit_profile_path(@profile), class: 'btn form-btn' %>
             </div>
@@ -85,7 +94,7 @@
       <div class='no-data text-center mb-3'>未登録</div>
     <% end %>
     <% if @profile.user == current_user %>
-      <div class="my-2">
+      <div class='my-2'>
         <div class='d-flex justify-content-center'>
           <% if current_user.posts.present? %>
             <%= link_to 'マイベスト投稿を変更する', my_page_users_path, class: 'btn form-btn' %>
