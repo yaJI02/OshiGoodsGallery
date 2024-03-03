@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create] do
     get :my_page, on: :collection
     resource :follows, only: %i[create destroy]
+    get :follows, on: :member
+    get :followers, on: :member
   end
   get 'set_user_post_list', to: 'users#set_user_post_list'
   get 'set_my_list', to: 'users#set_my_list'

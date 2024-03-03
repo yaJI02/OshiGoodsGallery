@@ -5,3 +5,7 @@ ja:
       link_login: ログインページへ
     my_page:
       title: "%{name}のマイページ"
+    follows:
+      title: "%{name}のフォロー一覧"
+    followers:
+      title: "%{name}のフォロワー一覧"

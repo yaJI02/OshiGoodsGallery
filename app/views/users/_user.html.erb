@@ -1,0 +1,17 @@
+<div class='form-box p-2 mb-3'>
+  <div class='row'>
+    <div class='col-6'>
+      <%= link_to profile_path(user.profile), class:'nav-link', 'data-turbo' => 'false' do %>
+        <div class='d-flex align-items-center'>
+          <%= image_tag(user.profile.avatar.url, class:'rounded-circle', size:'50x50', style:'border: 1px solid #66589c;') %>
+          <div class='ms-2' style='font-size: 20px;'><%= user.name %></div>
+        </div>
+      <% end %>
+    </div>
+    <div class='col-6 d-flex justify-content-center'>
+      <% if follow_type == 'follower' %>
+        <%= link_to 'フォロー解除', user_follows_path(user), data: { turbo_method: :delete}, class: 'btn form-btn btn-del' %>
+      <% end %>
+    </div>
+  </div>
+</div>
