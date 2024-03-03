@@ -1,15 +1,15 @@
-document.addEventListener('turbo:load', function () {
-  const shareBtn = document.getElementById('share-btn');
+document.addEventListener("turbo:load", function () {
+  const shareBtn = document.getElementById("share-btn");
   if (shareBtn) {
-    shareBtn.addEventListener('click', function () {
+    shareBtn.addEventListener("click", function () {
       let url = location.href;
       navigator.clipboard.writeText(url)
         .then(() => {
-          document.getElementById('share-massage').textContent = 'URLがコピーされました！';
+          document.getElementById("share-massage").textContent = "URLがコピーされました！";
           setTimeout(refresh, 3000);
         })
         .catch((err) => {
-          document.getElementById('share-massage').textContent = 'URLのコピーに失敗しました：';
+          document.getElementById("share-massage").textContent = "URLのコピーに失敗しました：";
           setTimeout(refresh, 3000);
         });
     });
@@ -17,5 +17,5 @@ document.addEventListener('turbo:load', function () {
 });
 
 function refresh() {
-  document.getElementById("share-massage").textContent ='';
+  document.getElementById("share-massage").textContent ="";
 };
