@@ -5,11 +5,11 @@ document.addEventListener("turbo:load", function () {
       let url = location.href;
       navigator.clipboard.writeText(url)
         .then(() => {
-          document.getElementById("share-massage").textContent = "URLがコピーされました！";
+          document.getElementById("share-massage").textContent = "URLをクリップボードにコピーしました";
           setTimeout(refresh, 3000);
         })
         .catch((err) => {
-          document.getElementById("share-massage").textContent = "URLのコピーに失敗しました：";
+          document.getElementById("share-massage").textContent = "URLのコピーに失敗しました";
           setTimeout(refresh, 3000);
         });
     });
