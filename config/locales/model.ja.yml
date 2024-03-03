@@ -49,6 +49,8 @@ ja:
         user_name: ユーザー名
         favorite_tag: お気に入りタグ
         dislike_tag: NG(地雷)タグ
+        follower: フォロー
+        followerd: フォロワー
       contact:
         name: お名前／ユーザー名
         email: ご連絡先メールアドレス

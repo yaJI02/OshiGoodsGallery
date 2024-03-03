@@ -5,15 +5,25 @@
     <div class='page-title-name text-center my-5'>
       <h1><%= t('.title', name: current_user.name) %></h1>
     </div>
-    <div class='row mb-5'>
+    <div class='row mb-5 d-flex align-items-center'>
       <div class='col-md-3'>
-        <div class='d-flex justify-content-center mt-4'>
+        <div class='d-flex justify-content-center'>
           <%= image_tag current_user.profile.avatar.url, class:'rounded-circle avatar-image' %>
         </div>
         <div class="mt-2">
           <div class='d-flex justify-content-center'>
             <%= link_to 'マイプロフィール', profile_path(current_user.profile), class: 'btn form-btn' %>
           </div>
+        </div>
+        <div class='mt-2 text-center'>
+          <%= link_to Profile.human_attribute_name(:follower), follows_user_path(current_user) %>：
+          <%= current_user.following_user.count %>
+          <span>人</span>
+        </div>
+        <div class='mt-2 text-center'>
+          <%= link_to Profile.human_attribute_name(:followerd), followers_user_path(current_user) %>：
+          <%= current_user.follower_user.count %>
+          <span>人</span>
         </div>
       </div>
       <div class='col-md-9'>
@@ -40,7 +50,7 @@
             </div>
           </div>
         </div>
-        <div class='mb-4 text-center'>
+        <div class='text-center'>
           <%= render 'shared/content_title', this_title: '推しに捧げた応援' %>
           <div class='content-title'>
             <%= number_to_currency(current_user.total_purchase_cost) %>

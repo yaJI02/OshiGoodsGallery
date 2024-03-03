@@ -7,6 +7,9 @@ class ProfilesController < ApplicationController
     @profile = Profile.includes(:choosy_tags).find(params[:id])
     @post = Post.find_by(id: @profile.post_id)
     @stamps = PostStamp.icons
+    user = @profile.user
+    @following_users_count = user.following_user.count
+    @follower_users_count = user.follower_user.count
   end
 
   # GET /profiles/1/edit

@@ -34,6 +34,16 @@ class UsersController < ApplicationController
     render turbo_stream: turbo_stream.update('change-mypage-list', partial: 'my_list')
   end
 
+  def follows
+    @user = User.find(params[:id])
+    @follow_users = @user.following_user.page(params[:page]).reverse_order
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @follow_users = @user.follower_user.page(params[:page]).reverse_order
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
