@@ -6,5 +6,5 @@ class Notification < ApplicationRecord
   validates :action_type, presence: true
   validates :checked, inclusion: { in: [true, false] }
 
-  enum action_type: { commented_to_own_post: 0, reaction_to_own_post: 1 }
+  enum action_type: { commented_to_own_post: 0, reaction_to_own_post: 1, followed: 2 }
 end

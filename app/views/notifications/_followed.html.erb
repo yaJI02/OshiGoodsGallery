@@ -1,0 +1,3 @@
+<%= link_to notification.subject.follower.name, profile_path(notification.subject.follower) %>
+さんが あなた を フォロー しました
+<%= " (#{time_ago_in_words(notification.created_at)}前)" %>
