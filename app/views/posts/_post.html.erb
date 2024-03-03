@@ -21,7 +21,7 @@
         <span><%= Post.human_attribute_name(:place) %>　　　：</span>
         <% if post.places.present? %>
           <% post.places.each do |place| %>
-            <%= link_to place.name, { controller: "posts", action: "index", q: { places_name_eq: place.name }}, class: 'tag tag-place', 'data-turbo' => 'false' %>
+            <%= link_to place.name, { controller: 'posts', action: 'index', q: { places_name_eq: place.name }}, class: 'tag tag-place', 'data-turbo' => 'false' %>
           <% end %>
         <% else %>
           <span class='no-data'>購入場所未登録</span>
@@ -31,7 +31,7 @@
         <span><%= Post.human_attribute_name(:merchandise_tag) %>：</span>
         <% if post.tags.merchandise_tag.present? %>
           <% post.tags.merchandise_tag.each do |tag| %>
-            <%= link_to tag.name, { controller: "posts", action: "index", q: { tags_name_eq: tag.name }}, class: 'tag', 'data-turbo' => 'false' %>
+            <%= link_to tag.name, { controller: 'posts', action: 'index', q: { tags_name_eq: tag.name }}, class: 'tag', 'data-turbo' => 'false' %>
           <% end %>
         <% else %>
           <span class='no-data'>グッズカテゴリ未登録</span>
@@ -41,7 +41,7 @@
         <span><%= Post.human_attribute_name(:content_tag) %>：</span>
         <% if post.tags.content_tag.present? %>
           <% post.tags.content_tag.each do |tag| %>
-            <%= link_to tag.name, { controller: "posts", action: "index", q: { tags_name_eq: tag.name }}, class: 'tag', 'data-turbo' => 'false' %>
+            <%= link_to tag.name, { controller: 'posts', action: 'index', q: { tags_name_eq: tag.name }}, class: 'tag', 'data-turbo' => 'false' %>
           <% end %>
         <% else %>
           <span class='no-data'>コンテンツカテゴリ未登録</span>
@@ -51,7 +51,7 @@
         <span><%= Post.human_attribute_name(:post_stamp) %>　：</span>
         <% if post.post_stamps.where(user_id: post.user).present? %>
           <% post.post_stamps.where(user_id: post.user).each do |stamp| %>
-            <%= link_to({ controller: "posts", action: "index", q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp me-1', 'data-turbo' => 'false') do %>
+            <%= link_to({ controller: 'posts', action: 'index', q: { author_stamped_posts: stamp.stamp_before_type_cast }}, class: 'tag tag-stamp me-1', 'data-turbo' => 'false') do %>
               <%= stamp.stamp_i18n %>
               <i class="bi <%= stamp.icon_name %>"></i>
             <% end %>
@@ -65,7 +65,7 @@
 
   <div class='row m-2'>
     <div class='col-md-6'>
-      <%= link_to "詳細を見る", post, 'data-turbo' => 'false' %>
+      <%= link_to '詳細を見る', post, 'data-turbo' => 'false' %>
     </div>
     <div class='col-md-6'>
       <%= link_to profile_path(post.user.profile), class:'nav-link', 'data-turbo' => 'false' do %>

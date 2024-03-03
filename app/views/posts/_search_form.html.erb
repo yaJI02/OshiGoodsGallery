@@ -12,24 +12,24 @@
       タイプ：
       <%= label_tag 'post_type_eq_all', class: 'search-tag-box' do %>
         <%= f.radio_button :post_type_eq, '', checked: (params[:q].try(:[], :post_type_eq).blank?), id: 'post_type_eq_all', onclick: 'this.form.submit();' %>
-        <p class='search-tag'><%= t("enums.post.post_type.all") %></p>
+        <p class='search-tag'><%= t('enums.post.post_type.all') %></p>
       <% end %>
       <%= label_tag 'post_type_eq_merchandise', class: 'search-tag-box' do %>
         <%= f.radio_button :post_type_eq, 0, id: 'post_type_eq_merchandise', checked: (params[:q].present? && params[:q][:post_type_eq].present? && params[:q][:post_type_eq].to_i == 0), onclick: 'this.form.submit();' %>
-        <p class='search-tag'><%= t("enums.post.post_type.merchandise") %></p>
+        <p class='search-tag'><%= t('enums.post.post_type.merchandise') %></p>
       <% end %>
       <%= label_tag 'post_type_eq_showroom', class: 'search-tag-box' do %>
         <%= f.radio_button :post_type_eq, 1, id: 'post_type_eq_showroom', checked: (params[:q].present? && params[:q][:post_type_eq].to_i == 1), onclick: 'this.form.submit();' %>
-        <p class='search-tag'><%= t("enums.post.post_type.showroom") %></p>
+        <p class='search-tag'><%= t('enums.post.post_type.showroom') %></p>
       <% end %>
     </div>
     <div class='mb-3 col-lg-6'>
       推しポイント：
       <%= label_tag 'author_stamped_posts_all', class: 'search-tag-box' do %>
         <%= f.radio_button :author_stamped_posts, '', checked: (params[:q].try(:[], :author_stamped_posts).blank?), id: 'author_stamped_posts_all', onclick: 'this.form.submit();' %>
-        <p class='search-tag'><%= t("enums.post.post_type.all") %></p>
+        <p class='search-tag'><%= t('enums.post.post_type.all') %></p>
       <% end %>
-      <% stamps = { 1 => "cute", 2 => "cool", 3 => "great", 4 => "recommend", 5 => "loved", 6 => "awesome" } %>
+      <% stamps = { 1 => 'cute', 2 => 'cool', 3 => 'great', 4 => 'recommend', 5 => 'loved', 6 => 'awesome' } %>
       <% stamps.each do |value, label| %>
         <%= label_tag "author_stamped_posts_#{'stamp_' + value.to_s.downcase}", class: 'search-tag-box' do %>
           <%= f.radio_button :author_stamped_posts, value, id: "author_stamped_posts_#{'stamp_' + value.to_s.downcase}", checked:  (params.dig(:q, :author_stamped_posts)&.to_i == value), onclick: 'this.form.submit();' %>

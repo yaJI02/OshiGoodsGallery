@@ -1,4 +1,4 @@
 <%= link_to registration_post_stamp_path(post, stamp: 'nice'), id: 'nice-stamp-yet', class: 'reaction-stamp', data: { turbo_method: :post } do %>
-  <i class="bi bi-hand-thumbs-up reaction-stamp defo mt-1"></i>
+  <i class='bi bi-hand-thumbs-up reaction-stamp defo mt-1'></i>
   <span class='mx-2'><%= post.post_stamps.where(stamp: 'nice').count %></span>
 <% end %>
