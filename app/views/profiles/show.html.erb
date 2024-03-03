@@ -1,4 +1,5 @@
 <% content_for :title, t('.title', user_name: @profile.user.name) %>
+<% set_meta_tags og:{image: image_url(@profile.user.profile.avatar.url)}, twitter:{image: image_url(@profile.user.profile.avatar.url)} %>
 
 <div class='container'>
   <div class='col-lg-10 mx-auto mt-5 px-5'>
