@@ -10,7 +10,10 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy, inverse_of: :followed
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
+  has_many :authentications, dependent: :destroy
   has_one :profile, dependent: :destroy
+
+  accepts_nested_attributes_for :authentications
 
   validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
