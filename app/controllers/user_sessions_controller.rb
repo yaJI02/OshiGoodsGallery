@@ -7,11 +7,7 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      if @user.profile.nil?
-        redirect_to new_profile_path, flash: { success: t('flash.login.success') }
-      else
-        redirect_to root_path, flash: { success: t('flash.login.success') }
-      end
+      redirect_to root_path, flash: { success: t('flash.login.success') }
     else
       flash.now[:danger] = t('flash.login.danger')
       render :new, status: :unprocessable_entity
