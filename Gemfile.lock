@@ -116,11 +116,14 @@ GEM
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
     concurrent-ruby (1.2.2)
+    config (5.3.0)
+      deep_merge (~> 1.2, >= 1.2.1)
     crass (1.0.6)
     date (3.3.4)
     debug (1.9.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    deep_merge (1.2.2)
     dockerfile-rails (1.6.1)
       rails (>= 3.0.0)
     dotenv (2.8.1)
@@ -397,6 +400,7 @@ DEPENDENCIES
   bootstrap5-kaminari-views
   capybara
   carrierwave
+  config
   debug
   dockerfile-rails (>= 1.6)
   dotenv-rails
