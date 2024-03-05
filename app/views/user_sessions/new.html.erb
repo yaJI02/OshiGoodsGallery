@@ -31,6 +31,11 @@ body{background-color: white;}
         </div>
       <% end %>
     </div>
+    <div class='text-center mt-5'>
+      <%= link_to auth_at_provider_path(provider: :google), class: 'btn my-3 mx-auto form-btn', style: 'background-color:#0d6efd;' do %>
+        <i class="bi bi-google me-2"></i>Googleでログイン
+      <% end %>
+    </div>
     <div class='link-text text-center mt-5'>
       <%= link_to '新規登録ページへ', new_user_path %>
     </div>

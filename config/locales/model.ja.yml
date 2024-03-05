@@ -147,6 +147,9 @@ ja:
       success: ログインしました
       danger: ログインに失敗しました
     logout: ログアウトしました
+    oauth_login:
+      success: "%{item}アカウントでログインしました"
+      danger: "%{item}アカウントでのログインに失敗しました"
     my_list:
       success: マイリスト登録に成功しました
       danger: マイリスト登録に失敗しました
