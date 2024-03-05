@@ -1,0 +1,1 @@
+google_callback_url: <%= ENV['GOOGLE_CALLBACK_URL_PROD'] %>
