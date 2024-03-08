@@ -32,7 +32,7 @@ body{background-color: white;}
       <% end %>
     </div>
     <div class='text-center mt-5'>
-      <%= link_to auth_at_provider_path(provider: :google), class: 'btn my-3 mx-auto form-btn', style: 'background-color:#0d6efd;' do %>
+      <%= link_to auth_at_provider_path(provider: :google), class: 'btn my-3 mx-auto form-btn', style: 'background-color:#0d6efd;', 'data-turbo' => 'false' do %>
         <i class="bi bi-google me-2"></i>Googleでログイン
       <% end %>
     </div>
