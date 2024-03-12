@@ -215,7 +215,9 @@
         </div>
         <div>
           <div class='share-icon-box mx-auto share-btn'>
+            <%= link_to "https://twitter.com/share?url=#{@current_url}&text=【#{@post.title}】#{@url_content}", target: '_blank', 'data-turbo' => 'false' do %>
               <%= image_tag('logo.svg', class:'share-icon svg-ion') %>
+            <% end %>
           </div>
           <div>Xへ投稿</div>
         </div>

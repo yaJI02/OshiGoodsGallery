@@ -38,6 +38,9 @@ class PostsController < ApplicationController
     @oshi_point_stamps = @post.post_stamps.where(user_id: @post.user_id)
     @comment = Comment.new
     @comments = @post.comments.includes(:user).order(created_at: :desc)
+    @current_url = request.url
+    @post_tags = @post.tags.map { |tag| "&hashtags=#{tag.name}" }.join('')
+    @url_content = "#{@post.body}%0a#{@post_tags}"
   end
 
   # GET /posts/new
