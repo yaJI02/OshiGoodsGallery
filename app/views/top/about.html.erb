@@ -4,36 +4,55 @@
     <p>このアプリは、集めた推しのグッズをみんなで共有するアプリだよ！</p>
     <p>みんなのグッズを見て癒され、新しいアイデアをゲットしちゃおう♪</p>
     <p>グッズの収納方法やかわいい飾り付けかたなど、<br>どしどし投稿して、楽しい推し活の輪を広げていこう❤️</p>
+    <p>※不具合やご要望がございましたら、ページ下部の連絡フォームよりご連絡を頂けますと大変助かります！</p>
   </div>
   <div class='content my-5'>
     <%= render 'shared/content_title', this_title: 'アプリの使い方' %>
     <div class='row justify-content-center'>
-      <div class='about-box col-lg-5 m-3'>
+      <div class='about-box col-lg-5 m-3 text-center'>
         <h5 class='my-3'>１．推しグッズを投稿しよう！</h5>
         <p>まずはあなたのイチ推しグッズを投稿してみよう！</p>
-        <p>いますぐ画面右上の「新規投稿」ボタンをクリック！！<br>※新規投稿にはログインが必要です。</p>
+        <p>※新規投稿にはログインが必要です。<br>ログイン後、画面右上の「新規投稿」ボタンをクリック！！</p>
+        <%= image_tag('oshiapp-header-newbtn.png', class:'img-fluid mb-2') %>
       </div>
+    </div>
+    <div class='row justify-content-center'>
       <div class='about-box col-lg-5 m-3'>
         <h5 class='my-3'>２．みんなの投稿を見てみよう！</h5>
         <p>みんなの投稿を見て新たな発見をしよう！</p>
-        <p>画面右上の「投稿一覧」ボタンをクリック！！<br>新しい順にみんなの投稿が見られるよ！</p>
+        <%= link_to '投稿一覧', posts_path %>
+        <p>新しい順にみんなの投稿が見られるよ！</p>
+        <%= image_tag('oshiapp-postsindex.png', class:'img-fluid mb-2') %>
       </div>
       <div class='about-box col-lg-5 m-3'>
         <h5 class='my-3'>３．ランキングを見てみよう！</h5>
         <p>ランキングを見て人気の記事を見てみよう！</p>
-        <p>画面右上の「ランキング」ボタンをクリック！！</p>
+        <%= link_to 'ランキング', ranking_path %>
+        <p>「いいね数ランキング」など種類豊富♪</p>
+        <%= image_tag('oshiapp-ranking.png', class:'img-fluid mb-2') %>
       </div>
       <div class='about-box col-lg-5 m-3'>
         <h5 class='my-3'>４．マイページを見てみよう！</h5>
         <p>マイページから自分の推し歴を振り返ろう！</p>
-        <p>画面右上の画像アイコンをクリックし、マイページを見てみよう！！</p>
+        <p>※マイページの利用はログインが必要です。<br>ログイン後、画面右上のアイコンからマイページを見てみよう！！</p>
+        <%= image_tag('oshiapp-mymanu-mypage', class:'img-fluid mb-2') %>
+        <%= image_tag('oshiapp-mypage', class:'img-fluid mb-2') %>
       </div>
-      <div class='about-box col-lg-6 m-3'>
+      <div class='about-box col-lg-5 m-3'>
         <h5 class='my-3'>５．マイプロフィールを設定しよう！</h5>
-        <p>マイプロフィールをカスタマイズして、マイベスト投稿をアピールしよう！</p>
-        <p>画面右上の画像アイコンをクリックし、マイプロフィールを見てみよう！！</p>
-        <p>また、投稿者の名前をクリックするとその人のプロフィールページに行けるよ</p>
+        <p>マイプロフィールをカスタマイズして、ベスト投稿をアピールしよう！</p>
+        <p>※マイプロフィールの利用はログインが必要です。<br>ログイン後、画面右上のアイコンからマイプロフィールを見てみよう！！</p>
+        <%= image_tag('oshiapp-mymanu-myprofile', class:'img-fluid mb-2') %>
+        <p>また、投稿者の名前をクリックするとその人のプロフィールページに行けるよ！<br>※閲覧はログイン不要です。</p>
+        <%= image_tag('oshiapp-profile', class:'img-fluid mb-2') %>
       </div>
+    </div>
+  </div>
+  <div class='content my-5'>
+    <%= render 'shared/content_title', this_title: '不具合・ご要望について' %>
+    <p>下記googleフォームよりご連絡をお願いします。<br>※メールアドレスは取得しておりません。<br>返信が必要な場合は<%= link_to 'お問い合わせフォーム', new_contact_path %>よりお願いいたします。</p>
+    <div class='googleform-wrapper'>
+      <iframe src='https://docs.google.com/forms/d/e/1FAIpQLSd6rrtXQjeFZAANVxSMcD5hzLO1qNxVl_Z8aanoom3TUaeeNw/viewform?embedded=true' frameborder='0' marginheight='0' marginwidth='0'>読み込んでいます…</iframe>
     </div>
   </div>
   <div class='content my-5'>
