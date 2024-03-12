@@ -9,3 +9,4 @@ import "controllers/footerFixed";
 import "controllers/swiper";
 import "controllers/tag_controller";
 import "controllers/share";
+import "controllers/modal";

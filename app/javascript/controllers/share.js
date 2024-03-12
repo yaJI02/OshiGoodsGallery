@@ -1,5 +1,5 @@
 document.addEventListener("turbo:load", function () {
-  const shareBtn = document.getElementById("share-btn");
+  const shareBtn = document.getElementById("url-share-btn");
   if (shareBtn) {
     shareBtn.addEventListener("click", function () {
       let url = location.href;

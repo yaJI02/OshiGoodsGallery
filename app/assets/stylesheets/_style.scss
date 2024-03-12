@@ -296,7 +296,7 @@ display: inline;
   color: black;
 }
 
-#share-btn {
+.share-btn {
   cursor: pointer;
 }
 
@@ -326,6 +326,59 @@ image{
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+
+.modal-share {
+  position: fixed;
+  width: 50vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+  display: none;
+}
+
+@media screen and (max-width: 425px) {
+  .modal-share {
+    width: 80vw;
+  }
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: none;
+}
+
+.share-icon-box {
+  border: 1px solid #66589c;
+  background-color: #66589c;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-icon-box .share-icon {
+  color: white;
+  font-size: 33px;
+}
+
+.share-icon-box .svg-ion {
+  width: 25px;
+  height: 25px;
 }
 
 .pagination>li>a {          

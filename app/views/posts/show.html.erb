@@ -94,8 +94,9 @@
       <div class='row'>
         <div class='col-md-6'>
           <div class='ms-3 d-flex align-items-center justify-content-start'>
-            <div class='me-3' id='share-btn'>
+            <div class='me-3 share-btn modal-open-btn'>
               <i class='bi bi-box-arrow-up reaction-stamp defo mt-1'></i>
+              <span class='reaction-stamp'>シェア</span>
             </div>
             <% if logged_in? %>
               <% if @post.my_lists.find_by(user_id: current_user.id).present? %>
@@ -127,8 +128,6 @@
             </div>
           <% end %>
         </div>
-      </div>
-      <div class='ms-3 no-data' id='share-massage'>
       </div>
     </div>
 
@@ -202,3 +201,30 @@
     <%= link_to '投稿一覧に戻る', posts_path %>
   </div>
 </div>
+
+<div class='modal-share'>
+  <div class='modal-content'>
+    <div class='container-box text-center'>
+      <div class='container-label'>共有</div>
+      <div class='my-3' style='display: flex; justify-content: center;'>
+        <div class='me-4'>
+          <div class='share-icon-box mx-auto share-btn' id='url-share-btn'>
+            <i class='bi bi-link-45deg share-icon'></i>
+          </div>
+          <div>urlコピー</div>
+        </div>
+        <div>
+          <div class='share-icon-box mx-auto share-btn'>
+            <%= link_to "https://twitter.com/share?url=#{@current_url}&text=【#{@post.title}】#{@url_content}", target: '_blank', 'data-turbo' => 'false' do %>
+              <%= image_tag('logo.svg', class:'share-icon svg-ion') %>
+            <% end %>
+          </div>
+          <div>Xへ投稿</div>
+        </div>
+      </div>
+      <div class='ms-3 no-data' id='share-massage'></div>
+      <div class='m-3 p-1 content-box'><%= @current_url %></div>
+    </div>
+  </div>
+</div>
+<div class='modal-mask'></div>
