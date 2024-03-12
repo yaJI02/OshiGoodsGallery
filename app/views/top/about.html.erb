@@ -50,14 +50,12 @@
   </div>
   <div class='content my-5'>
     <%= render 'shared/content_title', this_title: '不具合・ご要望について' %>
-    <p>下記googleフォームよりご連絡をお願いします。<br>※メールアドレスは取得しておりません。<br>返信が必要な場合は<%= link_to 'お問い合わせフォーム', new_contact_path %>よりお願いいたします。</p>
-    <div class='googleform-wrapper'>
-      <iframe src='https://docs.google.com/forms/d/e/1FAIpQLSd6rrtXQjeFZAANVxSMcD5hzLO1qNxVl_Z8aanoom3TUaeeNw/viewform?embedded=true' frameborder='0' marginheight='0' marginwidth='0'>読み込んでいます…</iframe>
-    </div>
+    <p>下記googleフォームよりご連絡をお願いします。<br>※メールアドレスは取得しておりません。</p>
+    <a href='https://forms.gle/kpcLwnFamhsGNjZo8'>連絡フォーム</a>
   </div>
   <div class='content my-5'>
     <%= render 'shared/content_title', this_title: 'お問合せ先' %>
-    <p>本サイトに関するお問い合わせは、下記お問い合わせフォームよりお願いいたします。</p>
+    <p>本サイトに関するお問い合わせは、下記お問い合わせフォームよりお願いいたします。<br>※返信が必要な場合は、こちらをご使用ください。</p>
     <%= link_to 'お問い合わせフォーム', new_contact_path %>
   </div>
 </div>
