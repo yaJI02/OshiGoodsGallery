@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
     user = @profile.user
     @following_users_count = user.following_user.count
     @follower_users_count = user.follower_user.count
+    @current_url = request.url
   end
 
   # GET /profiles/1/edit

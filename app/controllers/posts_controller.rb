@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user).order(created_at: :desc)
     @current_url = request.url
     @post_tags = @post.tags.map { |tag| "&hashtags=#{tag.name}" }.join('')
-    @url_content = "#{@post.body}%0a#{@post_tags}"
+    @url_content = "【#{@post.title}】#{@post.body}%0a#{@post_tags}"
   end
 
   # GET /posts/new
