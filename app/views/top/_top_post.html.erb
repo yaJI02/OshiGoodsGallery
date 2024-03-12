@@ -24,12 +24,12 @@
       </div>
     <% end %>
 
-    <%= link_to profile_path(post.user.profile), class:'nav-link mb-2' do %>
+    <%= link_to profile_path(post.user.profile), class:'nav-link mb-2 me-2' do %>
       <div class='row'>
-        <div class='col-10 text-end my-auto'>
-          <%= t('posts.user_link_sentense') %><%= post.user.name %>
+        <div class='col-lg-10 text-end my-auto'>
+          by <%= post.user.name %>
         </div>
-        <div class='col-2'>
+        <div class='col-lg-2 d-flex justify-content-center'>
           <%= image_tag(post.user.profile.avatar.url, class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
         </div>
       </div>
