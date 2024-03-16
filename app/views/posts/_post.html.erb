@@ -64,34 +64,32 @@
   </div>
 
   <div class='row m-2'>
-    <div class='col-md-6'>
+    <div class='col-md-3'>
       <%= link_to '詳細を見る', post, 'data-turbo' => 'false' %>
     </div>
-    <div class='col-md-6'>
+    <div class='col-md-9'>
       <%= link_to profile_path(post.user.profile), class:'nav-link', 'data-turbo' => 'false' do %>
         <div class='row'>
-          <div class='col-11 text-end my-auto'>
+          <div class='col-sm-11 text-end my-auto'>
             <%= t('posts.user_link_sentense') %><%= post.user.name %>
           </div>
-          <div class='col-1' style='padding-left: 0;'>
+          <div class='col-sm-1 d-flex justify-content-center'>
             <%= image_tag(post.user.profile.avatar.url, class:'rounded-circle', size:'30x30', style:'border: 1px solid #66589c;') %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
-  <div class='m-3 get-reaction'>
-    <div style='display: flex; justify-content: start;'>
-      <div class='me-4'>
-        <i class='bi bi-hand-thumbs-up-fill'></i>
-        <span class='ms-2'><%= post.post_stamps.where(stamp: 'nice').count %></span>
-      </div>
-      <% @stamps.each do |stamp, icon| %>
-        <div class='me-4'>
-          <i class="bi <%= icon %>"></i>
-          <span class='ms-2'><%= post.post_stamps.where(stamp: stamp).count %></span>
-        </div>
-      <% end %>
+  <div class='m-3 get-reaction' style='display: flex; justify-content: start; flex-wrap: wrap;'>
+    <div class='me-4'>
+      <i class='bi bi-hand-thumbs-up-fill'></i>
+      <span class='ms-2'><%= post.post_stamps.where(stamp: 'nice').count %></span>
     </div>
+    <% @stamps.each do |stamp, icon| %>
+      <div class='me-4'>
+        <i class="bi <%= icon %>"></i>
+        <span class='ms-2'><%= post.post_stamps.where(stamp: stamp).count %></span>
+      </div>
+    <% end %>
   </div>
 </div>
