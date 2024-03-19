@@ -55,22 +55,6 @@ header .navbar-toggler {
   background-color: #f5effb;
 }
 
-@media screen and (max-width: 767px) {
-  header .logo {
-    font-size: 17pt;
-  }
-
-  header .logo-img {
-    height: 25px;
-    width: 25px;
-  }
-
-  header .btn {
-    font-size: 12pt;
-    padding: 8px 13px;
-  }
-}
-
 header .navbar-brand:hover {
   color:#d3d3d3;
 }
@@ -336,12 +320,6 @@ image{
   transform: translate(-50%,-50%);
   z-index: 2;
   display: none;
-}
-
-@media screen and (max-width: 425px) {
-  .modal-share {
-    width: 80vw;
-  }
 }
 
 .modal-content {
