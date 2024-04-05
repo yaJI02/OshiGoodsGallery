@@ -9,3 +9,5 @@ ja:
       title: "%{name}のフォロー一覧"
     followers:
       title: "%{name}のフォロワー一覧"
+    my_calender:
+      title: 購入日カレンダー
