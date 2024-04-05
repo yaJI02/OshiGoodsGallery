@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: %i[new create] do
     get :my_page, on: :collection
+    get :my_calender, on: :collection
     resource :follows, only: %i[create destroy]
     get :follows, on: :member
     get :followers, on: :member

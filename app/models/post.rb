@@ -100,4 +100,12 @@ class Post < ApplicationRecord
       only_favorite_of_user(user)
     end
   end
+
+  def start_time
+    if bought_at.present?
+      return bought_at
+    else
+      return created_at
+    end
+  end
 end

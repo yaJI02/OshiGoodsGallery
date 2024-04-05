@@ -25,6 +25,11 @@ class UsersController < ApplicationController
     @get_stamps = PostStamp.includes(:post).where(posts: { user_id: current_user })
   end
 
+  def my_calender
+    Date.beginning_of_week = :sunday
+    @posts = Post.where(user_id: current_user)
+  end
+
   def set_user_post_list
     render turbo_stream: turbo_stream.update('change-mypage-list', partial: 'user_post_list')
   end
