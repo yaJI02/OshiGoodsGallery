@@ -74,15 +74,15 @@ class Post < ApplicationRecord
   private_class_method :ransackable_associations
   private_class_method :ransackable_scopes
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[title body post_type]
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     %w[user tags places post_stamps]
   end
 
-  def self.ransackable_scopes(auth_object = nil)
+  def self.ransackable_scopes(_auth_object = nil)
     %w[author_stamped_posts]
   end
 
