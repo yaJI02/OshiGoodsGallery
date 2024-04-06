@@ -7,8 +7,6 @@
   <% if post.stamp_count(stamp) != last_stamp %>
     <% j += 1 %>
     <% last_stamp = post.stamp_count(stamp) %>
-  <% else %>
-    <% last_stamp = post.stamp_count(stamp) %>
   <% end %>
   <div class='row'>
     <div class='col-lg-1 d-flex align-items-center justify-content-center'>
