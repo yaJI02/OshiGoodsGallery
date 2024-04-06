@@ -23,7 +23,7 @@ class OauthsController < ApplicationController
         auto_login(@user)
         @profile = Profile.create(user: current_user)
         redirect_to edit_profile_path(@profile), flash: { success: t('flash.oauth_login.success', item: provider.titleize) }
-      rescue
+      rescue StandardError
         redirect_to login_path, flash: { danger: t('flash.oauth_login.danger', item: provider.titleize) }
       end
     end
