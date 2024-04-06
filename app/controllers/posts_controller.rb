@@ -9,24 +9,10 @@ class PostsController < ApplicationController
     @post_types = Post.post_types.keys
     @q = Post.includes(:user, :profile, :tags, :post_stamps)
     @q = @q.filtered_posts_for_user(current_user) if current_user.present?
+    search_freeword, search_type, search_stamp = extract_search_params
 
-    if params[:q].present?
-      search_freeword = params[:q][:title_or_body_or_user_name_or_places_name_or_tags_name_cont].presence
-      search_type = params[:q][:post_type_eq].presence
-      search_stamp = params[:q][:author_stamped_posts].presence
-    end
-
-    if search_freeword.present?
-      keywords = search_freeword.split(',')
-      grouping_hash = keywords.map { |word| { title_or_body_or_user_name_or_places_name_or_tags_name_cont: word } }
-      grouping_hash << { post_type_eq: search_type } if search_type.present?
-      @q = @q.ransack(combinator: 'and', groupings: grouping_hash)
-    else
-      @q = @q.ransack(params[:q])
-    end
-
-    @posts = search_stamp.present? ? @q.result.author_stamped_posts(search_stamp) : @q.result.group(:id)
-    @posts = @posts.order(created_at: :DESC).page(params[:page])
+    @q = build_query(@q, search_freeword, search_type)
+    @posts = fetch_posts(@q, search_stamp)
     @search_words = search_freeword.presence
   end
 
@@ -97,6 +83,32 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def extract_search_params
+    if params[:q].present?
+      search_freeword = params[:q][:title_or_body_or_user_name_or_places_name_or_tags_name_cont].presence
+      search_type = params[:q][:post_type_eq].presence
+      search_stamp = params[:q][:author_stamped_posts].presence
+    end
+    [search_freeword, search_type, search_stamp]
+  end
+
+  def build_query(query, search_freeword, search_type)
+    if search_freeword.present?
+      keywords = search_freeword.split(',')
+      grouping_hash = keywords.map { |word| { title_or_body_or_user_name_or_places_name_or_tags_name_cont: word } }
+      grouping_hash << { post_type_eq: search_type } if search_type.present?
+      query = query.ransack(combinator: 'and', groupings: grouping_hash)
+    else
+      query = query.ransack(params[:q])
+    end
+    query
+  end
+
+  def fetch_posts(query, search_stamp)
+    posts = search_stamp.present? ? query.result.author_stamped_posts(search_stamp) : query.result.group(:id)
+    posts.order(created_at: :DESC).page(params[:page])
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
