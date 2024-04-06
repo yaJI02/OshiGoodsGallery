@@ -102,10 +102,8 @@ class Post < ApplicationRecord
   end
 
   def start_time
-    if bought_at.present?
-      return bought_at
-    else
-      return created_at
-    end
+    return bought_at if bought_at.present?
+
+    created_at
   end
 end
