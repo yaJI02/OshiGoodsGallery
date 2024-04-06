@@ -104,16 +104,16 @@
               <% else %>
                 <%= button_to 'マイリスト登録', registration_my_list_path(@post), method: :post, class: 'btn form-btn mybest-btn' %>
               <% end %>
-            <% end %>
-            <div class='ms-3'>
-              <% if logged_in? && @post.user != current_user %>
-                <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: 'nice') %>
-                  <%= render 'reaction_stamps/nice_done', post: @post %>
-                <% else %>
-                  <%= render 'reaction_stamps/nice_yet', post: @post %>
+              <div class='ms-3'>
+                <% if different_user_item?(@post) %>
+                  <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: 'nice') %>
+                    <%= render 'reaction_stamps/nice_done', post: @post %>
+                  <% else %>
+                    <%= render 'reaction_stamps/nice_yet', post: @post %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class='col-md-6'>
@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <% if logged_in? && @post.user_id == current_user.id %>
+    <% if logged_in? && current_user_item?(@post) %>
       <div class='row mt-5 mb-3'>
         <div class='col me-3 d-flex justify-content-end'>
           <%= link_to '編集する', edit_post_path(@post), class: 'btn form-btn' %>
@@ -143,7 +143,7 @@
     <% end %>
   </div>
   <div class='container-box' id='post-stamp-index'>
-    <% if logged_in? && @post.user != current_user %>
+    <% if logged_in? && different_user_item?(@post) %>
       <div style='display: flex; justify-content: start;'>
         <% @stamps.each do |stamp, icon| %>
           <% if @post.post_stamps.find_by(user_id: current_user.id, stamp: stamp) %>

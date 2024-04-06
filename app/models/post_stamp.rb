@@ -15,11 +15,11 @@ class PostStamp < ApplicationRecord
   private_class_method :ransackable_attributes
   private_class_method :ransackable_associations
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[stamp]
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     %w[post]
   end
 
