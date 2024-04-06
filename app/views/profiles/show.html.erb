@@ -22,7 +22,7 @@
         <div class='mt-2'>
           <div class='d-flex justify-content-center'>
             <% if current_user.present? %>
-              <% if @profile.user == current_user %>
+              <% if current_user_item?(@profile) %>
                 <%= link_to 'プロフィールを編集', edit_profile_path(@profile), class: 'btn form-btn' %>
               <% elsif current_user.following?(@profile.user) %>
                 <%= link_to 'フォロー解除', user_follows_path(@profile.user), data: { turbo_method: :delete}, class: 'btn form-btn btn-del' %>
@@ -109,7 +109,7 @@
     <% else %>
       <div class='no-data text-center mb-3'>未登録</div>
     <% end %>
-    <% if @profile.user == current_user %>
+    <% if current_user_item?(@profile) %>
       <div class='my-2'>
         <div class='d-flex justify-content-center'>
           <% if current_user.posts.present? %>

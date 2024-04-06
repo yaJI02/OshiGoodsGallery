@@ -26,4 +26,12 @@ module ApplicationHelper
       }
     }
   end
+
+  def different_user_item?(item)
+    item.user != current_user
+  end
+
+  def current_user_item?(item)
+    item.user == current_user
+  end
 end
