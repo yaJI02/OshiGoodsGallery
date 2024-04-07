@@ -9,3 +9,21 @@
     font-size: 20px;
   }
 }
+
+.calender-pc {
+  display: block;
+}
+
+.calender-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .calender-mobile{
+    display: block;
+  }
+
+  .calender-pc {
+    display: none;
+  }
+}

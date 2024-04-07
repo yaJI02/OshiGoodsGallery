@@ -11,7 +11,10 @@
           
           <% posts.each do |post| %>
             <div class='mb-2'>
-              <%= link_to post.title, post_path(post), class: 'tag' %>
+              <%= link_to post.title, post_path(post), class: 'tag calender-pc' %>
+              <%= link_to post_path(post), class: 'tag calender-mobile' do %>
+                <i class='bi bi-calendar-heart'></i>
+              <% end %>
             </div>
           <% end %>
       <% end %>
