@@ -6,6 +6,8 @@ class Follow < ApplicationRecord
 
   after_create_commit :create_notifications
 
+  validates :follower, uniqueness: { scope: :followed }
+
   private
 
   def create_notifications
