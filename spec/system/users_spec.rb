@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe 'Users', type: :system do
   before do
     driven_by(:rack_test)
   end
 
   context 'ユーザー新規登録ができるとき' do 
-    it '正しい情報を入力すればユーザー新規登録ができてトップページに移動する' do
+    it '正しい情報を入力すればユーザー・プロフィールの新規登録ができてプロフィールページに移動する' do
       # トップページに移動する
       visit root_path
       # 新規登録ページへ遷移するボタンをクリック
@@ -38,7 +38,9 @@ RSpec.describe "Users", type: :system do
       expect(current_path).to eq profile_path(profile_id)
       # 更新したプロフィール情報が表示されている事を確認
       expect(page).to have_content('test_user_rev1')
+      expect(page).to have_selector('img[src$="sample.jpg"]')
       expect(page).to have_content('@test_sns_account')
+      expect(page).to have_content('NGタグ以外の投稿を表示する')
     end
   end
 end
