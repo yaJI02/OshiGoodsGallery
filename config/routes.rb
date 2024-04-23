@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'terms_of_use', to: 'top#terms_of_use'
   get 'about', to: 'top#about'
   get 'privacy_policy', to: 'top#privacy_policy'
+  get 'notice_of_termination', to: 'top#notice_of_termination'
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
